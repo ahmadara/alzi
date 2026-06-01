@@ -1,0 +1,230 @@
+{% extends "admin/change_form.html" %}
+{% load static %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <style>
+        /* ============================================
+           استایل صفحه افزودن/ویرایش (Change Form)
+           کاملاً هماهنگ با استایل صفحه اصلی index
+           ============================================ */
+
+        /* 1. پس‌زمینه شفاف */
+        body, #container, #content, #content-main {
+            background: transparent !important;
+        }
+
+        form {
+            background: transparent !important;
+        }
+
+        /* 2. هدر صفحه - دقیقاً مثل caption ماژول‌ها در index */
+        .change-form-header {
+            background: #0891B2 !important;  /* همان رنگ caption در index */
+            padding: 12px 20px !important;
+            border-radius: 12px !important;
+            margin-bottom: 20px !important;
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+        }
+        
+        .change-form-header h1 {
+            color: white !important;
+            margin: 0 !important;
+            font-size: 16px !important;
+            font-weight: bold !important;
+        }
+        
+        .change-form-header a {
+            color: white !important;
+            text-decoration: none !important;
+            background: rgba(255, 255, 255, 0.15) !important;
+            padding: 5px 12px !important;
+            border-radius: 6px !important;
+            transition: all 0.2s ease !important;
+            font-size: 13px !important;
+        }
+        
+        .change-form-header a:hover {
+            background: rgba(255, 255, 255, 0.25) !important;
+            color: rgb(242, 248, 87) !important;
+        }
+
+        /* 3. مسیر راهنما (breadcrumbs) - هماهنگ با سایدبار */
+        .breadcrumbs {
+            background: rgb(30, 36, 37) !important;
+            padding: 10px 20px !important;
+            border-radius: 12px !important;
+            margin-bottom: 20px !important;
+        }
+        
+        .breadcrumbs a {
+            color: #06B6D4 !important;
+            text-decoration: none !important;
+        }
+        
+        .breadcrumbs a:hover {
+            color: rgb(242, 248, 87) !important;
+        }
+        
+        .breadcrumbs .active {
+            color: #94A3B8 !important;
+        }
+
+        /* 4. بخش‌های فرم - مثل کارت‌های index */
+        fieldset {
+            margin-bottom: 20px !important;
+            border: 1px solid rgba(8, 145, 178, 0.2) !important;
+            border-radius: 12px !important;
+            overflow: hidden !important;
+            background: transparent !important;
+        }
+        
+        /* هدر هر بخش - دقیقاً مثل caption در index */
+        fieldset h2 {
+            background: #0891B2 !important;
+            color: white !important;
+            padding: 12px 20px !important;
+            margin: 0 !important;
+            font-size: 16px !important;
+            font-weight: bold !important;
+        }
+        
+        /* 5. ردیف‌های فرم */
+        .form-row {
+            padding: 12px 20px !important;
+            border-bottom: 1px solid rgba(51, 65, 85, 0.15) !important;
+            background: transparent !important;
+        }
+        
+        .form-row:last-child {
+            border-bottom: none !important;
+        }
+        
+        /* 6. برچسب‌ها */
+        label {
+            color: #334155 !important;
+            font-weight: 600 !important;
+            font-size: 14px !important;
+        }
+        
+        /* 7. فیلدهای ورودی */
+        input, textarea, select {
+            background: #FFFFFF !important;
+            border: 1px solid #CBD5E1 !important;
+            border-radius: 8px !important;
+            color: #1E293B !important;
+            padding: 8px 12px !important;
+            transition: all 0.2s ease !important;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            border-color: #0891B2 !important;
+            outline: none !important;
+            box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.15) !important;
+        }
+        
+        textarea {
+            min-height: 100px !important;
+        }
+        
+        /* 8. توضیحات کمکی */
+        .help {
+            color: #64748B !important;
+            font-size: 12px !important;
+            margin-top: 4px !important;
+        }
+        
+        /* 9. خطاها */
+        .errors {
+            background: rgba(239, 68, 68, 0.05) !important;
+            border-left: 3px solid #EF4444 !important;
+            padding: 8px 12px !important;
+            margin: 10px 0 !important;
+            border-radius: 6px !important;
+        }
+        
+        .errorlist li {
+            color: #EF4444 !important;
+        }
+        
+        /* 10. دکمه‌های پایین صفحه - مثل دکمه‌های index */
+        .submit-row {
+            background: transparent !important;
+            padding: 15px 0 !important;
+            margin-top: 20px !important;
+            gap: 10px !important;
+            border: none !important;
+        }
+        
+        .submit-row input {
+            background: #0891B2 !important;
+            color: white !important;
+            border: none !important;
+            padding: 8px 20px !important;
+            border-radius: 6px !important;
+            cursor: pointer !important;
+            font-weight: 600 !important;
+            transition: all 0.2s ease !important;
+        }
+        
+        .submit-row input:hover {
+            background: #06B6D4 !important;
+            transform: translateY(-1px) !important;
+        }
+        
+        /* دکمه حذف */
+        .submit-row .deletelink {
+            background: #EF4444 !important;
+            color: white !important;
+            text-decoration: none !important;
+            padding: 8px 20px !important;
+            border-radius: 6px !important;
+            display: inline-block !important;
+        }
+        
+        .submit-row .deletelink:hover {
+            background: #DC2626 !important;
+            transform: translateY(-1px) !important;
+        }
+        
+        /* 11. لینک‌های داخل فرم */
+        form a {
+            color: #0891B2 !important;
+            text-decoration: none !important;
+        }
+        
+        form a:hover {
+            color: #06B6D4 !important;
+            text-decoration: underline !important;
+        }
+        
+        /* 12. اسکرول بار */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #E2E8F0;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0891B2;
+            border-radius: 4px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="change-form-header">
+    <h1>
+        {% if add %}
+            افزودن {{ opts.verbose_name }}
+        {% else %}
+            ویرایش {{ original }}
+        {% endif %}
+    </h1>
+    <a href="{% url 'admin:news_newsarticle_changelist' %}">بازگشت به لیست</a>
+</div>
+{{ block.super }}
+{% endblock %}

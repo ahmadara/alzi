@@ -1,0 +1,145 @@
+{% extends "base_site.html" %}
+
+{% load static %}
+
+
+
+{% block title %}اخبار و مقالات - مرکز آلزایمر{% endblock %}
+
+
+
+{% block content %}
+
+<!-- هدر صفحه -->
+
+<div class="bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 mb-8 text-center text-white shadow-lg">
+
+    <h1 class="text-3xl md:text-4xl font-bold mb-2">📰 آخرین اخبار و مقالات</h1>
+
+    <p class="text-white/80">جدیدترین یافته‌ها و اخبار مرتبط با بیماری آلزایمر</p>
+
+</div>
+
+
+
+<!-- گرید اخبار -->
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    {% for news in news_list %}
+
+    <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-smooth hover:-translate-y-1">
+
+        {% if news.featured_image %}
+
+        <img src="{{ news.featured_image.url }}" alt="{{ news.title }}" class="w-full h-48 object-cover">
+
+        {% else %}
+
+        <div class="w-full h-48 bg-gradient-to-r from-primary/20 to-secondary/20 flex items-center justify-center">
+
+            <span class="text-4xl">📰</span>
+
+        </div>
+
+        {% endif %}
+
+        
+
+        <div class="p-5">
+
+            <div class="flex items-center gap-3 text-xs text-gray-500 mb-3">
+
+                <span>📅 {{ news.publish_date|date:"Y/m/d" }}</span>
+
+                <span>👁️ {{ news.views }} بازدید</span>
+
+                <span class="bg-primary/10 text-primary px-2 py-1 rounded-full">{{ news.category.name }}</span>
+
+            </div>
+
+            
+
+            <h3 class="text-xl font-bold text-slate-800 mb-2 line-clamp-2">
+
+                <a href="{{ news.get_absolute_url }}" class="hover:text-primary transition-smooth">{{ news.title }}</a>
+
+            </h3>
+
+            
+
+            <p class="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
+
+                {{ news.summary|truncatewords:25 }}
+
+            </p>
+
+            
+
+            <a href="{{ news.get_absolute_url }}" class="inline-flex items-center text-primary hover:text-primary-dark font-semibold transition-smooth">
+
+                ادامه مطلب
+
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+
+                </svg>
+
+            </a>
+
+        </div>
+
+    </div>
+
+    {% empty %}
+
+    <div class="col-span-full text-center py-12">
+
+        <p class="text-gray-500">هیچ خبری یافت نشد.</p>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+
+
+<!-- پیجینیشن -->
+
+{% if is_paginated %}
+
+<div class="flex justify-center gap-2 mt-8">
+
+    {% if page_obj.has_previous %}
+
+        <a href="?page=1" class="px-3 py-2 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-primary hover:text-white transition-smooth">اول</a>
+
+        <a href="?page={{ page_obj.previous_page_number }}" class="px-3 py-2 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-primary hover:text-white transition-smooth">قبلی</a>
+
+    {% endif %}
+
+    
+
+    <span class="px-4 py-2 rounded-lg bg-primary text-white">
+
+        صفحه {{ page_obj.number }} از {{ page_obj.paginator.num_pages }}
+
+    </span>
+
+    
+
+    {% if page_obj.has_next %}
+
+        <a href="?page={{ page_obj.next_page_number }}" class="px-3 py-2 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-primary hover:text-white transition-smooth">بعدی</a>
+
+        <a href="?page={{ page_obj.paginator.num_pages }}" class="px-3 py-2 rounded-lg bg-white border border-gray-300 text-gray-700 hover:bg-primary hover:text-white transition-smooth">آخر</a>
+
+    {% endif %}
+
+</div>
+
+{% endif %}
+
+{% endblock %}
