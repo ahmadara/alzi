@@ -1,0 +1,21 @@
+{% extends "admin/change_form.html" %}
+{% load static %}
+
+{% block extrastyle %}
+    {{ block.super }}
+
+{% endblock %}
+
+{% block content %}
+<div class="change-form-header">
+    <h1>
+        {% if add %}
+            افزودن {{ opts.verbose_name }}
+        {% else %}
+            ویرایش {{ original }}
+        {% endif %}
+    </h1>
+    <a href="{% url 'admin:news_newsarticle_changelist' %}">بازگشت به لیست</a>
+</div>
+{{ block.super }}
+{% endblock %}

@@ -91,7 +91,11 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+from django.utils.translation import gettext_lazy as _
 
+LANGUAGES = [
+    ('fa', _('Persian')),
+]
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 AUTH_PASSWORD_VALIDATORS = [
@@ -103,7 +107,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'fa-ir'
 TIME_ZONE = 'Asia/Tehran'
+
 USE_I18N = True
+USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
@@ -113,7 +119,7 @@ DEBUG = True
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
-APP_DIRS = True
+
 #STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
@@ -143,9 +149,9 @@ UNFOLD = {
 
     "SITE_FAVICON": None,
 
-  "STYLES": [
-        "admin/css/custom.css",
-    ],
+    "STYLES": [
+           "/static/css/custom.css"
+        ],
 
   
 
