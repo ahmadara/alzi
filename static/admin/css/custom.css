@@ -1,0 +1,93 @@
+/* ============================================
+           استایل‌های صفحه اصلی داشبورد ادمین
+           ============================================ */
+        nav#nav-sidebar {
+    background: rgb(30, 36, 37);
+    color :wheat;
+}
+div#main > div:first-child ,nav#nav-sidebar > div:first-child {
+    background: rgb(68, 68, 69) !important;
+    color: white !important;
+}
+div#main > div:first-child h1 {
+    color: white !important;
+}
+nav#nav-sidebar  a{ color: white;}
+        /* 1. کارت‌های برنامه‌ها (apps) */
+        .module {
+         
+            border-radius: 12px !important;
+            margin-bottom: 20px !important;
+            overflow: hidden !important;
+               
+        }
+        
+        .module caption {
+            background: #0891B2 !important;
+            color: white !important;
+            padding: 12px !important;
+            font-size: 16px !important;
+            font-weight: bold !important;
+             margin-bottom: 0 !important;
+        }
+        
+  
+        /* 2. لینک‌های داخل کارت‌ها */
+        .module a {
+            color: #06B6D4 !important;
+            text-decoration: none !important;
+        }
+        .module caption a , thead  .text a, a.button{
+            color: white !important;
+            text-decoration: none !important;
+        }
+        .module caption a:hover , .modules tr th a:hover,a.button:hover {
+            color: rgb(242, 248, 87) !important;
+            text-decoration: none !important;
+        }
+        .module a:hover {
+            color: #0891B2 !important;
+            text-decoration: underline !important;
+        }
+        
+        /* 3. بخش فعالیت‌های اخیر */
+        #recent-actions-module {
+         
+            border-radius: 12px !important;
+        }
+        
+        #recent-actions-module h2 {
+            background: #0891B2 !important;
+            color: white !important;
+            padding: 12px !important;
+            margin: 0 !important;
+        }
+        
+   
+        
+        /* 4. دکمه‌ها و لینک‌های اضافه کردن */
+        .addlink, .changelink {
+            color: white !important;
+            padding: 4px 8px !important;
+            border-radius: 4px !important;
+        }
+        
+        /* 5. استایل کلی صفحه */
+        body.dashboard #content {
+            background: transparent !important;
+        }
+        
+        /* 6. هدر جدول‌ها */
+        thead th {
+            background: #0891B2 !important;
+            color: white !important;
+        }
+        
+        /* 7. ردیف‌های جدول */
+        /* tbody tr:nth-child(even) {
+            background-color: rgba(8, 145, 178, 0.1) !important;
+        }
+        
+        tbody tr:hover {
+            background-color: rgba(8, 145, 178, 0.2) !important;
+        } */

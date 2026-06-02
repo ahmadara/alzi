@@ -32,16 +32,17 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
      "unfold",  # before django.contrib.admin
-    "unfold.contrib.filters",  # optional, if special filters are needed
-    "unfold.contrib.forms",  # optional, if special form elements are needed
-    "unfold.contrib.inlines",  # optional, if special inlines are needed
-    "unfold.contrib.import_export",  # optional, if django-import-export package is used
-    "unfold.contrib.guardian",  # optional, if django-guardian package is used
-    "unfold.contrib.simple_history",  # optional, if django-simple-history package is used
-    "unfold.contrib.location_field",  # optional, if django-location-field package is used
-    "unfold.contrib.constance",  # optional, if django-constance package is used
+    # "unfold.contrib.filters",  # optional, if special filters are needed
+    # "unfold.contrib.forms",  # optional, if special form elements are needed
+    # "unfold.contrib.inlines",  # optional, if special inlines are needed
+    # "unfold.contrib.import_export",  # optional, if django-import-export package is used
+    # "unfold.contrib.guardian",  # optional, if django-guardian package is used
+    # "unfold.contrib.simple_history",  # optional, if django-simple-history package is used
+    # "unfold.contrib.location_field",  # optional, if django-location-field package is used
+    # "unfold.contrib.constance",  # optional, if django-constance package is used
     "django.contrib.admin",  # required
     'django.contrib.auth',
+    
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -70,7 +71,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [ BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -129,6 +130,55 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
+}
+UNFOLD = {
+
+    "SITE_TITLE": "پنل مدیریت آلزایمر",
+
+    "SITE_HEADER": "مرکز تشخیص و اطلاع‌رسانی آلزایمر",
+
+    "SITE_URL": "/",
+
+    "SITE_ICON": None,
+
+    "SITE_FAVICON": None,
+
+  "STYLES": [
+        "admin/css/custom.css",
+    ],
+
+  
+
+    # تصویر پس‌زمینه صفحه ورود (اختیاری)
+
+    "LOGIN": {
+
+        "image": None,  # میتونی یه عکس بذاری
+
+    },
+
+    
+
+    # لوگوی سایت (اختیاری)
+
+    "SITE_LOGO": None,
+
+    
+
+    # فوتر (پایین صفحه)
+
+    "FOOTER": {
+
+        "links": {
+
+            "website": "https://alzheimer.ir",
+
+            "support": "mailto:support@alzheimer.ir",
+
+        },
+
+    },
+
 }
 
 # Celery settings (فعلاً کامنت، بعداً فعال کن)
