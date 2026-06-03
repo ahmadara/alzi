@@ -1,108 +1,120 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}ثبت‌نام | سامانه تشخیص هوشمند آلزایمر{% endblock %}
+
+{% block content %}
+
 <section class="">
   <div class="container max-w-full">
-    <div class="row">
-      <div class="min-h-[980px] bg-white py-10 lg:col-6 lg:py-[114px]">
-        <div class="mx-auto w-full max-w-[480px]">
-          <img class="mb-8" src="images/flower.svg" alt="" />
-          <h1 class="mb-4">Sing Up</h1>
-          <p>Donec sollicitudin molestie malesda sollitudin</p>
-          <div class="signin-options mt-10">
-            <a class="btn btn-outline-white block w-full text-dark" href="#"
-              >Sign Up With Google</a
-            >
+    <div class="grid lg:grid-cols-2 min-h-screen">
+      
+      <!-- فرم ثبت‌نام -->
+      <div class="bg-white py-10 lg:py-[114px] flex items-center">
+        <div class="mx-auto w-full max-w-[480px] px-4">
+          <img class="mb-8 w-12" src="{% static 'images/flower.svg' %}" alt="" />
+          <h1 class="text-3xl lg:text-4xl font-bold text-gray-800 mb-2">📝 ایجاد حساب کاربری</h1>
+          <p class="text-gray-500">به سامانه تشخیص هوشمند آلزایمر بپیوندید</p>
+          
+          <div class="signup-options mt-8">
+            <a class="btn btn-outline-gray block w-full text-center border border-gray-300 py-3 rounded-lg hover:bg-gray-50 transition" href="#">
+              <img src="{% static 'images/icons/google.svg' %}" class="inline w-5 h-5 mr-2" alt="Google">
+              ثبت‌نام با گوگل
+            </a>
           </div>
-          <div
-            class="relative my-8 text-center after:absolute after:left-0 after:top-1/2 after:z-[0] after:w-full after:border-b after:border-border after:content-['']"
-          >
-            <span class="relative z-[1] inline-block bg-white px-2"
-              >Or Sign Up With Email</span
-            >
+          
+          <div class="relative my-8 text-center">
+            <span class="relative z-[1] inline-block bg-white px-4 text-gray-400 text-sm">یا ثبت‌نام با ایمیل</span>
+            <div class="absolute left-0 top-1/2 w-full border-t border-gray-200 -z-0"></div>
           </div>
 
-          <form action="#">
+          <form method="post" action="{% url 'signup' %}">
+            {% csrf_token %}
             <div class="form-group">
-              <label for="name" class="form-label">Full Name</label>
-              <input
-                type="text"
-                id="name"
-                class="form-control"
-                placeholder="Your Full Name"
-              />
+              <label for="name" class="form-label block text-gray-700 mb-2">نام کامل</label>
+              <input type="text" id="name" name="name" class="form-control w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-primary transition" placeholder="نام و نام خانوادگی">
             </div>
+            
             <div class="form-group mt-4">
-              <label for="email" class="form-label">Email Adrdess</label>
-              <input
-                type="email"
-                id="email"
-                class="form-control"
-                placeholder="Your Email Address"
-              />
+              <label for="email" class="form-label block text-gray-700 mb-2">آدرس ایمیل</label>
+              <input type="email" id="email" name="email" class="form-control w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-primary transition" placeholder="example@email.com">
             </div>
+            
             <div class="form-group mt-4">
-              <label for="password" class="form-label">Password</label>
-              <input
-                type="password"
-                id="password"
-                class="form-control"
-                placeholder="Your Password"
-              />
+              <label for="password" class="form-label block text-gray-700 mb-2">رمز عبور</label>
+              <input type="password" id="password" name="password" class="form-control w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-primary transition" placeholder="حداقل ۸ کاراکتر">
             </div>
-            <input
-              class="btn btn-primary mt-10 block w-full"
-              type="submit"
-              value="Sign Up"
-            />
+            
+            <div class="form-group mt-4">
+              <label for="confirm_password" class="form-label block text-gray-700 mb-2">تکرار رمز عبور</label>
+              <input type="password" id="confirm_password" name="confirm_password" class="form-control w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-primary transition" placeholder="تکرار رمز عبور">
+            </div>
+            
+            <div class="flex items-center gap-2 mt-4">
+              <input type="checkbox" name="terms" id="terms" class="rounded w-4 h-4">
+              <label for="terms" class="text-sm text-gray-600">
+                <a href="{% url 'terms' %}" class="text-primary hover:underline">قوانین و مقررات</a> را می‌پذیرم
+              </label>
+            </div>
+            
+            <input class="btn btn-primary mt-8 block w-full bg-primary text-white py-3 rounded-lg hover:bg-primary-dark transition cursor-pointer" type="submit" value="ثبت‌نام">
+            
+            <p class="mt-6 text-center text-gray-600">
+              قبلاً ثبت‌نام کرده‌اید؟
+              <a class="text-primary font-semibold hover:underline" href="{% url 'signin' %}">وارد شوید</a>
+            </p>
           </form>
         </div>
       </div>
 
-      <div
-        class="auth-banner bg-gradient flex flex-col items-center justify-center py-16 lg:col-6"
-      >
-        <img
-          class="absolute top-0 left-0 h-full w-full"
-          src="images/login-banner-bg.svg"
-          alt=""
-        />
-        <div class="w-full text-center">
-          <h2 class="h3 text-white">
-            A suite product accelerate <br />
-            your career design
+      <!-- بنر سمت راست -->
+      <div class="auth-banner bg-gradient-to-r from-primary to-secondary hidden lg:flex flex-col items-center justify-center py-16 relative">
+        <div class="w-full text-center px-8 relative z-10">
+          <h2 class="text-3xl font-bold text-white mb-8">
+            به جمع متخصصان<br />
+            تشخیص هوشمند بپیوندید
           </h2>
           <div class="swiper auth-banner-carousel">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
-                <img
-                  width="667"
-                  height="557"
-                  class="mx-auto"
-                  src="images/signup-carousel-img-1.png"
-                  alt=""
-                />
+                <img width="500" height="400" class="mx-auto rounded-xl shadow-lg" src="{% static 'images/signup-carousel-img-1.png' %}" alt="AI Diagnosis">
+                <p class="text-white/80 mt-4 text-lg font-medium">دقت ۹۲ درصدی تشخیص</p>
               </div>
               <div class="swiper-slide">
-                <img
-                  width="667"
-                  height="557"
-                  class="mx-auto"
-                  src="images/signup-carousel-img-1.png"
-                  alt=""
-                />
+                <img width="500" height="400" class="mx-auto rounded-xl shadow-lg" src="{% static 'images/signup-carousel-img-1.png' %}" alt="MRI Analysis">
+                <p class="text-white/80 mt-4 text-lg font-medium">تحلیل در کمتر از ۳ ثانیه</p>
               </div>
               <div class="swiper-slide">
-                <img
-                  width="667"
-                  height="557"
-                  class="mx-auto"
-                  src="images/signup-carousel-img-1.png"
-                  alt=""
-                />
+                <img width="500" height="400" class="mx-auto rounded-xl shadow-lg" src="{% static 'images/signup-carousel-img-1.png' %}" alt="Medical Report">
+                <p class="text-white/80 mt-4 text-lg font-medium">دریافت گزارش تخصصی</p>
               </div>
             </div>
-            <div class="pagination"></div>
+            <div class="swiper-pagination mt-4"></div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  // فعال کردن Swiper برای اسلایدر
+  if (typeof Swiper !== 'undefined') {
+    new Swiper('.auth-banner-carousel', {
+      loop: true,
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+    });
+  }
+</script>
+{% endblock %}

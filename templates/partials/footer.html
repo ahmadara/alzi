@@ -1,59 +1,66 @@
 {% load static %}
 
-<footer class="footer bg-theme-light/50">
+<footer class="footer bg-gray-900 text-gray-400 pt-12 pb-6 mt-12">
 
-  <div class="container">
-    <div class="row gx-5 pb-10 pt-[52px]">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
 
       <!-- logo + description -->
-      <div class="col-12 md:col-6 lg:col-3">
+      <div>
         <a href="{% url 'home' %}">
-          <img src="{% static 'images/logo.svg' %}" alt="AI Alzheimer System" />
+          <h2 class="text-xl font-bold text-white">🧠 تشخیص آلزایمر</h2>
         </a>
-
-        <p class="mt-6">
+        <p class="mt-4 text-sm leading-relaxed">
           سامانه هوشمند تحلیل تصاویر MRI برای تشخیص زودهنگام آلزایمر با استفاده از هوش مصنوعی.
-          این پروژه به‌عنوان یک محصول دانش‌بنیان در حوزه سلامت دیجیتال در حال توسعه است.
+          پروژه‌ای دانش‌بنیان در حوزه سلامت دیجیتال.
         </p>
       </div>
 
       <!-- quick links -->
-      <div class="col-12 md:col-6 lg:col-3">
-        <h6>دسترسی سریع</h6>
-        <ul>
-          <li><a href="{% url 'home' %}">خانه</a></li>
-          <li><a href="#about">درباره پروژه</a></li>
-          <li><a href="#features">قابلیت‌ها</a></li>
-          <li><a href="#how-it-works">نحوه عملکرد</a></li>
-          <li><a href="#contact">تماس با ما</a></li>
+      <div>
+        <h6 class="text-white font-bold mb-4">دسترسی سریع</h6>
+        <ul class="space-y-2 text-sm">
+          <li><a href="{% url 'home' %}" class="hover:text-primary transition">خانه</a></li>
+          <li><a href="{% url 'about' %}" class="hover:text-primary transition">درباره ما</a></li>
+          <li><a href="{% url 'features' %}" class="hover:text-primary transition">قابلیت‌ها</a></li>
+          <li><a href="{% url 'how_it_works' %}" class="hover:text-primary transition">نحوه عملکرد</a></li>
+          <li><a href="{% url 'news:list' %}" class="hover:text-primary transition">اخبار</a></li>
+          <li><a href="{% url 'contact' %}" class="hover:text-primary transition">تماس با ما</a></li>
         </ul>
       </div>
 
-      <!-- project info -->
-      <div class="col-12 md:col-6 lg:col-3">
-        <h6>درباره پروژه</h6>
-        <p>تشخیص آلزایمر از روی MRI با استفاده از مدل‌های یادگیری عمیق</p>
-        <p>پروژه دانش‌بنیان در حوزه هوش مصنوعی پزشکی</p>
-        <p>قابل توسعه برای بیماری‌های عصبی دیگر</p>
+      <!-- pages -->
+      <div>
+        <h6 class="text-white font-bold mb-4">صفحات</h6>
+        <ul class="space-y-2 text-sm">
+          <li><a href="{% url 'pricing' %}" class="hover:text-primary transition">تعرفه‌ها</a></li>
+          <li><a href="{% url 'career' %}" class="hover:text-primary transition">فرصت‌های شغلی</a></li>
+          <li><a href="{% url 'terms' %}" class="hover:text-primary transition">قوانین و مقررات</a></li>
+          <li><a href="{% url 'signin' %}" class="hover:text-primary transition">ورود</a></li>
+          <li><a href="{% url 'signup' %}" class="hover:text-primary transition">ثبت‌نام</a></li>
+        </ul>
       </div>
 
       <!-- contact -->
-      <div class="col-12 md:col-6 lg:col-3">
-        <h6>ارتباط با ما</h6>
-        <p>info@yourdomain.com</p>
-        <p>+98 --- --- ----</p>
-        <p>پشتیبانی 24/7 برای مراکز درمانی و تحقیقاتی</p>
+      <div>
+        <h6 class="text-white font-bold mb-4">ارتباط با ما</h6>
+        <ul class="space-y-2 text-sm">
+          <li>📧 info@alzheimer.ir</li>
+          <li>📞 ۰۲۱-۱۲۳۴۵۶۷۸</li>
+          <li>📍 تهران، ایران</li>
+        </ul>
+        <div class="flex gap-4 mt-4">
+          <a href="#" class="hover:text-primary transition"><i class="fab fa-telegram text-xl"></i></a>
+          <a href="#" class="hover:text-primary transition"><i class="fab fa-linkedin text-xl"></i></a>
+          <a href="#" class="hover:text-primary transition"><i class="fab fa-github text-xl"></i></a>
+        </div>
       </div>
 
     </div>
-  </div>
 
-  <!-- copyright -->
-  <div class="container">
-    <div class="border-t text-center py-6">
-      <p>
-        © 2026 AI Alzheimer Detection System | All rights reserved.
-      </p>
+    <!-- copyright -->
+    <div class="border-t border-gray-800 text-center pt-6 mt-8 text-sm">
+      <p>© ۱۴۰۴ سامانه تشخیص هوشمند آلزایمر | تمامی حقوق محفوظ است</p>
     </div>
   </div>
 

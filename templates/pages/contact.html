@@ -1,56 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}تماس با ما | مرکز تشخیص آلزایمر{% endblock %}
+
+{% block content %}
+
 <!-- floating assets -->
-<img
-  class="floating-bubble-1 absolute right-0 top-0 -z-[1]"
-  src="images/floating-bubble-1.svg"
-  alt=""
-/>
-<img
-  class="floating-bubble-2 absolute left-0 top-[387px] -z-[1]"
-  src="images/floating-bubble-2.svg"
-  alt=""
-/>
-<img
-  class="floating-bubble-3 absolute right-0 top-[605px] -z-[1]"
-  src="images/floating-bubble-3.svg"
-  alt=""
-/>
+<img class="floating-bubble-1 absolute right-0 top-0 -z-[1]" src="{% static 'images/floating-bubble-1.svg' %}" alt="">
+<img class="floating-bubble-2 absolute left-0 top-[387px] -z-[1]" src="{% static 'images/floating-bubble-2.svg' %}" alt="">
+<img class="floating-bubble-3 absolute right-0 top-[605px] -z-[1]" src="{% static 'images/floating-bubble-3.svg' %}" alt="">
 <!-- ./end floating assets -->
 
 <!-- Common hero -->
 <section class="page-hero pt-16 pb-6">
   <div class="container">
     <div class="text-center">
-      <ul
-        class="breadcrumb inline-flex h-8 items-center justify-center space-x-2 rounded-3xl bg-theme-light px-4 py-2"
-      >
+      <ul class="breadcrumb inline-flex h-8 items-center justify-center space-x-2 rounded-3xl bg-gray-100 px-4 py-2">
         <li class="leading-none text-dark">
-          <a class="inline-flex items-center text-primary" href="#">
-            <svg
-              class="mr-1.5"
-              width="15"
-              height="15"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M13.1769 15.0588H10.3533V9.41178H5.64744V15.0588H2.82391V6.58825H1.88274V16H14.118V6.58825H13.1769V15.0588ZM6.58862 15.0588V10.353H9.41215V15.0588H6.58862ZM15.8084 6.09225L15.2512 6.85178L8.00038 1.52472L0.749559 6.8499L0.192383 6.09131L8.00038 0.357666L15.8084 6.09225Z"
-                fill="black"
-              />
+          <a class="inline-flex items-center text-primary" href="{% url 'home' %}">
+            <svg class="mr-1.5" width="15" height="15" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13.1769 15.0588H10.3533V9.41178H5.64744V15.0588H2.82391V6.58825H1.88274V16H14.118V6.58825H13.1769V15.0588ZM6.58862 15.0588V10.353H9.41215V15.0588H6.58862ZM15.8084 6.09225L15.2512 6.85178L8.00038 1.52472L0.749559 6.8499L0.192383 6.09131L8.00038 0.357666L15.8084 6.09225Z" fill="#0891B2"/>
             </svg>
-            <span class="text-sm leading-none">Home</span>
+            <span class="text-sm leading-none">خانه</span>
           </a>
         </li>
         <li class="leading-none text-dark">
-          <span class="text-sm leading-none">/ Contact</span>
+          <span class="text-sm leading-none">/ تماس با ما</span>
         </li>
       </ul>
     </div>
     <div class="page-hero-content mx-auto max-w-[768px] text-center">
-      <h1 class="mb-5 mt-8">
-        Get’n touch with Our <br />
-        Pinwheel team
+      <h1 class="mb-5 mt-8 text-3xl md:text-4xl font-bold">
+        ارتباط با تیم <br />
+        AlzheimerScan
       </h1>
+      <p class="text-gray-600">ما در اسرع وقت به پیام شما پاسخ خواهیم داد</p>
     </div>
   </div>
 </section>
@@ -58,62 +42,127 @@
 
 <section class="section pt-0">
   <div class="container">
-    <div class="row">
-      <div class="mb-10 text-center md:col-6 md:order-2 md:mb-0 md:pt-9">
-        <div class="contact-img relative inline-flex pl-5 pb-5">
-          <img src="images/contact-img.png" alt="" />
-          <img
-            class="absolute bottom-0 left-0 -z-[1] h-14 w-14"
-            src="images/shape-2.svg"
-            alt=""
-          />
-        </div>
+    <!-- اطلاعات تماس -->
+    <div class="grid md:grid-cols-3 gap-6 mb-12">
+      <div class="text-center p-6 bg-white rounded-xl shadow-md">
+        <div class="text-4xl mb-3">📍</div>
+        <h3 class="font-bold text-lg mb-2">آدرس</h3>
+        <p class="text-gray-600 text-sm">تهران، ایران</p>
+        <p class="text-gray-600 text-sm">پارک فناوری اطلاعات</p>
       </div>
-      <div class="md:col-6 md:order-1">
-        <form class="lg:max-w-[484px]" action="#" method="POST">
-          <div class="form-group mb-5">
-            <label class="form-label" for="name">Full Name</label>
-            <input
-              class="form-control"
-              type="text"
-              id="name"
-              placeholder="Your Full Name"
-            />
+      <div class="text-center p-6 bg-white rounded-xl shadow-md">
+        <div class="text-4xl mb-3">📧</div>
+        <h3 class="font-bold text-lg mb-2">ایمیل</h3>
+        <p class="text-gray-600 text-sm">info@alzheimerscan.ir</p>
+        <p class="text-gray-600 text-sm">support@alzheimerscan.ir</p>
+      </div>
+      <div class="text-center p-6 bg-white rounded-xl shadow-md">
+        <div class="text-4xl mb-3">📞</div>
+        <h3 class="font-bold text-lg mb-2">تلفن</h3>
+        <p class="text-gray-600 text-sm">۰۲۱-۱۲۳۴۵۶۷۸</p>
+        <p class="text-gray-600 text-sm">۰۹۱۲-۳۴۵-۶۷۸۹</p>
+      </div>
+    </div>
+
+    <!-- فرم تماس و نقشه -->
+    <div class="grid md:grid-cols-2 gap-12">
+      <!-- فرم تماس -->
+      <div>
+        <h2 class="text-2xl font-bold mb-6">ارسال پیام</h2>
+        <form method="POST" action="{% url 'contact' %}">
+          {% csrf_token %}
+          <div class="mb-5">
+            <label class="form-label block text-gray-700 font-medium mb-2" for="name">نام و نام خانوادگی</label>
+            <input class="form-control w-full border border-gray-300 rounded-lg p-3 focus:border-primary focus:outline-none" type="text" id="name" name="name" placeholder="نام کامل خود را وارد کنید" required>
           </div>
-          <div class="form-group mb-5">
-            <label class="form-label" for="eamil">Email Adrdess</label>
-            <input
-              class="form-control"
-              type="text"
-              id="email"
-              placeholder="Your  Email Address"
-            />
+          <div class="mb-5">
+            <label class="form-label block text-gray-700 font-medium mb-2" for="email">آدرس ایمیل</label>
+            <input class="form-control w-full border border-gray-300 rounded-lg p-3 focus:border-primary focus:outline-none" type="email" id="email" name="email" placeholder="ایمیل خود را وارد کنید" required>
           </div>
-          <div class="form-group mb-5">
-            <label class="form-label" for="reason">reason/purpose</label>
-            <select name="reason" id="reason" class="form-select" required>
-              <option value="">Select reason/purpose</option>
-              <option value="investment plane">Investment Plan</option>
-              <option value="investment plane-2">Investment Plan 2</option>
-              <option value="investment plane-3">Investment Plan 3</option>
+          <div class="mb-5">
+            <label class="form-label block text-gray-700 font-medium mb-2" for="subject">موضوع</label>
+            <select name="subject" id="subject" class="form-select w-full border border-gray-300 rounded-lg p-3 focus:border-primary focus:outline-none" required>
+              <option value="">انتخاب موضوع</option>
+              <option value="general">سوال عمومی</option>
+              <option value="technical">مشکل فنی</option>
+              <option value="collaboration">همکاری و مشارکت</option>
+              <option value="research">همکاری تحقیقاتی</option>
+              <option value="press">پوشش رسانه‌ای</option>
             </select>
           </div>
-          <div class="form-group mb-5">
-            <label class="form-label" for="message">Message Here</label>
-            <textarea
-              class="form-control h-[150px]"
-              id="message"
-              cols="30"
-              rows="10"
-            ></textarea>
+          <div class="mb-5">
+            <label class="form-label block text-gray-700 font-medium mb-2" for="message">پیام شما</label>
+            <textarea class="form-control w-full border border-gray-300 rounded-lg p-3 focus:border-primary focus:outline-none h-[150px]" id="message" name="message" placeholder="پیام خود را بنویسید..." required></textarea>
           </div>
-          <input
-            class="btn btn-primary block w-full"
-            type="submit"
-            value="Send Message"
-          />
+          <input class="btn btn-primary w-full bg-primary text-white py-3 rounded-lg hover:bg-primary-dark transition cursor-pointer" type="submit" value="ارسال پیام">
         </form>
+      </div>
+
+      <!-- نقشه و اطلاعات بیشتر -->
+      <div>
+        <h2 class="text-2xl font-bold mb-6">موقعیت ما</h2>
+        <div class="bg-gray-200 rounded-xl h-64 mb-6 flex items-center justify-center">
+          <div class="text-center">
+            <div class="text-4xl mb-2">🗺️</div>
+            <p class="text-gray-500">تهران، ایران</p>
+            <p class="text-gray-500 text-sm">پارک فناوری اطلاعات</p>
+          </div>
+        </div>
+        
+        <div class="bg-gray-50 rounded-xl p-6">
+          <h3 class="font-bold text-lg mb-4">ساعات پاسخگویی</h3>
+          <div class="space-y-2 text-gray-600">
+            <p>شنبه تا چهارشنبه: ۹ صبح تا ۱۷ عصر</p>
+            <p>پنجشنبه: ۹ صبح تا ۱۳ عصر</p>
+            <p>جمعه: تعطیل</p>
+          </div>
+        </div>
+        
+        <div class="mt-6 flex gap-4 justify-center">
+          <a href="#" class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition">
+            <i class="fab fa-telegram"></i>
+          </a>
+          <a href="#" class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="#" class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="#" class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition">
+            <i class="fab fa-twitter"></i>
+          </a>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- FAQ Section -->
+<section class="section py-16 bg-gray-50">
+  <div class="container">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <h2 class="text-3xl font-bold mb-4">❓ سوالات متداول</h2>
+      <p class="text-gray-600">پاسخ سوالات رایج شما</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+      <div class="bg-white rounded-xl p-6 shadow-md">
+        <h3 class="font-bold text-lg mb-2">🔬 آیا این سیستم جایگزین پزشک می‌شود؟</h3>
+        <p class="text-gray-600 text-sm">خیر، این سیستم یک ابزار کمکی برای پزشکان است تا دقت تشخیص را افزایش دهد.</p>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-md">
+        <h3 class="font-bold text-lg mb-2">🖼️ چه فرمتی از تصاویر MRI قابل قبول است؟</h3>
+        <p class="text-gray-600 text-sm">فرمت‌های DICOM، JPEG، PNG پشتیبانی می‌شوند.</p>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-md">
+        <h3 class="font-bold text-lg mb-2">💰 آیا استفاده از سیستم رایگان است؟</h3>
+        <p class="text-gray-600 text-sm">نسخه پایه رایگان است. برای استفاده حرفه‌ای و کلینیکی تعرفه‌های مختلفی داریم.</p>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-md">
+        <h3 class="font-bold text-lg mb-2">🔒 آیا اطلاعات بیماران محفوظ می‌ماند؟</h3>
+        <p class="text-gray-600 text-sm">بله، تمام اطلاعات با بالاترین استانداردهای امنیتی ذخیره و پردازش می‌شوند.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

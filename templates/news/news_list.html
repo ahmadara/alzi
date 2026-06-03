@@ -46,11 +46,8 @@
       {% for news in featured_news %}
       <div class="mb-8 md:col-6">
         <div class="card">
-          {% if news.featured_image %}
-          <img class="card-img" width="235" height="304" src="{{ news.featured_image.url }}" alt="{{ news.title }}">
-          {% else %}
-          <img class="card-img" width="235" height="304" src="{% static 'images/placeholder-image.jpg' %}" alt="placeholder">
-          {% endif %}
+          <img class="card-img" width="235" height="304" src="{{ news.get_image_url }}" alt="{{ news.title }}">
+    
           <div class="card-content">
             <div class="card-tags">
               <a class="tag" href="{{ news.category.get_absolute_url }}">{{ news.category.name }}</a>
@@ -101,11 +98,8 @@
       {% for news in news_list %}  <!-- ← این خط اصلاح شده -->
       <div class="mb-8 md:col-6 lg:col-4">
         <div class="card">
-          {% if news.featured_image %}
-          <img class="card-img" width="335" height="210" src="{{ news.featured_image.url }}" alt="{{ news.title }}">
-          {% else %}
-          <img class="card-img" width="335" height="210" src="{% static 'images/placeholder-image.jpg' %}" alt="placeholder">
-          {% endif %}
+          <img class="card-img" width="235" height="304" src="{{ news.get_image_url }}" alt="{{ news.title }}">
+
           <div class="card-content">
             <div class="card-tags">
               <a class="tag" href="{{ news.category.get_absolute_url }}">{{ news.category.name }}</a>

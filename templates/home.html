@@ -1,208 +1,263 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block title %}خانه | سامانه تشخیص هوشمند آلزایمر{% endblock %}
+
 {% block content %}
 
-<!-- Banner -->
-<section class="section banner relative">
-  <div class="container">
-    <div class="row items-center">
-      <div class="lg:col-6">
-        <h1 class="banner-title">
-          تشخیص هوشمند آلزایمر از روی تصاویر MRI با هوش مصنوعی
+<!-- Banner / Hero Section -->
+<section class="section banner relative py-20 bg-gradient-to-r from-primary/10 to-secondary/10">
+  <div class="container mx-auto px-4">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <h1 class="text-4xl lg:text-5xl font-bold text-gray-800 leading-tight">
+          🧠 تشخیص هوشمند آلزایمر از روی تصاویر MRI با هوش مصنوعی
         </h1>
-        <p class="mt-6">
+        <p class="mt-6 text-gray-600 leading-relaxed">
           یک سامانه پیشرفته مبتنی بر یادگیری عمیق که با تحلیل تصاویر MRI مغز،
           نشانه‌های اولیه و پیشرفته آلزایمر را شناسایی می‌کند. این پروژه به‌عنوان یک
           محصول دانش‌بنیان در حوزه سلامت دیجیتال در حال توسعه است.
         </p>
-        <a class="btn btn-white mt-8" href="#">
-          شروع تحلیل تصویر
-        </a>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition" href="#">
+            🧪 شروع تحلیل تصویر
+          </a>
+          <a class="border border-primary text-primary px-6 py-3 rounded-lg hover:bg-primary hover:text-white transition" href="{% url 'news:list' %}">
+            📚 مقالات علمی
+          </a>
+        </div>
       </div>
-
-      <div class="lg:col-6">
-        <img
-          class="w-full object-contain"
-          src="{% static 'images/banner-img.png' %}"
-          width="603"
-          height="396"
-          alt="AI Alzheimer MRI Analysis"
-        />
+      <div>
+        <img class="w-full object-contain" src="{% static 'images/banner-img.png' %}" alt="AI Alzheimer MRI Analysis">
       </div>
     </div>
   </div>
-
-  <img
-    class="banner-shape absolute -top-28 right-0 -z-[1] w-full max-w-[30%]"
-    src="{% static 'images/banner-shape.svg' %}"
-    alt=""
-  />
+  <img class="banner-shape absolute -top-28 right-0 -z-[1] w-full max-w-[30%]" src="{% static 'images/banner-shape.svg' %}" alt="">
 </section>
 
-<!-- Key features -->
-<section class="section key-feature relative">
-  <img
-    class="absolute left-0 top-0 -z-[1] -translate-y-1/2"
-    src="{% static 'images/icons/feature-shape.svg' %}"
-    alt=""
-  />
-
-  <div class="container">
-    <div class="row justify-between text-center lg:text-start">
-      <div class="lg:col-5">
-        <h2>قابلیت‌های کلیدی سیستم تشخیص آلزایمر</h2>
+<!-- Key Features Section -->
+<section class="section key-feature relative py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="grid lg:grid-cols-2 gap-8 items-center">
+      <div>
+        <h2 class="text-3xl font-bold text-gray-800">✨ قابلیت‌های کلیدی سیستم</h2>
       </div>
-
-      <div class="mt-6 lg:col-5 lg:mt-0">
-        <p>
+      <div>
+        <p class="text-gray-600">
           این سیستم با استفاده از مدل‌های یادگیری عمیق، تصاویر MRI مغز را تحلیل کرده
           و الگوهای مرتبط با آلزایمر را با دقت بالا شناسایی می‌کند.
         </p>
       </div>
     </div>
 
-    <div class="key-feature-grid mt-10 grid grid-cols-2 gap-7 md:grid-cols-3 xl:grid-cols-4">
-
-      <div class="flex flex-col justify-between rounded-lg bg-white p-5 shadow-lg">
-        <h3 class="h4 text-xl lg:text-2xl">تحلیل MRI با AI</h3>
-        <p>پردازش تصاویر مغزی با شبکه‌های عصبی عمیق (CNN).</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
+      <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
+        <div class="text-3xl mb-3">🧠</div>
+        <h3 class="text-xl font-bold text-gray-800">تحلیل MRI با AI</h3>
+        <p class="text-gray-600 mt-2">پردازش تصاویر مغزی با شبکه‌های عصبی عمیق (CNN)</p>
       </div>
-
-      <div class="flex flex-col justify-between rounded-lg bg-white p-5 shadow-lg">
-        <h3 class="h4 text-xl lg:text-2xl">تشخیص مرحله بیماری</h3>
-        <p>شناسایی مراحل اولیه، میانی و پیشرفته آلزایمر.</p>
+      <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
+        <div class="text-3xl mb-3">📊</div>
+        <h3 class="text-xl font-bold text-gray-800">تشخیص مرحله بیماری</h3>
+        <p class="text-gray-600 mt-2">شناسایی مراحل اولیه، میانی و پیشرفته</p>
       </div>
-
-      <div class="flex flex-col justify-between rounded-lg bg-white p-5 shadow-lg">
-        <h3 class="h4 text-xl lg:text-2xl">کاهش خطای انسانی</h3>
-        <p>کمک به پزشک برای تصمیم‌گیری دقیق‌تر و سریع‌تر.</p>
+      <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
+        <div class="text-3xl mb-3">🎯</div>
+        <h3 class="text-xl font-bold text-gray-800">کاهش خطای انسانی</h3>
+        <p class="text-gray-600 mt-2">کمک به پزشک برای تصمیم‌گیری دقیق‌تر</p>
       </div>
-
-      <div class="flex flex-col justify-between rounded-lg bg-white p-5 shadow-lg">
-        <h3 class="h4 text-xl lg:text-2xl">مدل‌های پزشکی آموزش‌دیده</h3>
-        <p>آموزش روی دیتاست‌های واقعی MRI مغز.</p>
+      <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
+        <div class="text-3xl mb-3">🏥</div>
+        <h3 class="text-xl font-bold text-gray-800">مدل‌های پزشکی</h3>
+        <p class="text-gray-600 mt-2">آموزش روی دیتاست‌های واقعی MRI</p>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- Services -->
-<section class="section services">
-  <div class="container">
-
-    <div class="tab row gx-5 items-center">
-      <div class="lg:col-7 lg:order-2">
-        <img class="w-full object-contain" src="{% static 'images/sells-by-country.png' %}" />
+<!-- Platform Section -->
+<section class="section services py-16">
+  <div class="container mx-auto px-4">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <img class="w-full object-contain" src="{% static 'images/sells-by-country.png' %}" alt="Platform">
       </div>
-
-      <div class="mt-6 lg:col-5 lg:order-1 lg:mt-0">
-        <h2 class="lg:text-4xl">
-          یک پلتفرم هوشمند برای تشخیص زودهنگام آلزایمر
-        </h2>
-        <p class="mt-4">
+      <div>
+        <h2 class="text-3xl font-bold text-gray-800">📱 یک پلتفرم هوشمند برای تشخیص زودهنگام</h2>
+        <p class="mt-4 text-gray-600">
           این سیستم به پزشکان کمک می‌کند تا از روی MRI، احتمال وجود آلزایمر و شدت آن را
           سریع‌تر و دقیق‌تر بررسی کنند.
         </p>
-
-        <ul class="mt-6 text-dark lg:-ml-4">
-          <li class="mb-2 flex items-center rounded px-4">
-            <img class="mr-3" src="{% static 'images/icons/checkmark-circle.svg' %}" />
-            تحلیل سریع تصاویر پزشکی
+        <ul class="mt-6 space-y-3">
+          <li class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span>⚡ تحلیل سریع تصاویر پزشکی</span>
           </li>
-          <li class="mb-2 flex items-center rounded px-4">
-            <img class="mr-3" src="{% static 'images/icons/checkmark-circle.svg' %}" />
-            گزارش خودکار نتایج
+          <li class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span>📋 گزارش خودکار نتایج</span>
           </li>
-          <li class="flex items-center rounded px-4">
-            <img class="mr-3" src="{% static 'images/icons/checkmark-circle.svg' %}" />
-            مناسب کلینیک‌ها و بیمارستان‌ها
+          <li class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span>🏥 مناسب کلینیک‌ها و بیمارستان‌ها</span>
           </li>
         </ul>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="row gx-5 mt-12 items-center lg:mt-0">
-
-      <div class="lg:col-7">
-        <img class="w-full object-contain" src="{% static 'images/collaboration.png' %}" />
-      </div>
-
-      <div class="mt-6 lg:col-5 lg:mt-0">
-        <h2 class="lg:text-4xl">
-          چرا این پروژه مهم است؟
-        </h2>
-
-        <p class="mt-4">
+<!-- Why This Project Section -->
+<section class="section py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-3xl font-bold text-gray-800">🎯 چرا این پروژه مهم است؟</h2>
+        <p class="mt-4 text-gray-600">
           با افزایش نرخ آلزایمر در جهان، تشخیص زودهنگام یکی از مهم‌ترین عوامل کنترل بیماری است.
           این سیستم نقش یک دستیار هوشمند برای پزشکان را ایفا می‌کند.
         </p>
-
-        <ul class="mt-6">
-          <li class="mb-2">کاهش زمان تشخیص بیماری</li>
-          <li class="mb-2">افزایش دقت نسبت به تشخیص دستی</li>
-          <li class="mb-2">قابلیت توسعه برای سایر بیماری‌های مغزی</li>
+        <ul class="mt-6 space-y-3">
+          <li class="flex items-center gap-3">
+            <span class="w-2 h-2 bg-primary rounded-full"></span>
+            <span>⏱️ کاهش زمان تشخیص بیماری</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="w-2 h-2 bg-primary rounded-full"></span>
+            <span>📈 افزایش دقت نسبت به تشخیص دستی</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="w-2 h-2 bg-primary rounded-full"></span>
+            <span>🔧 قابلیت توسعه برای سایر بیماری‌های مغزی</span>
+          </li>
         </ul>
       </div>
-
+      <div>
+        <img class="w-full object-contain rounded-xl shadow-lg" src="{% static 'images/collaboration.png' %}" alt="Why this project">
+      </div>
     </div>
-
   </div>
 </section>
 
-<!-- Video -->
-<section class="section">
-  <div class="container">
+<!-- Latest News Section -->
+<section class="section py-16">
+  <div class="container mx-auto px-4">
+    <div class="flex justify-between items-center mb-8">
+      <h2 class="text-3xl font-bold text-gray-800">📰 آخرین اخبار و مقالات</h2>
+      <a href="{% url 'news:list' %}" class="text-primary hover:underline">مشاهده همه ←</a>
+    </div>
 
-    <div class="row items-center">
-
-      <div class="lg:col-7">
-        <img class="w-full object-contain" src="{% static 'images/intro-thumbnail.png' %}" />
+    {% if latest_news %}
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for news in latest_news %}
+      <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition group">
+        {% if news.featured_image %}
+        <img src="{{ news.featured_image.url }}" alt="{{ news.title }}" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300">
+        {% else %}
+        <img src="{% static 'images/placeholder-image.jpg' %}" alt="placeholder" class="w-full h-48 object-cover">
+        {% endif %}
+        <div class="p-4">
+          <div class="text-sm text-gray-500 mb-2">
+            {{ news.publish_date|date:"d F Y" }} | 👁️ {{ news.views }} بازدید
+          </div>
+          <h3 class="font-bold text-lg mb-2 line-clamp-2">
+            <a href="{{ news.get_absolute_url }}" class="hover:text-primary transition">{{ news.title }}</a>
+          </h3>
+          <p class="text-gray-600 text-sm line-clamp-3">{{ news.summary|truncatewords:20 }}</p>
+          <a href="{{ news.get_absolute_url }}" class="inline-block mt-3 text-primary text-sm font-semibold hover:underline">ادامه مطلب ←</a>
+        </div>
       </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center py-12 bg-gray-50 rounded-xl">
+      <p class="text-gray-500">هنوز خبری منتشر نشده است.</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
 
-      <div class="mt-6 lg:col-5">
-        <h2 class="lg:text-4xl">نحوه عملکرد سیستم</h2>
-        <p class="mt-4">
+<!-- How It Works Section -->
+<section class="section py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <img class="w-full object-contain rounded-xl shadow-lg" src="{% static 'images/intro-thumbnail.png' %}" alt="How it works">
+      </div>
+      <div>
+        <h2 class="text-3xl font-bold text-gray-800">🎬 نحوه عملکرد سیستم</h2>
+        <p class="mt-4 text-gray-600">
           تصویر MRI دریافت شده و توسط مدل‌های یادگیری عمیق پردازش می‌شود تا ویژگی‌های مغزی
           استخراج و احتمال بیماری محاسبه شود.
         </p>
-
-        <button class="btn btn-white mt-6">مشاهده دمو</button>
+        <ul class="mt-6 space-y-3">
+          <li class="flex items-center gap-3">
+            <span class="w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm">1</span>
+            <span>آپلود تصویر MRI</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm">2</span>
+            <span>پردازش با هوش مصنوعی</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm">3</span>
+            <span>دریافت گزارش تشخیص</span>
+          </li>
+        </ul>
+        <button class="btn btn-primary mt-6 bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition">
+          ▶️ مشاهده دمو
+        </button>
       </div>
-
     </div>
-
   </div>
 </section>
 
-<!-- CTA -->
-<section class="px-5 py-20 xl:py-[120px]">
-  <div class="container">
-    <div class="bg-gradient row justify-center rounded-b-[80px] rounded-t-[20px] px-[30px] pb-[75px] pt-16">
-
-      <div class="lg:col-11">
-        <div class="row">
-
-          <div class="lg:col-7">
-            <h2 class="h1 text-white">
-              آینده تشخیص بیماری‌های مغزی با هوش مصنوعی
-            </h2>
-            <a class="btn btn-white mt-8" href="#">
-              درخواست دمو
-            </a>
-          </div>
-
-          <div class="mt-8 lg:col-5 lg:mt-0">
-            <p class="text-white">
-              این پروژه دانش‌بنیان آماده همکاری با بیمارستان‌ها، مراکز تصویربرداری و
-              مراکز تحقیقاتی است.
-            </p>
-          </div>
-
-        </div>
+<!-- Stats Section -->
+<section class="section py-16 bg-primary text-white">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <div>
+        <div class="text-4xl font-bold">+۱٬۰۰۰</div>
+        <p class="mt-2 text-white/80">تصویر MRI تحلیل شده</p>
       </div>
+      <div>
+        <div class="text-4xl font-bold">۹۲٪</div>
+        <p class="mt-2 text-white/80">دقت تشخیص</p>
+      </div>
+      <div>
+        <div class="text-4xl font-bold">+۵۰</div>
+        <p class="mt-2 text-white/80">پزشک همکار</p>
+      </div>
+      <div>
+        <div class="text-4xl font-bold">&lt;۳s</div>
+        <p class="mt-2 text-white/80">زمان تحلیل</p>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- CTA Section -->
+<section class="px-5 py-20 xl:py-[120px]">
+  <div class="container mx-auto px-4">
+    <div class="bg-gradient-to-r from-primary to-secondary rounded-b-[80px] rounded-t-[20px] px-8 pb-[75px] pt-16 text-center text-white">
+      <h2 class="text-3xl lg:text-4xl font-bold">🚀 آینده تشخیص بیماری‌های مغزی با هوش مصنوعی</h2>
+      <p class="mt-4 text-white/90 max-w-2xl mx-auto">
+        این پروژه دانش‌بنیان آماده همکاری با بیمارستان‌ها، مراکز تصویربرداری و مراکز تحقیقاتی است.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4 justify-center">
+        <a class="bg-white text-primary px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition" href="#">
+          📞 درخواست دمو
+        </a>
+        <a class="border border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary transition" href="{% url 'contact' %}">
+          تماس با ما
+        </a>
+      </div>
     </div>
   </div>
 </section>

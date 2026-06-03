@@ -15,11 +15,8 @@
   <div class="container">
     <div class="row justify-center">
       <div class="lg:col-10">
-        {% if news.featured_image %}
-        <img class="rounded-xl w-full" src="{{ news.featured_image.url }}" alt="{{ news.title }}">
-        {% else %}
-        <img class="rounded-xl w-full" src="{% static 'images/placeholder-image.jpg' %}" alt="placeholder">
-        {% endif %}
+        <img class="rounded-xl w-full" src="{{ news.get_image_url }}" alt="{{ news.title }}">
+ 
       </div>
       <div class="mt-10 max-w-[810px] lg:col-9">
         <h1 class="h2">{{ news.title }}</h1>
@@ -38,7 +35,7 @@
         </div>
 
         <div class="content">
-          {{ news.content|linebreaks|safe }}
+          {{ news.content|safe|linebreaks  }}
         </div>
 
         <!-- دسته‌بندی خبر -->

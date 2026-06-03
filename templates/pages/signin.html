@@ -1,104 +1,115 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}ورود | سامانه تشخیص هوشمند آلزایمر{% endblock %}
+
+{% block content %}
+
 <section class="">
   <div class="container max-w-full">
-    <div class="row">
-      <div class="min-h-[980px] bg-white py-10 lg:col-6 lg:py-[114px]">
-        <div class="mx-auto w-full max-w-[480px]">
-          <img class="mb-8" src="images/flower.svg" alt="" />
-          <h1 class="mb-4">Sing In</h1>
-          <p>Donec sollicitudin molestie malesda sollitudin</p>
-          <div class="signin-options mt-10">
-            <a class="btn btn-outline-white block w-full text-dark" href="#"
-              >Sign In With Google</a
-            >
+    <div class="grid lg:grid-cols-2 min-h-screen">
+      
+      <!-- فرم ورود -->
+      <div class="bg-white py-10 lg:py-[114px] flex items-center">
+        <div class="mx-auto w-full max-w-[480px] px-4">
+          <img class="mb-8 w-12" src="{% static 'images/flower.svg' %}" alt="" />
+          <h1 class="text-3xl lg:text-4xl font-bold text-gray-800 mb-2">🧠 ورود به حساب کاربری</h1>
+          <p class="text-gray-500">به سامانه تشخیص هوشمند آلزایمر خوش آمدید</p>
+          
+          <div class="signin-options mt-8">
+            <a class="btn btn-outline-gray block w-full text-center border border-gray-300 py-3 rounded-lg hover:bg-gray-50 transition" href="#">
+              <img src="{% static 'images/icons/google.svg' %}" class="inline w-5 h-5 mr-2" alt="Google">
+              ورود با گوگل
+            </a>
           </div>
-          <div
-            class="relative my-8 text-center after:absolute after:left-0 after:top-1/2 after:z-[0] after:w-full after:border-b after:border-border after:content-['']"
-          >
-            <span class="relative z-[1] inline-block bg-white px-2"
-              >Or Sign In With Email</span
-            >
+          
+          <div class="relative my-8 text-center">
+            <span class="relative z-[1] inline-block bg-white px-4 text-gray-400 text-sm">یا ورود با یوزرنیم و رمز عبور</span>
+            <div class="absolute left-0 top-1/2 w-full border-t border-gray-200 -z-0"></div>
           </div>
 
-          <form action="#">
+          <form method="post" action="{% url 'signin' %}">
+            {% csrf_token %}
+            
+            {% if messages %}
+              <div class="mb-4">
+                {% for message in messages %}
+                  <div class="p-3 rounded-lg {% if message.tags == 'error' %}bg-red-100 text-red-700 border border-red-200{% else %}bg-green-100 text-green-700 border border-green-200{% endif %}">
+                    {{ message }}
+                  </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+            
             <div class="form-group">
-              <label for="email" class="form-label">Email Adrdess</label>
-              <input
-                type="email"
-                id="email"
-                class="form-control"
-                placeholder="Your Email Address"
-              />
+              <label for="username" class="form-label block text-gray-700 mb-2">نام کاربری</label>
+              <input type="text" id="username" name="username" class="form-control w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-primary transition" placeholder="username" required>
             </div>
+            
             <div class="form-group mt-4">
-              <label for="password" class="form-label">Password</label>
-              <input
-                type="password"
-                id="password"
-                class="form-control"
-                placeholder="Your Password"
-              />
+              <label for="password" class="form-label block text-gray-700 mb-2">رمز عبور</label>
+              <input type="password" id="password" name="password" class="form-control w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-primary transition" placeholder="••••••••" required>
             </div>
-            <input
-              class="btn btn-primary mt-10 block w-full"
-              type="submit"
-              value="Sign In"
-            />
-            <p class="mt-6 text-center">
-              Can't <span class="text-dark" href="#">log in</span>?
-              <a class="text-dark" href="signup.html">Sign up</a> for create
-              account
+            
+            <div class="flex justify-between items-center mt-4">
+              <label class="flex items-center gap-2 text-sm text-gray-600">
+                <input type="checkbox" name="remember" class="rounded">
+                مرا به خاطر بسپار
+              </label>
+              <a href="#" class="text-sm text-primary hover:underline">رمز عبور خود را فراموش کرده‌اید؟</a>
+            </div>
+            
+            <input class="btn btn-primary mt-8 block w-full bg-primary text-white py-3 rounded-lg hover:bg-primary-dark transition cursor-pointer" type="submit" value="ورود">
+            
+            <p class="mt-6 text-center text-gray-600">
+              حساب کاربری ندارید؟
+              <a class="text-primary font-semibold hover:underline" href="{% url 'signup' %}">ثبت‌نام کنید</a>
             </p>
           </form>
         </div>
       </div>
 
-      <div
-        class="auth-banner bg-gradient flex flex-col items-center justify-center py-16 lg:col-6"
-      >
-        <img
-          class="absolute top-0 left-0 h-full w-full"
-          src="images/login-banner-bg.svg"
-          alt=""
-        />
-        <div class="w-full text-center">
-          <h2 class="h3 text-white">
-            Turn your All ideas into<br />
-            your reality
+      <!-- بنر سمت راست -->
+      <div class="auth-banner bg-gradient-to-r from-primary to-secondary hidden lg:flex flex-col items-center justify-center py-16 relative">
+        <div class="w-full text-center px-8 relative z-10">
+          <h2 class="text-3xl font-bold text-white mb-8">
+            به سامانه تشخیص<br />
+            هوشمند آلزایمر خوش آمدید
           </h2>
           <div class="swiper auth-banner-carousel">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
-                <img
-                  width="667"
-                  height="557"
-                  class="mx-auto"
-                  src="images/login-carousel-img-1.png"
-                  alt=""
-                />
+                <img width="400" height="400" class="mx-auto rounded-xl shadow-lg" src="{% static 'images/login-carousel-img-1.png' %}" alt="AI Diagnosis">
+                <p class="text-white/80 mt-4">تشخیص دقیق با هوش مصنوعی</p>
               </div>
               <div class="swiper-slide">
-                <img
-                  width="667"
-                  height="557"
-                  class="mx-auto"
-                  src="images/login-carousel-img-1.png"
-                  alt=""
-                />
+                <img width="400" height="400" class="mx-auto rounded-xl shadow-lg" src="{% static 'images/login-carousel-img-1.png' %}" alt="MRI Analysis">
+                <p class="text-white/80 mt-4">تحلیل تصاویر MRI در چند ثانیه</p>
               </div>
               <div class="swiper-slide">
-                <img
-                  width="667"
-                  height="557"
-                  class="mx-auto"
-                  src="images/login-carousel-img-1.png"
-                  alt=""
-                />
+                <img width="400" height="400" class="mx-auto rounded-xl shadow-lg" src="{% static 'images/login-carousel-img-1.png' %}" alt="Medical Report">
+                <p class="text-white/80 mt-4">دریافت گزارش تخصصی</p>
               </div>
             </div>
-            <div class="pagination"></div>
+            <div class="swiper-pagination mt-4"></div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  if (typeof Swiper !== 'undefined') {
+    new Swiper('.auth-banner-carousel', {
+      loop: true,
+      autoplay: { delay: 4000 },
+      pagination: { el: '.swiper-pagination', clickable: true },
+    });
+  }
+</script>
+{% endblock %}

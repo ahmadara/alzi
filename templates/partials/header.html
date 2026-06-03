@@ -4,9 +4,9 @@
   <nav class="navbar container">
 
     <!-- logo -->
-    <div class="order-0"><h1></h1>
-      <a href="{% url 'home' %}"><h1>تشخیص آلزایمر</h1>
-        <!-- <img src="{% static 'images/logo.svg' %}" height="30" width="147" alt="AI Alzheimer System" /> -->
+    <div class="order-0">
+      <a href="{% url 'home' %}">
+        <h1 class="text-xl font-bold text-primary">🧠 تشخیص آلزایمر</h1>
       </a>
     </div>
 
@@ -21,40 +21,49 @@
 
     <!-- menu -->
     <ul id="nav-menu"
-        class="navbar-nav order-2 hidden w-full lg:flex lg:justify-center">
+        class="navbar-nav order-2 hidden w-full lg:flex lg:justify-center lg:gap-6">
 
-      <li>
-        <a href="{% url 'home' %}" class="nav-link active">خانه</a>
-      </li>
-
-      <li>
-        <a href="#about" class="nav-link">درباره پروژه</a>
-      </li>
-
-      <li>
-        <a href="#features" class="nav-link">قابلیت‌ها</a>
-      </li>
-
-      <li>
-        <a href="#how-it-works" class="nav-link">نحوه عملکرد</a>
-      </li>
-
-      <li>
-        <a href="#research" class="nav-link">تحقیقات</a>
-      </li>
-
-      <li>
-        <a href="#contact" class="nav-link">ارتباط با ما</a>
-      </li>
+      <li><a href="{% url 'home' %}" class="nav-link hover:text-primary transition">خانه</a></li>
+      <li><a href="{% url 'about' %}" class="nav-link hover:text-primary transition">درباره ما</a></li>
+      <li><a href="{% url 'features' %}" class="nav-link hover:text-primary transition">قابلیت‌ها</a></li>
+      <li><a href="{% url 'how_it_works' %}" class="nav-link hover:text-primary transition">نحوه عملکرد</a></li>
+      <li><a href="{% url 'news:list' %}" class="nav-link hover:text-primary transition">اخبار</a></li>
+      <li><a href="{% url 'pricing' %}" class="nav-link hover:text-primary transition">تعرفه‌ها</a></li>
+      <li><a href="{% url 'contact' %}" class="nav-link hover:text-primary transition">تماس با ما</a></li>
 
     </ul>
 
-    <!-- button -->
-    <div class="order-1 ml-auto hidden lg:flex">
-      <a class="btn btn-white btn-sm" href="#demo">
-        مشاهده دمو
+    <!-- buttons -->
+    <!-- بخش buttons -->
+<div class="order-1 flex items-center gap-2 lg:gap-3">
+  
+  <div class="flex gap-2">
+    {% if user.is_authenticated %}
+      <a class="text-gray-700 text-sm flex items-center hover:text-primary transition" href="/admin/">
+        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+        </svg>
+        پنل مدیریت
       </a>
-    </div>
+      <a class="text-gray-500 text-sm hover:text-red-500 transition" href="{% url 'logout' %}">
+        خروج
+      </a>
+    {% else %}
+      <a class="text-gray-600 text-sm px-3 py-1.5 rounded-lg hover:bg-gray-100 transition" href="{% url 'signin' %}">
+        ورود
+      </a>
+      <a class="bg-primary text-white text-sm px-3 py-1.5 rounded-lg hover:bg-primary-dark transition" href="{% url 'signup' %}">
+        ثبت‌نام
+      </a>
+    {% endif %}
+  </div>
+  
+  <a class="border border-primary text-primary text-sm px-3 py-1.5 rounded-lg hover:bg-primary hover:text-white transition" href="#demo">
+    🎬 مشاهده دمو
+  </a>
+  
+</div>
+
 
   </nav>
 </header>

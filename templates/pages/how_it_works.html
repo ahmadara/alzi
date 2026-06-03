@@ -1,0 +1,227 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}نحوه عملکرد | سامانه تشخیص هوشمند آلزایمر{% endblock %}
+
+{% block content %}
+
+<!-- floating assets -->
+<img class="floating-bubble-1 absolute right-0 top-0 -z-[1]" src="{% static 'images/floating-bubble-1.svg' %}" alt="">
+<img class="floating-bubble-2 absolute left-0 top-[387px] -z-[1]" src="{% static 'images/floating-bubble-2.svg' %}" alt="">
+<img class="floating-bubble-3 absolute right-0 top-[605px] -z-[1]" src="{% static 'images/floating-bubble-3.svg' %}" alt="">
+<!-- ./end floating assets -->
+
+<!-- Common hero -->
+<section class="page-hero pb-14 pt-16">
+  <div class="container">
+    <div class="text-center">
+      <ul class="breadcrumb inline-flex h-8 items-center justify-center space-x-2 rounded-3xl bg-gray-100 px-4 py-2">
+        <li class="leading-none text-dark">
+          <a class="inline-flex items-center text-primary" href="{% url 'home' %}">
+            <svg class="mr-1.5" width="15" height="15" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13.1769 15.0588H10.3533V9.41178H5.64744V15.0588H2.82391V6.58825H1.88274V16H14.118V6.58825H13.1769V15.0588ZM6.58862 15.0588V10.353H9.41215V15.0588H6.58862ZM15.8084 6.09225L15.2512 6.85178L8.00038 1.52472L0.749559 6.8499L0.192383 6.09131L8.00038 0.357666L15.8084 6.09225Z" fill="#0891B2"/>
+            </svg>
+            <span class="text-sm leading-none">خانه</span>
+          </a>
+        </li>
+        <li class="leading-none text-dark">
+          <span class="text-sm leading-none">/ نحوه عملکرد</span>
+        </li>
+      </ul>
+    </div>
+    <div class="page-hero-content mx-auto max-w-[883px] text-center">
+      <h1 class="mb-5 mt-8 text-3xl md:text-4xl font-bold">
+        تشخیص هوشمند آلزایمر <br />
+        در ۴ مرحله ساده
+      </h1>
+      <p class="text-gray-600">
+        سامانه AlzheimerScan با استفاده از پیشرفته‌ترین الگوریتم‌های هوش مصنوعی،
+        تصاویر MRI را تحلیل کرده و نتایج دقیقی را در اختیار پزشکان قرار می‌دهد.
+      </p>
+    </div>
+
+    <!-- 3 مرحله اصلی -->
+    <div class="grid md:grid-cols-3 gap-8 mt-14">
+      <div class="text-center">
+        <div class="relative mx-auto mb-6 flex h-[184px] w-[184px] items-center justify-center rounded-xl bg-white shadow-lg">
+          <div class="text-center">
+            <div class="text-5xl mb-2">📤</div>
+            <span class="bg-primary text-white w-8 h-8 rounded-full inline-flex items-center justify-center text-sm font-bold">۱</span>
+          </div>
+        </div>
+        <h2 class="text-xl font-bold">آپلود تصویر MRI</h2>
+        <p class="mt-4 text-gray-600">تصویر MRI بیمار را در سامانه آپلود کنید. فرمت‌های DICOM، JPEG و PNG پشتیبانی می‌شوند.</p>
+      </div>
+      <div class="text-center">
+        <div class="relative mx-auto mb-6 flex h-[184px] w-[184px] items-center justify-center rounded-xl bg-white shadow-lg">
+          <div class="text-center">
+            <div class="text-5xl mb-2">🧠</div>
+            <span class="bg-primary text-white w-8 h-8 rounded-full inline-flex items-center justify-center text-sm font-bold">۲</span>
+          </div>
+        </div>
+        <h2 class="text-xl font-bold">پردازش با AI</h2>
+        <p class="mt-4 text-gray-600">مدل یادگیری عمیق تصویر را تحلیل کرده و الگوهای مرتبط با آلزایمر را شناسایی می‌کند.</p>
+      </div>
+      <div class="text-center">
+        <div class="relative mx-auto mb-6 flex h-[184px] w-[184px] items-center justify-center rounded-xl bg-white shadow-lg">
+          <div class="text-center">
+            <div class="text-5xl mb-2">📊</div>
+            <span class="bg-primary text-white w-8 h-8 rounded-full inline-flex items-center justify-center text-sm font-bold">۳</span>
+          </div>
+        </div>
+        <h2 class="text-xl font-bold">دریافت گزارش</h2>
+        <p class="mt-4 text-gray-600">گزارش دقیق تشخیص همراه با درصد اطمینان و تحلیل نواحی درگیر به پزشک ارائه می‌شود.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end Common hero -->
+
+<!-- مرحله 1: جزئیات آپلود -->
+<section>
+  <div class="container">
+    <div class="grid md:grid-cols-2 gap-12 items-center mt-16">
+      <div class="order-2 md:order-1">
+        <div class="relative">
+          <img class="w-full object-contain rounded-xl shadow-lg" src="{% static 'images/how-it-work/image-1.png' %}" alt="آپلود تصویر MRI">
+        </div>
+      </div>
+      <div class="order-1 md:order-2">
+        <div class="text-container">
+          <h2 class="text-2xl md:text-3xl font-bold">۱. آپلود و پیش‌پردازش تصویر</h2>
+          <p class="mt-4 text-gray-600">پس از آپلود تصویر MRI، سامانه به طور خودکار تصویر را نرمال‌سازی کرده و نویزهای اضافی را حذف می‌کند.</p>
+          <ul class="mt-6 space-y-3">
+            <li class="flex items-center gap-3">
+              <img src="{% static 'images/icons/checkmark-circle.svg' %}" alt="">
+              <span>پشتیبانی از فرمت‌های DICOM، JPEG، PNG</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <img src="{% static 'images/icons/checkmark-circle.svg' %}" alt="">
+              <span>حذف خودکار نویزهای تصویری</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <img src="{% static 'images/icons/checkmark-circle.svg' %}" alt="">
+              <span>نرمال‌سازی و بهبود کیفیت تصاویر</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- مرحله 2: تحلیل هوش مصنوعی -->
+    <div class="grid md:grid-cols-2 gap-12 items-center mt-20">
+      <div>
+        <div class="text-container">
+          <h2 class="text-2xl md:text-3xl font-bold">۲. تحلیل با شبکه‌های عصبی عمیق</h2>
+          <p class="mt-4 text-gray-600">مدل CNN آموزش‌دیده روی هزاران تصویر MRI، مناطق مختلف مغز را بررسی کرده و تغییرات مرتبط با آلزایمر را شناسایی می‌کند.</p>
+          <ul class="mt-6 space-y-3">
+            <li class="flex items-center gap-3">
+              <img src="{% static 'images/icons/checkmark-circle.svg' %}" alt="">
+              <span>دقت تشخیص بالای ۹۰٪</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <img src="{% static 'images/icons/checkmark-circle.svg' %}" alt="">
+              <span>تحلیل هیپوکامپ و قشر مغز</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <img src="{% static 'images/icons/checkmark-circle.svg' %}" alt="">
+              <span>تشخیص مراحل مختلف آلزایمر</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <img src="{% static 'images/icons/checkmark-circle.svg' %}" alt="">
+              <span>پردازش در کمتر از ۳۰ ثانیه</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="relative">
+          <img class="w-full object-contain rounded-xl shadow-lg" src="{% static 'images/how-it-work/image-2.png' %}" alt="تحلیل هوش مصنوعی">
+        </div>
+      </div>
+    </div>
+
+    <!-- مرحله 3: نتیجه و گزارش -->
+    <div class="grid md:grid-cols-2 gap-12 items-center mt-20">
+      <div class="order-2 md:order-1">
+        <div class="relative">
+          <img class="w-full object-contain rounded-xl shadow-lg" src="{% static 'images/how-it-work/image-3.png' %}" alt="گزارش تشخیص">
+        </div>
+      </div>
+      <div class="order-1 md:order-2">
+        <div class="text-container">
+          <h2 class="text-2xl md:text-3xl font-bold">۳. گزارش نهایی و توصیه‌ها</h2>
+          <p class="mt-4 text-gray-600">نتایج تحلیل به صورت یک گزارش کامل شامل درجه بیماری، مناطق درگیر و توصیه‌های درمانی ارائه می‌شود.</p>
+          <ul class="mt-6 space-y-3">
+            <li class="flex items-center gap-3">
+              <img src="{% static 'images/icons/checkmark-circle.svg' %}" alt="">
+              <span>درجه بیماری (غیرمبتلا / خفیف / متوسط / شدید)</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <img src="{% static 'images/icons/checkmark-circle.svg' %}" alt="">
+              <span>درصد اطمینان تشخیص</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <img src="{% static 'images/icons/checkmark-circle.svg' %}" alt="">
+              <span>مشاهده مناطق درگیر در تصویر</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <img src="{% static 'images/icons/checkmark-circle.svg' %}" alt="">
+              <span>توصیه‌های درمانی و مراقبتی</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- مرحله 4: مشاوره با پزشک (اختیاری) -->
+<section class="mt-16">
+  <div class="container">
+    <div class="grid md:grid-cols-2 gap-12 items-center bg-gray-50 rounded-2xl p-8 md:p-12">
+      <div>
+        <h2 class="text-2xl md:text-3xl font-bold">۴. مشاوره با پزشک متخصص</h2>
+        <p class="mt-4 text-gray-600">پس از دریافت گزارش هوش مصنوعی، می‌توانید نتایج را با پزشک متخصص مغز و اعصاب به اشتراک بگذارید و برنامه درمانی مناسب را دریافت کنید.</p>
+        <ul class="mt-6 space-y-3">
+          <li class="flex items-center gap-3">
+            <img src="{% static 'images/icons/checkmark-circle.svg' %}" alt="">
+            <span>ارسال گزارش به پزشک معالج</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <img src="{% static 'images/icons/checkmark-circle.svg' %}" alt="">
+            <span>دریافت نوبت مشاوره آنلاین</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <img src="{% static 'images/icons/checkmark-circle.svg' %}" alt="">
+            <span>پیگیری وضعیت بیمار در طول زمان</span>
+          </li>
+        </ul>
+        <div class="mt-8">
+          <a class="btn btn-primary px-6 py-3 rounded-lg" href="#">شروع تشخیص هوشمند →</a>
+        </div>
+      </div>
+      <div class="text-center">
+        <div class="text-8xl mb-4">👨‍⚕️</div>
+        <p class="text-gray-500 mt-4">همکاری با بیش از ۵۰ پزشک متخصص</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call To Action -->
+<section class="px-5 py-20 xl:py-[80px]">
+  <div class="container">
+    <div class="bg-gradient-to-r from-primary to-secondary rounded-2xl px-8 py-12 text-center text-white">
+      <h2 class="text-2xl md:text-3xl font-bold">آماده اید؟</h2>
+      <p class="mt-4 text-white/90 max-w-2xl mx-auto">
+        همین حالا تشخیص هوشمند آلزایمر را با سامانه AlzheimerScan تجربه کنید.
+      </p>
+      <a class="btn btn-white mt-8 inline-block bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition" href="#">
+        شروع کنید
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

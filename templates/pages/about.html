@@ -1,111 +1,155 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block title %}درباره ما | سامانه تشخیص هوشمند آلزایمر{% endblock %}
+
 {% block content %}
 
 <!-- Hero Section -->
-<section class="page-hero py-16">
-
-  <div class="container text-center">
-
-    <h1>AlzheimerScan AI</h1>
-
-    <p class="mt-6 max-w-3xl mx-auto leading-8">
+<section class="page-hero py-16 bg-gradient-to-r from-primary/10 to-secondary/10">
+  <div class="container mx-auto px-4 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold text-gray-800">🧠 AlzheimerScan AI</h1>
+    <p class="mt-6 max-w-3xl mx-auto leading-8 text-gray-600">
       AlzheimerScan یک سامانه هوش مصنوعی پیشرفته برای تحلیل تصاویر MRI مغز است
       که با استفاده از مدل‌های یادگیری عمیق، به شناسایی زودهنگام نشانه‌های بیماری آلزایمر کمک می‌کند.
-
+    </p>
+    <p class="mt-4 max-w-3xl mx-auto leading-8 text-gray-600">
       این پروژه به عنوان یک طرح دانش‌بنیان در حوزه سلامت دیجیتال توسعه یافته
       و هدف آن کمک به پزشکان برای تصمیم‌گیری دقیق‌تر و سریع‌تر است.
     </p>
-
     <div class="mt-10 flex justify-center gap-4">
-      <a class="btn btn-primary" href="#">شروع تحلیل MRI</a>
-      <a class="btn btn-outline-primary" href="{% url 'news:list' %}">مطالعه مقالات علمی</a>
+      <a class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition" href="#">
+        🧪 شروع تحلیل MRI
+      </a>
+      <a class="border border-primary text-primary px-6 py-3 rounded-lg hover:bg-primary hover:text-white transition" href="{% url 'news:list' %}">
+        📚 مطالعه مقالات علمی
+      </a>
     </div>
-
   </div>
-
 </section>
 
 <!-- Mission -->
-<section class="section">
-  <div class="container text-center max-w-3xl mx-auto">
-
-    <h2>هدف پروژه</h2>
-
-    <p class="mt-4 leading-8">
+<section class="section py-16">
+  <div class="container mx-auto px-4 text-center max-w-3xl">
+    <h2 class="text-3xl font-bold text-gray-800">🎯 هدف پروژه</h2>
+    <p class="mt-4 leading-8 text-gray-600">
       هدف AlzheimerScan AI کاهش تشخیص‌های دیرهنگام آلزایمر است.
       این سیستم با تحلیل تصاویر MRI و شناسایی الگوهای پنهان در ساختار مغز،
       به پزشکان کمک می‌کند بیماری را در مراحل اولیه شناسایی کنند.
-
+    </p>
+    <p class="mt-4 leading-8 text-gray-600">
       این ابزار جایگزین پزشک نیست، بلکه یک سیستم کمکی برای افزایش دقت تشخیص است.
     </p>
-
   </div>
 </section>
 
 <!-- Features -->
-<section class="section">
-  <div class="container">
-
-    <div class="row text-center">
-
-      <div class="lg:col-4 mb-8">
-        <h3>دقت بالا</h3>
-        <p>
+<section class="section py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">⚡ ویژگی‌های کلیدی</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="text-center p-6 bg-white rounded-xl shadow-md">
+        <div class="text-4xl mb-4">🎯</div>
+        <h3 class="text-xl font-bold mb-2">دقت بالا</h3>
+        <p class="text-gray-600">
           مدل‌های آموزش‌دیده روی داده‌های معتبر MRI با تمرکز بر تشخیص تغییرات ظریف مغزی.
         </p>
       </div>
-
-      <div class="lg:col-4 mb-8">
-        <h3>پردازش سریع</h3>
-        <p>
+      <div class="text-center p-6 bg-white rounded-xl shadow-md">
+        <div class="text-4xl mb-4">⚡</div>
+        <h3 class="text-xl font-bold mb-2">پردازش سریع</h3>
+        <p class="text-gray-600">
           تحلیل تصاویر MRI در چند ثانیه با استفاده از شبکه‌های عصبی عمیق و بهینه‌سازی شده.
         </p>
       </div>
-
-      <div class="lg:col-4 mb-8">
-        <h3>قابل استفاده در کلینیک</h3>
-        <p>
+      <div class="text-center p-6 bg-white rounded-xl shadow-md">
+        <div class="text-4xl mb-4">🏥</div>
+        <h3 class="text-xl font-bold mb-2">قابل استفاده در کلینیک</h3>
+        <p class="text-gray-600">
           طراحی شده برای استفاده در محیط‌های درمانی، تحقیقاتی و اتصال به سیستم‌های بیمارستانی.
         </p>
       </div>
-
     </div>
-
   </div>
 </section>
 
 <!-- Scientific Note -->
-<section class="section bg-white">
-  <div class="container text-center max-w-4xl mx-auto">
-
-    <h2>رویکرد علمی</h2>
-
-    <p class="mt-4 leading-8">
+<section class="section py-16 bg-white">
+  <div class="container mx-auto px-4 text-center max-w-4xl">
+    <h2 class="text-3xl font-bold text-gray-800">🔬 رویکرد علمی</h2>
+    <p class="mt-4 leading-8 text-gray-600">
       این سیستم بر پایه الگوریتم‌های یادگیری عمیق (Deep Learning) و شبکه‌های عصبی کانولوشنی (CNN)
       توسعه داده شده است و هدف آن استخراج ویژگی‌های پنهان از تصاویر MRI مغز می‌باشد.
-
+    </p>
+    <p class="mt-4 leading-8 text-gray-600">
       خروجی مدل به صورت یک تحلیل کمکی برای متخصصان مغز و اعصاب ارائه می‌شود.
     </p>
+  </div>
+</section>
 
+<!-- Team Section -->
+<section class="section py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">👨‍🔬 تیم توسعه‌دهنده</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="text-center p-6 bg-white rounded-xl shadow-md">
+        <div class="text-5xl mb-3">👩‍💻</div>
+        <h3 class="text-xl font-bold">دکتر پژوهشگر</h3>
+        <p class="text-primary font-medium">متخصص هوش مصنوعی پزشکی</p>
+        <p class="text-gray-600 text-sm mt-2">طراحی و توسعه مدل‌های یادگیری عمیق</p>
+      </div>
+      <div class="text-center p-6 bg-white rounded-xl shadow-md">
+        <div class="text-5xl mb-3">👨‍⚕️</div>
+        <h3 class="text-xl font-bold">دکتر متخصص</h3>
+        <p class="text-primary font-medium">متخصص مغز و اعصاب</p>
+        <p class="text-gray-600 text-sm mt-2">مشاوره بالینی و تأیید داده‌ها</p>
+      </div>
+      <div class="text-center p-6 bg-white rounded-xl shadow-md">
+        <div class="text-5xl mb-3">💻</div>
+        <h3 class="text-xl font-bold">مهندس نرم‌افزار</h3>
+        <p class="text-primary font-medium">توسعه‌دهنده ارشد</p>
+        <p class="text-gray-600 text-sm mt-2">پیاده‌سازی سامانه و API</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats Section -->
+<section class="section py-16 bg-primary text-white">
+  <div class="container mx-auto px-4">
+    <div class="grid md:grid-cols-4 gap-8 text-center">
+      <div>
+        <div class="text-4xl font-bold">+۱۰۰۰</div>
+        <p class="mt-2">تصویر MRI تحلیل شده</p>
+      </div>
+      <div>
+        <div class="text-4xl font-bold">۹۲٪</div>
+        <p class="mt-2">دقت تشخیص</p>
+      </div>
+      <div>
+        <div class="text-4xl font-bold">+۵۰</div>
+        <p class="mt-2">پزشک همکار</p>
+      </div>
+      <div>
+        <div class="text-4xl font-bold">&lt;۳ثانیه</div>
+        <p class="mt-2">زمان تحلیل</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- CTA -->
-<section class="section">
-  <div class="container text-center">
-
-    <h2>شروع استفاده از سیستم</h2>
-
-    <p class="mt-4">
+<section class="section py-16 bg-white">
+  <div class="container mx-auto px-4 text-center">
+    <h2 class="text-3xl font-bold text-gray-800">🚀 شروع استفاده از سیستم</h2>
+    <p class="mt-4 text-gray-600">
       همین حالا می‌توانید تصویر MRI را آپلود کرده و تحلیل اولیه هوش مصنوعی را دریافت کنید.
     </p>
-
     <div class="mt-8">
-      <a class="btn btn-primary" href="#">آپلود MRI</a>
+      <a class="bg-primary text-white px-8 py-3 rounded-lg hover:bg-primary-dark transition inline-block" href="#">
+        آپلود تصویر MRI
+      </a>
     </div>
-
   </div>
 </section>
 
