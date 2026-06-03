@@ -1,0 +1,65 @@
+{% load static %}
+
+<footer class="footer bg-theme-light/50">
+
+  <div class="container">
+    <div class="row gx-5 pb-10 pt-[52px]">
+
+      <!-- logo + description -->
+      <div class="col-12 md:col-6 lg:col-3">
+        <a href="{% url 'home' %}">
+          <img src="{% static 'images/logo.svg' %}" alt="AI Alzheimer System" />
+        </a>
+
+        <p class="mt-6">
+          سامانه هوشمند تحلیل تصاویر MRI برای تشخیص زودهنگام آلزایمر با استفاده از هوش مصنوعی.
+          این پروژه به‌عنوان یک محصول دانش‌بنیان در حوزه سلامت دیجیتال در حال توسعه است.
+        </p>
+      </div>
+
+      <!-- quick links -->
+      <div class="col-12 md:col-6 lg:col-3">
+        <h6>دسترسی سریع</h6>
+        <ul>
+          <li><a href="{% url 'home' %}">خانه</a></li>
+          <li><a href="#about">درباره پروژه</a></li>
+          <li><a href="#features">قابلیت‌ها</a></li>
+          <li><a href="#how-it-works">نحوه عملکرد</a></li>
+          <li><a href="#contact">تماس با ما</a></li>
+        </ul>
+      </div>
+
+      <!-- project info -->
+      <div class="col-12 md:col-6 lg:col-3">
+        <h6>درباره پروژه</h6>
+        <p>تشخیص آلزایمر از روی MRI با استفاده از مدل‌های یادگیری عمیق</p>
+        <p>پروژه دانش‌بنیان در حوزه هوش مصنوعی پزشکی</p>
+        <p>قابل توسعه برای بیماری‌های عصبی دیگر</p>
+      </div>
+
+      <!-- contact -->
+      <div class="col-12 md:col-6 lg:col-3">
+        <h6>ارتباط با ما</h6>
+        <p>info@yourdomain.com</p>
+        <p>+98 --- --- ----</p>
+        <p>پشتیبانی 24/7 برای مراکز درمانی و تحقیقاتی</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- copyright -->
+  <div class="container">
+    <div class="border-t text-center py-6">
+      <p>
+        © 2026 AI Alzheimer Detection System | All rights reserved.
+      </p>
+    </div>
+  </div>
+
+</footer>
+
+<!-- JS -->
+<script src="{% static 'plugins/swiper/swiper-bundle.js' %}"></script>
+<script src="{% static 'plugins/shufflejs/shuffle.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>

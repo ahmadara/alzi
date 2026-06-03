@@ -1,0 +1,210 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- Banner -->
+<section class="section banner relative">
+  <div class="container">
+    <div class="row items-center">
+      <div class="lg:col-6">
+        <h1 class="banner-title">
+          تشخیص هوشمند آلزایمر از روی تصاویر MRI با هوش مصنوعی
+        </h1>
+        <p class="mt-6">
+          یک سامانه پیشرفته مبتنی بر یادگیری عمیق که با تحلیل تصاویر MRI مغز،
+          نشانه‌های اولیه و پیشرفته آلزایمر را شناسایی می‌کند. این پروژه به‌عنوان یک
+          محصول دانش‌بنیان در حوزه سلامت دیجیتال در حال توسعه است.
+        </p>
+        <a class="btn btn-white mt-8" href="#">
+          شروع تحلیل تصویر
+        </a>
+      </div>
+
+      <div class="lg:col-6">
+        <img
+          class="w-full object-contain"
+          src="{% static 'images/banner-img.png' %}"
+          width="603"
+          height="396"
+          alt="AI Alzheimer MRI Analysis"
+        />
+      </div>
+    </div>
+  </div>
+
+  <img
+    class="banner-shape absolute -top-28 right-0 -z-[1] w-full max-w-[30%]"
+    src="{% static 'images/banner-shape.svg' %}"
+    alt=""
+  />
+</section>
+
+<!-- Key features -->
+<section class="section key-feature relative">
+  <img
+    class="absolute left-0 top-0 -z-[1] -translate-y-1/2"
+    src="{% static 'images/icons/feature-shape.svg' %}"
+    alt=""
+  />
+
+  <div class="container">
+    <div class="row justify-between text-center lg:text-start">
+      <div class="lg:col-5">
+        <h2>قابلیت‌های کلیدی سیستم تشخیص آلزایمر</h2>
+      </div>
+
+      <div class="mt-6 lg:col-5 lg:mt-0">
+        <p>
+          این سیستم با استفاده از مدل‌های یادگیری عمیق، تصاویر MRI مغز را تحلیل کرده
+          و الگوهای مرتبط با آلزایمر را با دقت بالا شناسایی می‌کند.
+        </p>
+      </div>
+    </div>
+
+    <div class="key-feature-grid mt-10 grid grid-cols-2 gap-7 md:grid-cols-3 xl:grid-cols-4">
+
+      <div class="flex flex-col justify-between rounded-lg bg-white p-5 shadow-lg">
+        <h3 class="h4 text-xl lg:text-2xl">تحلیل MRI با AI</h3>
+        <p>پردازش تصاویر مغزی با شبکه‌های عصبی عمیق (CNN).</p>
+      </div>
+
+      <div class="flex flex-col justify-between rounded-lg bg-white p-5 shadow-lg">
+        <h3 class="h4 text-xl lg:text-2xl">تشخیص مرحله بیماری</h3>
+        <p>شناسایی مراحل اولیه، میانی و پیشرفته آلزایمر.</p>
+      </div>
+
+      <div class="flex flex-col justify-between rounded-lg bg-white p-5 shadow-lg">
+        <h3 class="h4 text-xl lg:text-2xl">کاهش خطای انسانی</h3>
+        <p>کمک به پزشک برای تصمیم‌گیری دقیق‌تر و سریع‌تر.</p>
+      </div>
+
+      <div class="flex flex-col justify-between rounded-lg bg-white p-5 shadow-lg">
+        <h3 class="h4 text-xl lg:text-2xl">مدل‌های پزشکی آموزش‌دیده</h3>
+        <p>آموزش روی دیتاست‌های واقعی MRI مغز.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section class="section services">
+  <div class="container">
+
+    <div class="tab row gx-5 items-center">
+      <div class="lg:col-7 lg:order-2">
+        <img class="w-full object-contain" src="{% static 'images/sells-by-country.png' %}" />
+      </div>
+
+      <div class="mt-6 lg:col-5 lg:order-1 lg:mt-0">
+        <h2 class="lg:text-4xl">
+          یک پلتفرم هوشمند برای تشخیص زودهنگام آلزایمر
+        </h2>
+        <p class="mt-4">
+          این سیستم به پزشکان کمک می‌کند تا از روی MRI، احتمال وجود آلزایمر و شدت آن را
+          سریع‌تر و دقیق‌تر بررسی کنند.
+        </p>
+
+        <ul class="mt-6 text-dark lg:-ml-4">
+          <li class="mb-2 flex items-center rounded px-4">
+            <img class="mr-3" src="{% static 'images/icons/checkmark-circle.svg' %}" />
+            تحلیل سریع تصاویر پزشکی
+          </li>
+          <li class="mb-2 flex items-center rounded px-4">
+            <img class="mr-3" src="{% static 'images/icons/checkmark-circle.svg' %}" />
+            گزارش خودکار نتایج
+          </li>
+          <li class="flex items-center rounded px-4">
+            <img class="mr-3" src="{% static 'images/icons/checkmark-circle.svg' %}" />
+            مناسب کلینیک‌ها و بیمارستان‌ها
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row gx-5 mt-12 items-center lg:mt-0">
+
+      <div class="lg:col-7">
+        <img class="w-full object-contain" src="{% static 'images/collaboration.png' %}" />
+      </div>
+
+      <div class="mt-6 lg:col-5 lg:mt-0">
+        <h2 class="lg:text-4xl">
+          چرا این پروژه مهم است؟
+        </h2>
+
+        <p class="mt-4">
+          با افزایش نرخ آلزایمر در جهان، تشخیص زودهنگام یکی از مهم‌ترین عوامل کنترل بیماری است.
+          این سیستم نقش یک دستیار هوشمند برای پزشکان را ایفا می‌کند.
+        </p>
+
+        <ul class="mt-6">
+          <li class="mb-2">کاهش زمان تشخیص بیماری</li>
+          <li class="mb-2">افزایش دقت نسبت به تشخیص دستی</li>
+          <li class="mb-2">قابلیت توسعه برای سایر بیماری‌های مغزی</li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- Video -->
+<section class="section">
+  <div class="container">
+
+    <div class="row items-center">
+
+      <div class="lg:col-7">
+        <img class="w-full object-contain" src="{% static 'images/intro-thumbnail.png' %}" />
+      </div>
+
+      <div class="mt-6 lg:col-5">
+        <h2 class="lg:text-4xl">نحوه عملکرد سیستم</h2>
+        <p class="mt-4">
+          تصویر MRI دریافت شده و توسط مدل‌های یادگیری عمیق پردازش می‌شود تا ویژگی‌های مغزی
+          استخراج و احتمال بیماری محاسبه شود.
+        </p>
+
+        <button class="btn btn-white mt-6">مشاهده دمو</button>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="px-5 py-20 xl:py-[120px]">
+  <div class="container">
+    <div class="bg-gradient row justify-center rounded-b-[80px] rounded-t-[20px] px-[30px] pb-[75px] pt-16">
+
+      <div class="lg:col-11">
+        <div class="row">
+
+          <div class="lg:col-7">
+            <h2 class="h1 text-white">
+              آینده تشخیص بیماری‌های مغزی با هوش مصنوعی
+            </h2>
+            <a class="btn btn-white mt-8" href="#">
+              درخواست دمو
+            </a>
+          </div>
+
+          <div class="mt-8 lg:col-5 lg:mt-0">
+            <p class="text-white">
+              این پروژه دانش‌بنیان آماده همکاری با بیمارستان‌ها، مراکز تصویربرداری و
+              مراکز تحقیقاتی است.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

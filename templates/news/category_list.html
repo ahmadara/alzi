@@ -1,26 +1,24 @@
-{% extends "base_site.html" %}
+{% extends "base.html" %}
+{% load static %}
+
 {% block content %}
 
-<h1 class="text-2xl font-bold mb-6">
-    دسته: {{ category.name }}
-</h1>
+<section class="section">
+  <div class="container">
 
-<div class="grid md:grid-cols-3 gap-6">
+    <h1 class="h2 mb-8">{{ category.name }}</h1>
 
-{% for news in news_list %}
-<div class="bg-white rounded-xl shadow p-4">
+    <div class="grid md:grid-cols-3 gap-6">
 
-    <img src="{{ news.featured_image.url }}" class="h-40 w-full object-cover rounded mb-3">
+      {% for item in news_list %}
+        <a href="{{ item.get_absolute_url }}" class="block bg-white p-4 rounded-xl">
+          <h3>{{ item.title }}</h3>
+        </a>
+      {% endfor %}
 
-    <h3 class="font-bold mb-2">{{ news.title }}</h3>
+    </div>
 
-    <a href="{{ news.get_absolute_url }}" class="text-primary">
-        مشاهده
-    </a>
-
-</div>
-{% endfor %}
-
-</div>
+  </div>
+</section>
 
 {% endblock %}
