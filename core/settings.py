@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     # "unfold.contrib.constance",  # optional, if django-constance package is used
     "django.contrib.admin",  # required
     'django.contrib.auth',
-    
+    'jalali_date', 
+
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -139,7 +140,20 @@ REST_FRAMEWORK = {
     ),
 }
 UNFOLD = {
-
+"SITE_DROPDOWN": [
+      {
+            "icon": "dashboard",
+            "title": "داشبورد",
+            "link": "/admin/",
+        },
+        {
+            "icon": "public",
+            "title": "مشاهده سایت",
+            "link": "/",
+            "attrs": {"target": "_self"},
+        },
+      
+    ],
     "SITE_TITLE": "پنل مدیریت آلزایمر",
 
     "SITE_HEADER": "مرکز تشخیص و اطلاع‌رسانی آلزایمر",
@@ -195,6 +209,24 @@ GHASEDAK_API_KEY = config('GHASEDAK_API_KEY', default='')
 GHASEDAK_TEMPLATE_NAME = config('GHASEDAK_TEMPLATE_NAME', default='Ghasedak')
 GHASEDAK_LINE_NUMBER = config('GHASEDAK_LINE_NUMBER', default='3000505')
 
+
+# تنظیمات تاریخ شمسی
+JALALI_DATE_DEFAULTS = {
+    'Strftime': {
+        'date': '%Y/%m/%d',
+        'datetime': '%H:%M:%S _ %Y/%m/%d',
+    },
+    'Static': {
+        'js': [
+            'admin/js/django_jalali.min.js',
+        ],
+        'css': {
+            'all': [
+                'admin/jquery.ui.datepicker.jalali/themes/base/jquery-ui.min.css',
+            ]
+        }
+    },
+}
 # Celery settings (فعلاً کامنت، بعداً فعال کن)
 # CELERY_BROKER_URL = 'redis://localhost:6379'
 # CELERY_RESULT_BACKEND = 'redis://localhost:6379'

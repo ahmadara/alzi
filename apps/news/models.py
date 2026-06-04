@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.utils import timezone
 from django.urls import reverse
+import jdatetime
 
 class NewsCategory(models.Model):
     name = models.CharField(max_length=100, verbose_name="نام دسته‌بندی")
@@ -68,7 +69,16 @@ class NewsArticle(models.Model):
             return self.category.default_image.url
         else:
             return "/static/images/placeholder-image.jpg"
-
+    @property
+    def jalali_publish_date(self):
+        """تبدیل تاریخ میلادی به شمسی"""
+        return jdatetime.date.fromgregorian(date=self.publish_date).strftime("%Y/%m/%d")
+    
+    @property
+    def jalali_publish_datetime(self):
+        """تبدیل datetime میلادی به شمسی"""
+        jd = jdatetime.datetime.fromgregorian(datetime=self.publish_date)
+        return jd.strftime("%Y/%m/%d %H:%M")
 class NewsComment(models.Model):
     article = models.ForeignKey(NewsArticle, on_delete=models.CASCADE, related_name='comments', verbose_name="خبر")
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="کاربر")
