@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}تأیید کد | سامانه تشخیص آلزایمر{% endblock %}
+
+{% block content %}
+<div class="min-h-screen flex items-center justify-center py-16 bg-gray-50">
+  <div class="bg-white rounded-xl shadow-md p-8 max-w-md w-full">
+    <div class="text-center mb-8">
+      <div class="text-4xl mb-3">🔐</div>
+      <h1 class="text-2xl font-bold text-gray-800">تأیید کد</h1>
+      <p class="text-gray-500 mt-2">کد ارسال شده به شماره <strong dir="ltr">{{ phone }}</strong> را وارد کنید</p>
+    </div>
+
+    {% if messages %}
+      <div class="mb-4">
+        {% for message in messages %}
+          <div class="p-3 rounded-lg {% if message.tags == 'error' %}bg-red-100 text-red-700 border border-red-200{% else %}bg-green-100 text-green-700 border border-green-200{% endif %}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="mb-6">
+        <label class="block text-gray-700 mb-2">کد تأیید</label>
+        <input type="text" name="code" class="w-full border border-gray-300 rounded-lg px-4 py-3 text-center text-2xl tracking-widest focus:outline-none focus:border-primary" placeholder="••••••" maxlength="6" dir="ltr">
+      </div>
+      <button type="submit" class="w-full bg-primary text-white py-3 rounded-lg hover:bg-primary-dark transition font-semibold">
+        تأیید و ورود
+      </button>
+    </form>
+
+    <div class="text-center mt-6">
+      <p class="text-gray-500 text-sm">
+        کد دریافت نکردید؟
+        <a href="{% url 'send_otp' %}" class="text-primary hover:underline">ارسال مجدد</a>
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

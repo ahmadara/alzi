@@ -16,18 +16,7 @@
           <h1 class="text-3xl lg:text-4xl font-bold text-gray-800 mb-2">🧠 ورود به حساب کاربری</h1>
           <p class="text-gray-500">به سامانه تشخیص هوشمند آلزایمر خوش آمدید</p>
           
-          <div class="signin-options mt-8">
-            <a class="btn btn-outline-gray block w-full text-center border border-gray-300 py-3 rounded-lg hover:bg-gray-50 transition" href="#">
-              <img src="{% static 'images/icons/google.svg' %}" class="inline w-5 h-5 mr-2" alt="Google">
-              ورود با گوگل
-            </a>
-          </div>
-          
-          <div class="relative my-8 text-center">
-            <span class="relative z-[1] inline-block bg-white px-4 text-gray-400 text-sm">یا ورود با یوزرنیم و رمز عبور</span>
-            <div class="absolute left-0 top-1/2 w-full border-t border-gray-200 -z-0"></div>
-          </div>
-
+          <!-- فرم ورود با یوزرنیم و رمز عبور -->
           <form method="post" action="{% url 'signin' %}">
             {% csrf_token %}
             
@@ -60,12 +49,36 @@
             </div>
             
             <input class="btn btn-primary mt-8 block w-full bg-primary text-white py-3 rounded-lg hover:bg-primary-dark transition cursor-pointer" type="submit" value="ورود">
-            
-            <p class="mt-6 text-center text-gray-600">
-              حساب کاربری ندارید؟
-              <a class="text-primary font-semibold hover:underline" href="{% url 'signup' %}">ثبت‌نام کنید</a>
-            </p>
           </form>
+          
+          <!-- لینک ورود با پیامک (زیر فرم اصلی) -->
+          <div class="text-center mt-6 pt-4 border-t border-gray-200">
+            <p class="text-gray-500 text-sm">
+              <a href="{% url 'send_otp' %}" class="text-primary hover:underline font-semibold">
+                📱 ورود با کد یکبار مصرف (پیامک)
+              </a>
+            </p>
+          </div>
+          
+          <!-- دکمه گوگل در پایین ترین بخش -->
+          <div class="mt-8">
+            <div class="relative my-6 text-center">
+              <span class="relative z-[1] inline-block bg-white px-4 text-gray-400 text-sm">یا</span>
+              <div class="absolute left-0 top-1/2 w-full border-t border-gray-200 -z-0"></div>
+            </div>
+            
+            <a class="btn btn-outline-gray block w-full text-center border border-gray-300 py-3 rounded-lg hover:bg-gray-50 transition flex items-center justify-center gap-2" href="#">
+              <img src="{% static 'images/icons/google.svg' %}" class="w-5 h-5" alt="Google">
+              <span>ورود با گوگل</span>
+            </a>
+          </div>
+          
+          <!-- لینک ثبت‌نام -->
+          <p class="mt-8 text-center text-gray-600">
+            حساب کاربری ندارید؟
+            <a class="text-primary font-semibold hover:underline" href="{% url 'signup' %}">ثبت‌نام کنید</a>
+          </p>
+          
         </div>
       </div>
 

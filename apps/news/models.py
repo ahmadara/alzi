@@ -16,6 +16,16 @@ class NewsCategory(models.Model):
         verbose_name="تصویر پیش‌فرض دسته"
     )
     
+    class Meta:
+        ordering = ['order', 'name']
+        verbose_name = "دسته‌بندی"
+        verbose_name_plural = "دسته‌بندی‌ها"
+    
+    def __str__(self):
+        return self.name  # ← این خط را اضافه کن
+    
+    def get_absolute_url(self):
+        return reverse('news:category', args=[self.slug])
     
 class NewsArticle(models.Model):
     title = models.CharField(max_length=200, verbose_name="عنوان")

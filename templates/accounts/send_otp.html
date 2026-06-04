@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}ورود با شماره موبایل | سامانه تشخیص آلزایمر{% endblock %}
+
+{% block content %}
+<div class="min-h-screen flex items-center justify-center py-16 bg-gray-50">
+  <div class="bg-white rounded-xl shadow-md p-8 max-w-md w-full">
+    <div class="text-center mb-8">
+      <div class="text-4xl mb-3">📱</div>
+      <h1 class="text-2xl font-bold text-gray-800">ورود با شماره موبایل</h1>
+      <p class="text-gray-500 mt-2">کد تأیید به شماره شما ارسال می‌شود</p>
+    </div>
+
+    {% if messages %}
+      <div class="mb-4">
+        {% for message in messages %}
+          <div class="p-3 rounded-lg {% if message.tags == 'error' %}bg-red-100 text-red-700 border border-red-200{% elif message.tags == 'success' %}bg-green-100 text-green-700 border border-green-200{% else %}bg-blue-100 text-blue-700 border border-blue-200{% endif %}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="mb-6">
+        <label class="block text-gray-700 mb-2">شماره موبایل</label>
+        <input type="tel" name="phone" class="w-full border border-gray-300 rounded-lg px-4 py-3 text-lg focus:outline-none focus:border-primary" placeholder="مثال: 09123456789" dir="ltr">
+        <p class="text-sm text-gray-500 mt-2">شماره موبایل خود را با فرمت 09 وارد کنید</p>
+      </div>
+      <button type="submit" class="w-full bg-primary text-white py-3 rounded-lg hover:bg-primary-dark transition font-semibold">
+        دریافت کد تأیید
+      </button>
+    </form>
+
+    <div class="text-center mt-6">
+      <p class="text-gray-500 text-sm">
+        <a href="{% url 'signin' %}" class="text-primary hover:underline">ورود با رمز عبور</a>
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

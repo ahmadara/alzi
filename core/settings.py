@@ -65,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+#AUTH_USER_MODEL = 'accounts.User'
 
 ROOT_URLCONF = 'core.urls'
 
@@ -186,6 +187,13 @@ UNFOLD = {
     },
 
 }
+from decouple import config
+
+# قاصدک
+
+GHASEDAK_API_KEY = config('GHASEDAK_API_KEY', default='')
+GHASEDAK_TEMPLATE_NAME = config('GHASEDAK_TEMPLATE_NAME', default='Ghasedak')
+GHASEDAK_LINE_NUMBER = config('GHASEDAK_LINE_NUMBER', default='3000505')
 
 # Celery settings (فعلاً کامنت، بعداً فعال کن)
 # CELERY_BROKER_URL = 'redis://localhost:6379'
