@@ -1,0 +1,327 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block title %}نتیجه تشخیص | آفاق‌سازان{% endblock %}
+
+{% block content %}
+
+<!-- Header -->
+<div class="mb-6 flex items-center justify-between flex-wrap gap-3">
+  <div>
+    <h1 class="text-2xl font-bold text-gray-800">نتیجه تشخیص</h1>
+    <p class="text-gray-500 text-sm mt-0.5">
+      {{ record.jalali_created_at }} &nbsp;·&nbsp; شناسه: #{{ record.pk }}
+    </p>
+  </div>
+  <div class="flex gap-2">
+    <a href="{% url 'dashboard:upload' %}"
+       class="px-4 py-2 rounded-xl text-sm font-semibold text-white flex items-center gap-2"
+       style="background: linear-gradient(135deg,#0EA5E9,#0284C7);">
+      <i class="fas fa-plus"></i> تشخیص جدید
+    </a>
+    <a href="{% url 'dashboard:history' %}"
+       class="px-4 py-2 rounded-xl text-sm font-medium text-gray-600 border border-gray-200 hover:bg-gray-50 transition">
+      تاریخچه
+    </a>
+  </div>
+</div>
+
+<!-- DEMO NOTICE -->
+<div class="bg-amber-50 border border-amber-200 rounded-2xl px-5 py-3 mb-6 flex items-center gap-3 text-sm text-amber-800">
+  <i class="fas fa-flask text-amber-500 shrink-0"></i>
+  <span>این نتایج در <strong>حالت نمایشی (Demo)</strong> هستند. مدل واقعی در نسخه نهایی اجرا خواهد شد.</span>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     IMAGE COMPARISON  (slider + tabs)
+═══════════════════════════════════════════════════════ -->
+<div class="bg-white rounded-2xl border border-blue-100 overflow-hidden mb-6">
+
+  <!-- Card header -->
+  <div class="px-5 py-4 border-b border-blue-50 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <i class="fas fa-brain text-primary-400"></i>
+      <h3 class="font-bold text-gray-700 text-sm">تصویر MRI و نقشه Grad-CAM</h3>
+    </div>
+    <!-- View toggle -->
+    <div class="flex rounded-lg overflow-hidden border border-gray-200 text-xs font-semibold">
+      <button id="btn-original"
+              onclick="showView('original')"
+              class="px-3 py-1.5 bg-primary-500 text-white transition">
+        تصویر اصلی
+      </button>
+      <button id="btn-overlay"
+              onclick="showView('overlay')"
+              class="px-3 py-1.5 bg-white text-gray-600 hover:bg-gray-50 transition">
+        نقشه Grad-CAM
+      </button>
+      <button id="btn-compare"
+              onclick="showView('compare')"
+              class="px-3 py-1.5 bg-white text-gray-600 hover:bg-gray-50 transition">
+        مقایسه
+      </button>
+    </div>
+  </div>
+
+  <!-- View: Original -->
+  <div id="view-original" class="flex items-center justify-center min-h-72 bg-gray-950 p-4">
+    <img src="{{ record.image.url }}" alt="Original MRI"
+         class="max-h-80 max-w-full object-contain rounded-lg select-none">
+  </div>
+
+  <!-- View: Grad-CAM overlay -->
+  <div id="view-overlay" class="hidden flex items-center justify-center min-h-72 p-4" style="background:#090912;">
+    <img src="{{ analysis.heatmap_url }}" alt="Grad-CAM"
+         class="max-h-80 max-w-full object-contain rounded-lg select-none">
+  </div>
+
+  <!-- View: Side-by-side compare -->
+  <div id="view-compare" class="hidden grid grid-cols-2 divide-x divide-gray-800 bg-gray-950">
+    <div class="flex flex-col items-center p-4">
+      <p class="text-xs text-gray-500 mb-2">تصویر اصلی</p>
+      <img src="{{ record.image.url }}" alt="Original MRI"
+           class="max-h-72 max-w-full object-contain rounded-lg select-none">
+    </div>
+    <div class="flex flex-col items-center p-4" style="background:#090912;">
+      <p class="text-xs text-gray-500 mb-2">نقشه Grad-CAM</p>
+      <img src="{{ analysis.heatmap_url }}" alt="Grad-CAM"
+           class="max-h-72 max-w-full object-contain rounded-lg select-none">
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="px-5 py-3 bg-gray-50 flex flex-wrap items-center justify-between gap-2 text-xs text-gray-500">
+    <div class="flex items-center gap-3">
+      <span class="flex items-center gap-1">
+        <span class="inline-block w-3 h-3 rounded-sm" style="background:#3b82f6;"></span> فعالیت پایین
+      </span>
+      <span class="flex items-center gap-1">
+        <span class="inline-block w-3 h-3 rounded-sm" style="background:#22c55e;"></span> فعالیت متوسط
+      </span>
+      <span class="flex items-center gap-1">
+        <span class="inline-block w-3 h-3 rounded-sm" style="background:#f59e0b;"></span> فعالیت بالا
+      </span>
+      <span class="flex items-center gap-1">
+        <span class="inline-block w-3 h-3 rounded-sm" style="background:#ef4444;"></span> فعالیت بسیار بالا
+      </span>
+    </div>
+    <span class="font-mono text-gray-400">Gradient-weighted Class Activation Map</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     RESULT  +  PROBABILITY BARS  +  RISK SCORE
+═══════════════════════════════════════════════════════ -->
+<div class="grid lg:grid-cols-3 gap-6 mb-6">
+
+  <!-- Result card -->
+  <div class="bg-white rounded-2xl border border-blue-100 p-6 flex flex-col items-center justify-center text-center">
+    <!-- Animated ring -->
+    <div class="relative w-24 h-24 mb-5">
+      <svg class="w-24 h-24 -rotate-90" viewBox="0 0 96 96">
+        <circle cx="48" cy="48" r="40" fill="none" stroke="#fef3c7" stroke-width="8"/>
+        <circle cx="48" cy="48" r="40" fill="none" stroke="#f59e0b" stroke-width="8"
+                stroke-linecap="round"
+                stroke-dasharray="251.2"
+                stroke-dashoffset="{{ analysis.confidence|floatformat:0 }}"
+                style="stroke-dashoffset: calc(251.2 - 251.2 * {{ analysis.confidence }} / 100);
+                       transition: stroke-dashoffset 1.2s ease;"/>
+      </svg>
+      <div class="absolute inset-0 flex items-center justify-center text-2xl">🧠</div>
+    </div>
+
+    <div class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-1">نتیجه تشخیص</div>
+    <div class="text-xl font-bold mb-1" style="color:#d97706;">{{ analysis.result_label }}</div>
+    <div class="text-4xl font-black mb-1" style="color:#f59e0b;" id="conf-counter">0٪</div>
+    <div class="text-xs text-gray-400">اطمینان مدل</div>
+
+    <div class="mt-4 px-4 py-1.5 rounded-full text-sm font-semibold"
+         style="background:#fef3c7; color:#92400e;">
+      {{ analysis.result }} — اختلال خفیف
+    </div>
+  </div>
+
+  <!-- Probability bars + Risk -->
+  <div class="bg-white rounded-2xl border border-blue-100 p-6 lg:col-span-2">
+    <h3 class="font-bold text-gray-700 mb-5 text-sm">احتمال هر دسته‌بندی</h3>
+    <div class="space-y-5">
+      {% for p in analysis.probabilities %}
+      <div>
+        <div class="flex justify-between items-center mb-1.5 text-sm">
+          <span class="font-medium text-gray-700">{{ p.label }}</span>
+          <span class="font-bold tabular-nums" style="color:{{ p.color }};">{{ p.value }}٪</span>
+        </div>
+        <div class="h-3 bg-gray-100 rounded-full overflow-hidden">
+          <div class="h-full rounded-full transition-all duration-[1400ms] ease-out prob-bar"
+               style="width:0%; background:{{ p.color }};"
+               data-target="{{ p.value }}"></div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Risk score -->
+    <div class="mt-6 pt-5 border-t border-gray-100">
+      <div class="flex items-center justify-between mb-2 text-sm">
+        <span class="font-semibold text-gray-700">امتیاز ریسک کلی</span>
+        <span class="font-black text-lg" style="color:#f59e0b;">{{ analysis.risk_score }}/100</span>
+      </div>
+      <div class="h-4 bg-gray-100 rounded-full overflow-hidden relative">
+        <div class="h-full rounded-full transition-all duration-[1600ms] ease-out risk-bar"
+             style="width:0%; background: linear-gradient(90deg,#22c55e 0%,#f59e0b 50%,#ef4444 100%);"
+             data-target="{{ analysis.risk_score }}">
+        </div>
+      </div>
+      <div class="flex justify-between text-xs text-gray-400 mt-1">
+        <span>سالم</span><span>خطر متوسط</span><span>پرخطر</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     BRAIN REGIONS TABLE
+═══════════════════════════════════════════════════════ -->
+<div class="bg-white rounded-2xl border border-blue-100 mb-6 overflow-hidden">
+  <div class="px-6 py-4 border-b border-blue-50 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <i class="fas fa-map-marked-alt text-primary-400"></i>
+      <h3 class="font-bold text-gray-700">تحلیل نواحی مغزی</h3>
+    </div>
+    <span class="text-xs text-gray-400 bg-gray-100 px-3 py-1 rounded-full">
+      {{ analysis.regions|length }} ناحیه بررسی شد
+    </span>
+  </div>
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wider">
+          <th class="px-6 py-3 text-right font-semibold">ناحیه مغزی</th>
+          <th class="px-6 py-3 text-right font-semibold">آتروفی</th>
+          <th class="px-6 py-3 text-right font-semibold">وضعیت</th>
+          <th class="px-6 py-3 text-right font-semibold w-48">نمودار</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-50">
+        {% for region in analysis.regions %}
+        <tr class="hover:bg-blue-50/30 transition group">
+          <td class="px-6 py-4 font-medium text-gray-800 flex items-center gap-2">
+            {% if region.level == 'warning' %}
+              <span class="w-2 h-2 rounded-full bg-amber-400 shrink-0"></span>
+            {% elif region.level == 'success' %}
+              <span class="w-2 h-2 rounded-full bg-green-400 shrink-0"></span>
+            {% else %}
+              <span class="w-2 h-2 rounded-full bg-blue-400 shrink-0"></span>
+            {% endif %}
+            {{ region.name }}
+          </td>
+          <td class="px-6 py-4 font-black text-lg tabular-nums
+            {% if region.level == 'warning' %}text-amber-500
+            {% elif region.level == 'success' %}text-green-500
+            {% else %}text-blue-500{% endif %}">
+            {{ region.atrophy }}٪
+          </td>
+          <td class="px-6 py-4">
+            <span class="px-3 py-1 rounded-full text-xs font-semibold
+              {% if region.level == 'warning' %}bg-amber-100 text-amber-700
+              {% elif region.level == 'success' %}bg-green-100 text-green-700
+              {% else %}bg-blue-100 text-blue-700{% endif %}">
+              {{ region.severity }}
+            </span>
+          </td>
+          <td class="px-6 py-4">
+            <div class="h-2.5 bg-gray-100 rounded-full overflow-hidden">
+              <div class="h-full rounded-full
+                {% if region.level == 'warning' %}bg-amber-400
+                {% elif region.level == 'success' %}bg-green-400
+                {% else %}bg-blue-400{% endif %}"
+                   style="width:{{ region.atrophy }}%"></div>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     RECOMMENDATION
+═══════════════════════════════════════════════════════ -->
+<div class="bg-gradient-to-l from-blue-50 to-sky-50 rounded-2xl border border-blue-100 p-6 mb-6">
+  <div class="flex gap-4">
+    <div class="w-10 h-10 rounded-xl bg-primary-100 flex items-center justify-center shrink-0">
+      <i class="fas fa-stethoscope text-primary-600"></i>
+    </div>
+    <div>
+      <h3 class="font-bold text-gray-800 mb-2">توصیه سیستم</h3>
+      <p class="text-gray-600 leading-7 text-sm">{{ analysis.recommendation }}</p>
+      <p class="text-xs text-gray-400 mt-3">
+        <i class="fas fa-exclamation-circle ml-1 text-amber-400"></i>
+        این گزارش ابزار کمک‌تشخیصی است و جایگزین نظر متخصص نیست.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     ACTIONS
+═══════════════════════════════════════════════════════ -->
+<div class="flex flex-wrap gap-3">
+  <button onclick="window.print()"
+          class="px-5 py-2.5 rounded-xl text-sm font-semibold text-white flex items-center gap-2"
+          style="background:linear-gradient(135deg,#0EA5E9,#0284C7);">
+    <i class="fas fa-print"></i> چاپ / PDF
+  </button>
+  <a href="{% url 'dashboard:upload' %}"
+     class="px-5 py-2.5 rounded-xl text-sm font-medium text-gray-600 border border-gray-200 hover:bg-gray-50 transition flex items-center gap-2">
+    <i class="fas fa-redo"></i> تشخیص جدید
+  </a>
+  <a href="{% url 'dashboard:history' %}"
+     class="px-5 py-2.5 rounded-xl text-sm font-medium text-gray-600 border border-gray-200 hover:bg-gray-50 transition flex items-center gap-2">
+    <i class="fas fa-list"></i> تاریخچه
+  </a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════════════════════════ -->
+<script>
+// ── View toggle ──────────────────────────────────────────────────────────────
+function showView(name) {
+  ['original','overlay','compare'].forEach(v => {
+    document.getElementById('view-' + v).classList.add('hidden');
+    document.getElementById('btn-' + v).classList.remove('bg-primary-500','text-white');
+    document.getElementById('btn-' + v).classList.add('bg-white','text-gray-600');
+  });
+  document.getElementById('view-' + name).classList.remove('hidden');
+  document.getElementById('btn-' + name).classList.add('bg-primary-500','text-white');
+  document.getElementById('btn-' + name).classList.remove('bg-white','text-gray-600');
+}
+
+// ── Animate probability bars on load ────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    document.querySelectorAll('.prob-bar').forEach(el => {
+      el.style.width = el.dataset.target + '%';
+    });
+    document.querySelectorAll('.risk-bar').forEach(el => {
+      el.style.width = el.dataset.target + '%';
+    });
+  }, 200);
+
+  // Counter animation for confidence
+  const target = {{ analysis.confidence }};
+  const el = document.getElementById('conf-counter');
+  let start = 0;
+  const step = target / 60;
+  const timer = setInterval(() => {
+    start = Math.min(start + step, target);
+    el.textContent = start.toFixed(1) + '٪';
+    if (start >= target) clearInterval(timer);
+  }, 16);
+});
+</script>
+
+{% endblock %}

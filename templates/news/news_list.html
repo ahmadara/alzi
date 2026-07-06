@@ -1,154 +1,140 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}اخبار و مقالات | مرکز تشخیص آلزایمر{% endblock %}
+{% block title %}مقالات علمی | آفاق‌سازان{% endblock %}
 
 {% block content %}
-<!-- floating assets -->
-<img class="floating-bubble-1 absolute right-0 top-0 -z-[1]" src="{% static 'images/floating-bubble-1.svg' %}" alt="">
-<img class="floating-bubble-2 absolute left-0 top-[387px] -z-[1]" src="{% static 'images/floating-bubble-2.svg' %}" alt="">
-<img class="floating-bubble-3 absolute right-0 top-[605px] -z-[1]" src="{% static 'images/floating-bubble-3.svg' %}" alt="">
-<!-- ./end floating assets -->
 
-<!-- Common hero -->
-<section class="page-hero pt-16 pb-14">
-  <div class="container">
-    <div class="text-center">
-      <ul class="breadcrumb inline-flex h-8 items-center justify-center space-x-2 rounded-3xl bg-theme-light px-4 py-2">
-        <li class="leading-none text-dark">
-          <a class="inline-flex items-center text-primary" href="{% url 'home' %}">
-            <svg class="mr-1.5" width="15" height="15" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M13.1769 15.0588H10.3533V9.41178H5.64744V15.0588H2.82391V6.58825H1.88274V16H14.118V6.58825H13.1769V15.0588ZM6.58862 15.0588V10.353H9.41215V15.0588H6.58862ZM15.8084 6.09225L15.2512 6.85178L8.00038 1.52472L0.749559 6.8499L0.192383 6.09131L8.00038 0.357666L15.8084 6.09225Z" fill="black"/>
-            </svg>
-            <span class="text-sm leading-none">خانه</span>
-          </a>
-        </li>
-        <li class="leading-none text-dark">
-          <span class="text-sm leading-none">/ اخبار</span>
-        </li>
-      </ul>
-    </div>
-    <div class="page-hero-content mx-auto max-w-[768px] text-center">
-      <h1 class="mb-5 mt-8">
-        جدیدترین اخبار و <br />
-        مقالات تخصصی آلزایمر
-      </h1>
-    </div>
+<!-- Hero -->
+<section class="relative py-16 overflow-hidden" style="background: linear-gradient(135deg,#0C4A6E 0%,#0369A1 40%,#0EA5E9 100%);">
+  <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(circle,#fff 1px,transparent 1px);background-size:28px 28px;"></div>
+  <div class="container mx-auto px-4 relative z-10 text-center text-white">
+    <span class="inline-block text-xs font-semibold px-4 py-1.5 rounded-full mb-4" style="background:rgba(255,255,255,0.15);">مرکز دانش</span>
+    <h1 class="text-3xl lg:text-4xl font-bold mb-3">مقالات و اخبار علمی</h1>
+    <p style="color:rgba(255,255,255,0.8);" class="max-w-xl mx-auto text-sm leading-7">
+      آخرین یافته‌های پژوهشی در حوزه تشخیص آلزایمر، هوش مصنوعی پزشکی و سلامت مغز
+    </p>
   </div>
 </section>
 
-<section class="section pt-0">
-  <div class="container">
-    
-    <!-- Featured Posts (اولین 4 خبر ویژه) -->
-    <h2 class="h4 mb-4">نوشته‌های ویژه</h2>
-    <div class="featured-posts row">
-      {% for news in featured_news %}
-      <div class="mb-8 md:col-6">
-        <div class="card">
-          <img class="card-img" width="235" height="304" src="{{ news.get_image_url }}" alt="{{ news.title }}">
-    
-          <div class="card-content">
-            <div class="card-tags">
-              <a class="tag" href="{{ news.category.get_absolute_url }}">{{ news.category.name }}</a>
-            </div>
-            <h3 class="h4 card-title">
-              <a href="{{ news.get_absolute_url }}">{{ news.title }}</a>
-            </h3>
-            <p>{{ news.summary|truncatewords:20 }}</p>
-            <div class="card-footer mt-6 flex space-x-4">
-              <span class="inline-flex items-center text-xs text-[#666]">
-                <svg class="mr-1.5" width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12.5 2H11V0.375C11 0.16875 10.8313 0 10.625 0H9.375C9.16875 0 9 0.16875 9 0.375V2H5V0.375C5 0.16875 4.83125 0 4.625 0H3.375C3.16875 0 3 0.16875 3 0.375V2H1.5C0.671875 2 0 2.67188 0 3.5V14.5C0 15.3281 0.671875 16 1.5 16H12.5C13.3281 16 14 15.3281 14 14.5V3.5C14 2.67188 13.3281 2 12.5 2ZM12.3125 14.5H1.6875C1.58438 14.5 1.5 14.4156 1.5 14.3125V5H12.5V14.3125C12.5 14.4156 12.4156 14.5 12.3125 14.5Z" fill="#939393"/>
-                </svg>
-                {{ news.publish_date|date:"d M Y" }}
-              </span>
-              <span class="inline-flex items-center text-xs text-[#666]">
-                <svg class="mr-1.5" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M7.65217 0C3.42496 0 0 3.58065 0 8C0 12.4194 3.42496 16 7.65217 16C11.8794 16 15.3043 12.4194 15.3043 8C15.3043 3.58065 11.8794 0 7.65217 0ZM7.65217 14.4516C4.24264 14.4516 1.48107 11.5645 1.48107 8C1.48107 4.43548 4.24264 1.54839 7.65217 1.54839C11.0617 1.54839 13.8233 4.43548 13.8233 8C13.8233 11.5645 11.0617 14.4516 7.65217 14.4516ZM9.55905 11.0839L6.93941 9.09355C6.84376 9.01935 6.78822 8.90323 6.78822 8.78065V3.48387C6.78822 3.27097 6.95484 3.09677 7.15849 3.09677H8.14586C8.34951 3.09677 8.51613 3.27097 8.51613 3.48387V8.05484L10.5773 9.62258C10.7439 9.74839 10.7778 9.99032 10.6575 10.1645L10.0774 11C9.95708 11.171 9.72567 11.2097 9.55905 11.0839Z" fill="#939393"/>
-                </svg>
-                {{ news.views }} بازدید
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-      {% empty %}
-      <p class="text-center">هیچ خبر ویژه‌ای یافت نشد.</p>
+<!-- Category Filter -->
+<div class="sticky top-16 z-40 bg-white border-b border-gray-100 shadow-sm">
+  <div class="container mx-auto px-4">
+    <div class="flex items-center gap-2 py-3 overflow-x-auto scrollbar-hide">
+      <a href="{% url 'news:list' %}"
+         class="shrink-0 px-4 py-1.5 rounded-full text-sm font-medium transition-all
+                {% if not request.GET.category %}text-white{% else %}text-gray-500 hover:text-primary-600 bg-gray-100 hover:bg-blue-50{% endif %}"
+         {% if not request.GET.category %}style="background:linear-gradient(135deg,#0EA5E9,#0284C7);"{% endif %}>
+        همه
+      </a>
+      {% for cat in categories %}
+      <a href="{{ cat.get_absolute_url }}"
+         class="shrink-0 px-4 py-1.5 rounded-full text-sm font-medium transition-all text-gray-500 hover:text-primary-600 bg-gray-100 hover:bg-blue-50">
+        {% if cat.icon %}<i class="{{ cat.icon }} ml-1 text-xs"></i>{% endif %}{{ cat.name }}
+      </a>
       {% endfor %}
     </div>
+  </div>
+</div>
 
-    <!-- Category Filter -->
-    <div class="category-filter mb-10 mt-3 rounded-xl bg-[#EEEEEE] px-4">
-      <ul class="filter-list flex flex-wrap gap-2 py-3">
-        <li>
-          <a class="filter-btn filter-btn-active btn btn-sm" href="{% url 'news:list' %}">همه دسته‌ها</a>
-        </li>
-        {% for category in categories %}
-        <li>
-          <a class="filter-btn btn btn-sm" href="{% url 'news:category' category.slug %}">{{ category.name }}</a>
-        </li>
-        {% endfor %}
-      </ul>
-    </div>
+<section class="py-14 bg-gray-50">
+  <div class="container mx-auto px-4">
 
-    <!-- All Posts (بقیه اخبار) -->
-    <h2 class="h4 mb-4">همه نوشته‌ها</h2>
-    <div class="row">
-      {% for news in news_list %}  <!-- ← این خط اصلاح شده -->
-      <div class="mb-8 md:col-6 lg:col-4">
-        <div class="card">
-          <img class="card-img" width="235" height="304" src="{{ news.get_image_url }}" alt="{{ news.title }}">
-
-          <div class="card-content">
-            <div class="card-tags">
-              <a class="tag" href="{{ news.category.get_absolute_url }}">{{ news.category.name }}</a>
-            </div>
-            <h3 class="h4 card-title">
-              <a href="{{ news.get_absolute_url }}">{{ news.title|truncatewords:10 }}</a>
-            </h3>
-            <p>{{ news.summary|truncatewords:15 }}</p>
-            <div class="card-footer mt-6 flex space-x-4">
-              <span class="inline-flex items-center text-xs text-[#666]">
-                <svg class="mr-1.5" width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12.5 2H11V0.375C11 0.16875 10.8313 0 10.625 0H9.375C9.16875 0 9 0.16875 9 0.375V2H5V0.375C5 0.16875 4.83125 0 4.625 0H3.375C3.16875 0 3 0.16875 3 0.375V2H1.5C0.671875 2 0 2.67188 0 3.5V14.5C0 15.3281 0.671875 16 1.5 16H12.5C13.3281 16 14 15.3281 14 14.5V3.5C14 2.67188 13.3281 2 12.5 2ZM12.3125 14.5H1.6875C1.58438 14.5 1.5 14.4156 1.5 14.3125V5H12.5V14.3125C12.5 14.4156 12.4156 14.5 12.3125 14.5Z" fill="#939393"/>
-                </svg>
-                {{ news.publish_date|date:"d M Y" }}
-              </span>
-              <span class="inline-flex items-center text-xs text-[#666]">
-                <svg class="mr-1.5" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M7.65217 0C3.42496 0 0 3.58065 0 8C0 12.4194 3.42496 16 7.65217 16C11.8794 16 15.3043 12.4194 15.3043 8C15.3043 3.58065 11.8794 0 7.65217 0ZM7.65217 14.4516C4.24264 14.4516 1.48107 11.5645 1.48107 8C1.48107 4.43548 4.24264 1.54839 7.65217 1.54839C11.0617 1.54839 13.8233 4.43548 13.8233 8C13.8233 11.5645 11.0617 14.4516 7.65217 14.4516ZM9.55905 11.0839L6.93941 9.09355C6.84376 9.01935 6.78822 8.90323 6.78822 8.78065V3.48387C6.78822 3.27097 6.95484 3.09677 7.15849 3.09677H8.14586C8.34951 3.09677 8.51613 3.27097 8.51613 3.48387V8.05484L10.5773 9.62258C10.7439 9.74839 10.7778 9.99032 10.6575 10.1645L10.0774 11C9.95708 11.171 9.72567 11.2097 9.55905 11.0839Z" fill="#939393"/>
-                </svg>
-                {{ news.views }} بازدید
-              </span>
-            </div>
+    <!-- Featured (2 top articles) -->
+    {% if featured_news %}
+    <div class="grid lg:grid-cols-2 gap-6 mb-10">
+      {% for article in featured_news|slice:":2" %}
+      <a href="{{ article.get_absolute_url }}"
+         class="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 block"
+         style="min-height:280px;">
+        <img src="{{ article.get_image_url }}" alt="{{ article.title }}"
+             class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500">
+        <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(12,74,110,0.92) 0%,rgba(12,74,110,0.3) 60%,transparent 100%);"></div>
+        <div class="absolute bottom-0 p-6 text-white">
+          <span class="text-xs font-semibold px-3 py-1 rounded-full mb-3 inline-block" style="background:rgba(14,165,233,0.8);">
+            {{ article.category.name }}
+          </span>
+          <h2 class="text-xl font-bold leading-snug mb-2 group-hover:text-sky-200 transition-colors">{{ article.title }}</h2>
+          <p class="text-sm leading-6" style="color:rgba(255,255,255,0.75);">{{ article.summary|truncatewords:18 }}</p>
+          <div class="flex items-center gap-4 mt-3 text-xs" style="color:rgba(255,255,255,0.6);">
+            <span><i class="fas fa-calendar-alt ml-1"></i>{{ article.jalali_publish_date }}</span>
+            <span><i class="fas fa-eye ml-1"></i>{{ article.views }} بازدید</span>
           </div>
         </div>
-      </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- All Articles Grid -->
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-lg font-bold text-gray-800">همه مقالات</h2>
+      <span class="text-sm text-gray-400">{{ paginator.count }} مقاله</span>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for article in news_list %}
+      <a href="{{ article.get_absolute_url }}"
+         class="group bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-primary-200 hover:shadow-lg transition-all duration-300 block">
+
+        <!-- Image -->
+        <div class="overflow-hidden h-48">
+          <img src="{{ article.get_image_url }}" alt="{{ article.title }}"
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-400">
+        </div>
+
+        <!-- Content -->
+        <div class="p-5">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold px-3 py-1 rounded-full"
+                  style="background:#E0F2FE; color:#0284C7;">{{ article.category.name }}</span>
+            <span class="text-xs text-gray-400">{{ article.jalali_publish_date }}</span>
+          </div>
+
+          <h3 class="font-bold text-gray-800 leading-snug mb-2 group-hover:text-primary-600 transition-colors line-clamp-2">
+            {{ article.title }}
+          </h3>
+          <p class="text-sm text-gray-500 leading-6 line-clamp-2">{{ article.summary }}</p>
+
+          <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-50 text-xs text-gray-400">
+            <span><i class="fas fa-eye ml-1"></i>{{ article.views }}</span>
+            <span class="text-primary-500 font-medium group-hover:gap-2 transition-all flex items-center gap-1">
+              ادامه مطلب <i class="fas fa-arrow-left text-xs"></i>
+            </span>
+          </div>
+        </div>
+      </a>
       {% empty %}
-      <p class="text-center">هیچ خبری یافت نشد.</p>
+      <div class="lg:col-span-3 text-center py-20 text-gray-400">
+        <i class="fas fa-newspaper text-4xl mb-4 block"></i>
+        <p>هنوز مقاله‌ای منتشر نشده است.</p>
+      </div>
       {% endfor %}
     </div>
 
     <!-- Pagination -->
     {% if is_paginated %}
-    <div class="pagination flex justify-center gap-2 mt-8">
+    <div class="flex justify-center gap-2 mt-12">
       {% if page_obj.has_previous %}
-        <a href="?page=1" class="px-3 py-2 rounded-lg bg-gray-200 hover:bg-primary hover:text-white transition">&laquo; اول</a>
-        <a href="?page={{ page_obj.previous_page_number }}" class="px-3 py-2 rounded-lg bg-gray-200 hover:bg-primary hover:text-white transition">قبلی</a>
+      <a href="?page={{ page_obj.previous_page_number }}"
+         class="px-4 py-2 rounded-xl text-sm font-medium text-gray-600 border border-gray-200 hover:bg-blue-50 transition">
+        <i class="fas fa-chevron-right"></i> قبلی
+      </a>
       {% endif %}
-      
-      <span class="px-4 py-2 rounded-lg bg-primary text-white">
-        صفحه {{ page_obj.number }} از {{ page_obj.paginator.num_pages }}
+      <span class="px-4 py-2 rounded-xl text-sm font-semibold text-white"
+            style="background:linear-gradient(135deg,#0EA5E9,#0284C7);">
+        {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
       </span>
-      
       {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}" class="px-3 py-2 rounded-lg bg-gray-200 hover:bg-primary hover:text-white transition">بعدی</a>
-        <a href="?page={{ page_obj.paginator.num_pages }}" class="px-3 py-2 rounded-lg bg-gray-200 hover:bg-primary hover:text-white transition">آخر &raquo;</a>
+      <a href="?page={{ page_obj.next_page_number }}"
+         class="px-4 py-2 rounded-xl text-sm font-medium text-gray-600 border border-gray-200 hover:bg-blue-50 transition">
+        بعدی <i class="fas fa-chevron-left"></i>
+      </a>
       {% endif %}
     </div>
     {% endif %}
-    
+
   </div>
 </section>
+
 {% endblock %}

@@ -31,6 +31,12 @@ staticfiles/
 *.orig
 *.rej
 
+# ML model artifacts (train via notebooks/alzheimer_model_training.ipynb)
+apps/diagnosis/ml/*.keras
+apps/diagnosis/ml/*.h5
+apps/diagnosis/ml/*.tflite
+apps/diagnosis/ml/class_names.json
+
 # Redis
 dump.rdb
 

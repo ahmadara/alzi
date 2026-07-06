@@ -1,0 +1,121 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block title %}آپلود تصویر MRI | آفاق‌سازان{% endblock %}
+
+{% block content %}
+
+<div class="mb-8">
+  <h1 class="text-2xl font-bold text-gray-800">آپلود تصویر MRI</h1>
+  <p class="text-gray-500 mt-1">تصویر MRI مغز را برای تشخیص آپلود کنید</p>
+</div>
+
+<div class="max-w-2xl">
+  <form method="post" enctype="multipart/form-data" id="upload-form">
+    {% csrf_token %}
+
+    <!-- Upload Area -->
+    <div class="bg-white rounded-2xl border border-blue-100 p-6 mb-6">
+      <h3 class="font-bold text-gray-700 mb-5 pb-3 border-b border-blue-50">انتخاب فایل تصویر</h3>
+
+      <div id="drop-zone"
+           class="border-2 border-dashed border-blue-200 rounded-2xl p-10 text-center cursor-pointer hover:border-primary-400 hover:bg-blue-50/50 transition-all"
+           onclick="document.getElementById('mri_image').click()">
+        <div id="drop-zone-content">
+          <div class="w-16 h-16 rounded-2xl bg-blue-100 flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-cloud-upload-alt text-primary-500 text-2xl"></i>
+          </div>
+          <p class="font-semibold text-gray-700 mb-1">فایل را اینجا رها کنید یا کلیک کنید</p>
+          <p class="text-sm text-gray-400">فرمت‌های مجاز: JPEG، PNG، DICOM — حداکثر ۱۰ مگابایت</p>
+        </div>
+        <div id="preview-content" class="hidden">
+          <img id="preview-img" src="" alt="پیش‌نمایش" class="max-h-48 mx-auto rounded-xl mb-3 shadow">
+          <p id="preview-name" class="text-sm text-gray-600 font-medium"></p>
+          <p class="text-xs text-gray-400 mt-1">برای تغییر، دوباره کلیک کنید</p>
+        </div>
+      </div>
+
+      <input type="file" id="mri_image" name="mri_image" accept="image/*,.dcm" class="hidden"
+             onchange="handleFileSelect(this)">
+    </div>
+
+    <!-- Notice -->
+    <div class="bg-blue-50 border border-blue-200 rounded-2xl p-5 mb-6">
+      <div class="flex gap-3">
+        <i class="fas fa-info-circle text-primary-500 mt-0.5 shrink-0"></i>
+        <div class="text-sm text-blue-800 space-y-1.5">
+          <p class="font-semibold">نکات مهم قبل از آپلود:</p>
+          <ul class="space-y-1 text-blue-700">
+            <li>• تصویر باید از نمای آگزیال (Axial) مغز باشد</li>
+            <li>• کیفیت تصویر باید حداقل ۱۲۸×۱۲۸ پیکسل باشد</li>
+            <li>• این سیستم جایگزین تشخیص پزشک متخصص نیست</li>
+            <li>• نتایج صرفاً جنبه کمک‌تشخیصی دارند</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex gap-3">
+      <button type="submit" id="submit-btn"
+              class="px-6 py-2.5 rounded-xl text-white font-semibold text-sm transition hover:opacity-90 flex items-center gap-2"
+              style="background: linear-gradient(135deg, #0EA5E9, #0284C7);">
+        <i class="fas fa-brain"></i>
+        شروع تشخیص
+      </button>
+      <a href="{% url 'dashboard:index' %}"
+         class="px-6 py-2.5 rounded-xl text-gray-600 font-medium text-sm border border-gray-200 hover:bg-gray-50 transition">
+        انصراف
+      </a>
+    </div>
+
+  </form>
+</div>
+
+<script>
+function handleFileSelect(input) {
+  const file = input.files[0];
+  if (!file) return;
+
+  const dropZoneContent = document.getElementById('drop-zone-content');
+  const previewContent = document.getElementById('preview-content');
+  const previewImg = document.getElementById('preview-img');
+  const previewName = document.getElementById('preview-name');
+
+  previewName.textContent = file.name;
+
+  if (file.type.startsWith('image/')) {
+    const reader = new FileReader();
+    reader.onload = e => {
+      previewImg.src = e.target.result;
+      previewImg.classList.remove('hidden');
+    };
+    reader.readAsDataURL(file);
+  } else {
+    previewImg.classList.add('hidden');
+  }
+
+  dropZoneContent.classList.add('hidden');
+  previewContent.classList.remove('hidden');
+}
+
+// Drag and drop
+const dropZone = document.getElementById('drop-zone');
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('border-primary-500', 'bg-blue-100'); });
+dropZone.addEventListener('dragleave', () => { dropZone.classList.remove('border-primary-500', 'bg-blue-100'); });
+dropZone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropZone.classList.remove('border-primary-500', 'bg-blue-100');
+  const input = document.getElementById('mri_image');
+  input.files = e.dataTransfer.files;
+  handleFileSelect(input);
+});
+
+// Loading state on submit
+document.getElementById('upload-form').addEventListener('submit', () => {
+  const btn = document.getElementById('submit-btn');
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> در حال پردازش...';
+  btn.disabled = true;
+});
+</script>
+
+{% endblock %}

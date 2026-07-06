@@ -1,153 +1,229 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load static %}
 
-{% block title %}درباره ما | سامانه تشخیص هوشمند آلزایمر{% endblock %}
+{% block title %}درباره ما | آفاق‌سازان{% endblock %}
 
 {% block content %}
 
-<!-- Hero Section -->
-<section class="page-hero py-16 bg-gradient-to-r from-primary/10 to-secondary/10">
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<section class="relative overflow-hidden py-28" style="background: linear-gradient(135deg, #0C4A6E 0%, #0369A1 40%, #0EA5E9 100%);">
+  <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle, #fff 1px, transparent 1px); background-size: 28px 28px;"></div>
+  <div class="absolute top-10 left-16 w-72 h-72 rounded-full opacity-20 blur-3xl" style="background: radial-gradient(circle, #38BDF8, transparent);"></div>
+
+  <div class="container mx-auto px-4 relative z-10 text-center text-white">
+    <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-5 py-2 text-sm mb-8 backdrop-blur-sm">
+      <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+      استارتاپ دانش‌بنیان در حوزه سلامت دیجیتال
+    </div>
+    <h1 class="text-4xl lg:text-5xl font-semibold mb-6 leading-tight">درباره آفاق‌سازان</h1>
+    <p class="max-w-2xl mx-auto text-lg leading-8" style="color: rgba(255,255,255,0.85);">
+      ما یک تیم متخصص در حوزه هوش مصنوعی پزشکی هستیم که با هدف کمک به تشخیص زودهنگام آلزایمر، سامانه‌ای پیشرفته بر پایه تحلیل تصاویر MRI مغز توسعه داده‌ایم.
+    </p>
+  </div>
+
+  <div class="absolute bottom-0 left-0 right-0">
+    <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;">
+      <path d="M0 60L48 54C96 48 192 36 288 33.8C384 32 480 40 576 44C672 48 768 48 864 44C960 40 1056 32 1152 31.8C1248 32 1344 40 1392 44L1440 48V60H0Z" fill="white"/>
+    </svg>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════ MISSION ═══════════════════════ -->
+<section class="py-24 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Text -->
+      <div>
+        <span class="inline-block font-semibold text-sm px-4 py-1.5 rounded-full mb-4" style="color: #0284C7; background: #E0F2FE;">ماموریت ما</span>
+        <h2 class="text-3xl lg:text-4xl font-semibold text-gray-900 mb-6 leading-tight">هدف ما کاهش تشخیص‌های دیرهنگام آلزایمر است</h2>
+        <p class="text-gray-600 leading-8 mb-5">
+          آلزایمر یکی از شایع‌ترین بیماری‌های تخریب‌کننده مغز است که تشخیص زودهنگام آن می‌تواند کیفیت زندگی بیمار را به‌طور چشمگیری بهبود بخشد. متأسفانه بسیاری از بیماران تنها زمانی تشخیص می‌گیرند که بیماری به مراحل پیشرفته رسیده است.
+        </p>
+        <p class="text-gray-600 leading-8 mb-5">
+          آفاق‌سازان با استفاده از شبکه‌های عصبی کانولوشنی (CNN) آموزش‌دیده روی هزاران اسکن MRI بالینی، الگوهای پنهان در ساختار مغز را شناسایی کرده و نشانه‌های اولیه بیماری را با دقتی بسیار بالا تشخیص می‌دهد.
+        </p>
+        <p class="text-gray-600 leading-8">
+          این ابزار <strong>جایگزین پزشک نیست</strong>، بلکه یک سیستم کمک‌تشخیصی است که به متخصصان مغز و اعصاب در تصمیم‌گیری سریع‌تر و دقیق‌تر کمک می‌کند.
+        </p>
+      </div>
+
+      <!-- Cards -->
+      <div class="grid grid-cols-2 gap-4">
+        <div class="p-6 rounded-2xl border border-blue-100 bg-blue-50">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: #0EA5E9;">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+            </svg>
+          </div>
+          <h3 class="font-bold text-gray-800 mb-2">تشخیص هوشمند</h3>
+          <p class="text-sm text-gray-500 leading-6">تحلیل خودکار تصاویر MRI با مدل‌های یادگیری عمیق</p>
+        </div>
+
+        <div class="p-6 rounded-2xl border border-green-100 bg-green-50">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: #22C55E;">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <h3 class="font-bold text-gray-800 mb-2">امنیت پزشکی</h3>
+          <p class="text-sm text-gray-500 leading-6">رمزنگاری کامل داده‌های بیمار و انطباق با استانداردها</p>
+        </div>
+
+        <div class="p-6 rounded-2xl border border-purple-100 bg-purple-50">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: #A855F7;">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+            </svg>
+          </div>
+          <h3 class="font-bold text-gray-800 mb-2">رویکرد علمی</h3>
+          <p class="text-sm text-gray-500 leading-6">مبتنی بر پژوهش‌های معتبر علمی و داده‌های بالینی واقعی</p>
+        </div>
+
+        <div class="p-6 rounded-2xl border border-orange-100 bg-orange-50">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: #F97316;">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <h3 class="font-bold text-gray-800 mb-2">همکاری پزشکی</h3>
+          <p class="text-sm text-gray-500 leading-6">توسعه‌یافته با مشاوره متخصصان مغز و اعصاب</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ═══════════════════════ SCIENTIFIC APPROACH ═══════════════════════ -->
+<section class="py-24" style="background: #F0F9FF;">
+  <div class="container mx-auto px-4">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <span class="inline-block font-semibold text-sm px-4 py-1.5 rounded-full mb-4" style="color: #0284C7; background: white; box-shadow: 0 1px 4px rgba(14,165,233,0.15);">رویکرد علمی</span>
+      <h2 class="text-3xl lg:text-4xl font-semibold text-gray-900 mb-4">چگونه کار می‌کند؟</h2>
+      <p class="text-gray-500 leading-7">سامانه ما بر پایه‌ی پیشرفته‌ترین روش‌های یادگیری ماشین در حوزه تصویربرداری پزشکی طراحی شده است</p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-8">
+      <div class="bg-white p-8 rounded-2xl shadow-sm border border-blue-50">
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style="background: linear-gradient(135deg, #0EA5E9, #0284C7);">
+          <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-gray-800 mb-3">پیش‌پردازش تصویر</h3>
+        <p class="text-gray-500 leading-7">تصاویر MRI پس از آپلود با الگوریتم‌های تخصصی نرمال‌سازی، کرانه‌بندی و آماده‌سازی می‌شوند تا ورودی بهینه‌ای برای مدل فراهم شود.</p>
+      </div>
+
+      <div class="bg-white p-8 rounded-2xl shadow-sm border border-blue-50">
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style="background: linear-gradient(135deg, #06B6D4, #0EA5E9);">
+          <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-gray-800 mb-3">شبکه عصبی CNN</h3>
+        <p class="text-gray-500 leading-7">مدل کانولوشنی عمیق روی هزاران اسکن بالینی برچسب‌گذاری‌شده آموزش دیده و قادر است تغییرات ظریف در حجم هیپوکامپ و قشر مغزی را تشخیص دهد.</p>
+      </div>
+
+      <div class="bg-white p-8 rounded-2xl shadow-sm border border-blue-50">
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style="background: linear-gradient(135deg, #0369A1, #06B6D4);">
+          <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-gray-800 mb-3">گزارش تفسیرپذیر</h3>
+        <p class="text-gray-500 leading-7">خروجی مدل شامل احتمال هر مرحله بیماری (CN / MCI / AD)، نقشه حرارتی نواحی حساس و سطح اطمینان مدل است تا پزشک تصمیم‌گیری مستدل داشته باشد.</p>
+      </div>
+    </div>
+
+    <!-- Classification labels -->
+    <div class="mt-12 bg-white rounded-2xl p-8 border border-blue-100 shadow-sm">
+      <h3 class="font-bold text-gray-800 mb-6 text-center">مراحل تشخیص بیماری</h3>
+      <div class="grid sm:grid-cols-3 gap-6">
+        <div class="text-center p-5 rounded-xl" style="background: #ECFDF5;">
+          <div class="text-2xl font-black mb-2" style="color: #16A34A;">CN</div>
+          <div class="font-semibold text-gray-700 mb-1">سالم</div>
+          <p class="text-sm text-gray-500">Cognitively Normal — عملکرد شناختی طبیعی، بدون نشانه‌ای از بیماری</p>
+        </div>
+        <div class="text-center p-5 rounded-xl" style="background: #FFF7ED;">
+          <div class="text-2xl font-black mb-2" style="color: #D97706;">MCI</div>
+          <div class="font-semibold text-gray-700 mb-1">اختلال خفیف شناختی</div>
+          <p class="text-sm text-gray-500">Mild Cognitive Impairment — نشانه‌های اولیه که با مداخله زودهنگام قابل کنترل است</p>
+        </div>
+        <div class="text-center p-5 rounded-xl" style="background: #FFF1F2;">
+          <div class="text-2xl font-black mb-2" style="color: #DC2626;">AD</div>
+          <div class="font-semibold text-gray-700 mb-1">آلزایمر</div>
+          <p class="text-sm text-gray-500">Alzheimer's Disease — تشخیص بیماری در مراحل مختلف برای برنامه‌ریزی درمانی</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════ TEAM ═══════════════════════ -->
+<section class="py-24 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center max-w-xl mx-auto mb-16">
+      <span class="inline-block font-semibold text-sm px-4 py-1.5 rounded-full mb-4" style="color: #0284C7; background: #E0F2FE;">تیم ما</span>
+      <h2 class="text-3xl lg:text-4xl font-semibold text-gray-900 mb-4">پشت این سامانه چه کسانی هستند؟</h2>
+      <p class="text-gray-500 leading-7">ترکیبی از متخصصان هوش مصنوعی، پزشکی و مهندسی نرم‌افزار</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
+      <div class="text-center p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all">
+        <div class="w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-5" style="background: linear-gradient(135deg, #E0F2FE, #BAE6FD);">
+          <svg class="w-10 h-10" style="color: #0284C7;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-gray-800 mb-1">تیم هوش مصنوعی</h3>
+        <p class="text-sm font-medium mb-3" style="color: #0284C7;">طراحی و توسعه مدل‌های CNN</p>
+        <p class="text-sm text-gray-500 leading-6">آموزش، اعتبارسنجی و بهینه‌سازی مدل‌های یادگیری عمیق برای تحلیل تصاویر پزشکی</p>
+      </div>
+
+      <div class="text-center p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all">
+        <div class="w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-5" style="background: linear-gradient(135deg, #ECFDF5, #D1FAE5);">
+          <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-gray-800 mb-1">مشاوران پزشکی</h3>
+        <p class="text-sm font-medium mb-3 text-green-600">متخصصان مغز و اعصاب</p>
+        <p class="text-sm text-gray-500 leading-6">تأیید بالینی مدل‌ها، برچسب‌گذاری داده‌ها و اطمینان از کاربرد واقعی در محیط درمانی</p>
+      </div>
+
+      <div class="text-center p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all">
+        <div class="w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-5" style="background: linear-gradient(135deg, #F5F3FF, #EDE9FE);">
+          <svg class="w-10 h-10 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-gray-800 mb-1">تیم مهندسی</h3>
+        <p class="text-sm font-medium mb-3 text-purple-600">توسعه‌دهندگان ارشد</p>
+        <p class="text-sm text-gray-500 leading-6">پیاده‌سازی سامانه، زیرساخت ابری، API و رابط کاربری برای استفاده در محیط‌های بالینی</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════ CTA ═══════════════════════ -->
+<section class="py-20" style="background: #F0F9FF;">
   <div class="container mx-auto px-4 text-center">
-    <h1 class="text-4xl md:text-5xl font-bold text-gray-800">🧠 AlzheimerScan AI</h1>
-    <p class="mt-6 max-w-3xl mx-auto leading-8 text-gray-600">
-      AlzheimerScan یک سامانه هوش مصنوعی پیشرفته برای تحلیل تصاویر MRI مغز است
-      که با استفاده از مدل‌های یادگیری عمیق، به شناسایی زودهنگام نشانه‌های بیماری آلزایمر کمک می‌کند.
-    </p>
-    <p class="mt-4 max-w-3xl mx-auto leading-8 text-gray-600">
-      این پروژه به عنوان یک طرح دانش‌بنیان در حوزه سلامت دیجیتال توسعه یافته
-      و هدف آن کمک به پزشکان برای تصمیم‌گیری دقیق‌تر و سریع‌تر است.
-    </p>
-    <div class="mt-10 flex justify-center gap-4">
-      <a class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition" href="#">
-        🧪 شروع تحلیل MRI
+    <h2 class="text-3xl font-semibold text-gray-900 mb-4">آماده همکاری هستید؟</h2>
+    <p class="text-gray-500 max-w-xl mx-auto mb-10 leading-7">اگر پزشک، محقق یا مرکز درمانی هستید و می‌خواهید از سامانه آفاق‌سازان استفاده کنید یا در توسعه آن مشارکت داشته باشید، با ما در تماس باشید.</p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="{% url 'signup' %}" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-white shadow-lg hover:shadow-xl transition-all" style="background: linear-gradient(135deg, #0EA5E9, #0284C7);">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+        </svg>
+        شروع رایگان
       </a>
-      <a class="border border-primary text-primary px-6 py-3 rounded-lg hover:bg-primary hover:text-white transition" href="{% url 'news:list' %}">
-        📚 مطالعه مقالات علمی
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- Mission -->
-<section class="section py-16">
-  <div class="container mx-auto px-4 text-center max-w-3xl">
-    <h2 class="text-3xl font-bold text-gray-800">🎯 هدف پروژه</h2>
-    <p class="mt-4 leading-8 text-gray-600">
-      هدف AlzheimerScan AI کاهش تشخیص‌های دیرهنگام آلزایمر است.
-      این سیستم با تحلیل تصاویر MRI و شناسایی الگوهای پنهان در ساختار مغز،
-      به پزشکان کمک می‌کند بیماری را در مراحل اولیه شناسایی کنند.
-    </p>
-    <p class="mt-4 leading-8 text-gray-600">
-      این ابزار جایگزین پزشک نیست، بلکه یک سیستم کمکی برای افزایش دقت تشخیص است.
-    </p>
-  </div>
-</section>
-
-<!-- Features -->
-<section class="section py-16 bg-gray-50">
-  <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">⚡ ویژگی‌های کلیدی</h2>
-    <div class="grid md:grid-cols-3 gap-8">
-      <div class="text-center p-6 bg-white rounded-xl shadow-md">
-        <div class="text-4xl mb-4">🎯</div>
-        <h3 class="text-xl font-bold mb-2">دقت بالا</h3>
-        <p class="text-gray-600">
-          مدل‌های آموزش‌دیده روی داده‌های معتبر MRI با تمرکز بر تشخیص تغییرات ظریف مغزی.
-        </p>
-      </div>
-      <div class="text-center p-6 bg-white rounded-xl shadow-md">
-        <div class="text-4xl mb-4">⚡</div>
-        <h3 class="text-xl font-bold mb-2">پردازش سریع</h3>
-        <p class="text-gray-600">
-          تحلیل تصاویر MRI در چند ثانیه با استفاده از شبکه‌های عصبی عمیق و بهینه‌سازی شده.
-        </p>
-      </div>
-      <div class="text-center p-6 bg-white rounded-xl shadow-md">
-        <div class="text-4xl mb-4">🏥</div>
-        <h3 class="text-xl font-bold mb-2">قابل استفاده در کلینیک</h3>
-        <p class="text-gray-600">
-          طراحی شده برای استفاده در محیط‌های درمانی، تحقیقاتی و اتصال به سیستم‌های بیمارستانی.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Scientific Note -->
-<section class="section py-16 bg-white">
-  <div class="container mx-auto px-4 text-center max-w-4xl">
-    <h2 class="text-3xl font-bold text-gray-800">🔬 رویکرد علمی</h2>
-    <p class="mt-4 leading-8 text-gray-600">
-      این سیستم بر پایه الگوریتم‌های یادگیری عمیق (Deep Learning) و شبکه‌های عصبی کانولوشنی (CNN)
-      توسعه داده شده است و هدف آن استخراج ویژگی‌های پنهان از تصاویر MRI مغز می‌باشد.
-    </p>
-    <p class="mt-4 leading-8 text-gray-600">
-      خروجی مدل به صورت یک تحلیل کمکی برای متخصصان مغز و اعصاب ارائه می‌شود.
-    </p>
-  </div>
-</section>
-
-<!-- Team Section -->
-<section class="section py-16 bg-gray-50">
-  <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">👨‍🔬 تیم توسعه‌دهنده</h2>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div class="text-center p-6 bg-white rounded-xl shadow-md">
-        <div class="text-5xl mb-3">👩‍💻</div>
-        <h3 class="text-xl font-bold">دکتر پژوهشگر</h3>
-        <p class="text-primary font-medium">متخصص هوش مصنوعی پزشکی</p>
-        <p class="text-gray-600 text-sm mt-2">طراحی و توسعه مدل‌های یادگیری عمیق</p>
-      </div>
-      <div class="text-center p-6 bg-white rounded-xl shadow-md">
-        <div class="text-5xl mb-3">👨‍⚕️</div>
-        <h3 class="text-xl font-bold">دکتر متخصص</h3>
-        <p class="text-primary font-medium">متخصص مغز و اعصاب</p>
-        <p class="text-gray-600 text-sm mt-2">مشاوره بالینی و تأیید داده‌ها</p>
-      </div>
-      <div class="text-center p-6 bg-white rounded-xl shadow-md">
-        <div class="text-5xl mb-3">💻</div>
-        <h3 class="text-xl font-bold">مهندس نرم‌افزار</h3>
-        <p class="text-primary font-medium">توسعه‌دهنده ارشد</p>
-        <p class="text-gray-600 text-sm mt-2">پیاده‌سازی سامانه و API</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Stats Section -->
-<section class="section py-16 bg-primary text-white">
-  <div class="container mx-auto px-4">
-    <div class="grid md:grid-cols-4 gap-8 text-center">
-      <div>
-        <div class="text-4xl font-bold">+۱۰۰۰</div>
-        <p class="mt-2">تصویر MRI تحلیل شده</p>
-      </div>
-      <div>
-        <div class="text-4xl font-bold">۹۲٪</div>
-        <p class="mt-2">دقت تشخیص</p>
-      </div>
-      <div>
-        <div class="text-4xl font-bold">+۵۰</div>
-        <p class="mt-2">پزشک همکار</p>
-      </div>
-      <div>
-        <div class="text-4xl font-bold">&lt;۳ثانیه</div>
-        <p class="mt-2">زمان تحلیل</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="section py-16 bg-white">
-  <div class="container mx-auto px-4 text-center">
-    <h2 class="text-3xl font-bold text-gray-800">🚀 شروع استفاده از سیستم</h2>
-    <p class="mt-4 text-gray-600">
-      همین حالا می‌توانید تصویر MRI را آپلود کرده و تحلیل اولیه هوش مصنوعی را دریافت کنید.
-    </p>
-    <div class="mt-8">
-      <a class="bg-primary text-white px-8 py-3 rounded-lg hover:bg-primary-dark transition inline-block" href="#">
-        آپلود تصویر MRI
+      <a href="mailto:support@afaqsazan.ir" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold border transition-all hover:bg-white" style="border-color: #0EA5E9; color: #0284C7;">
+        تماس با ما
       </a>
     </div>
   </div>

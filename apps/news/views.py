@@ -1,5 +1,5 @@
 from django.views.generic import ListView, DetailView
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from .models import NewsArticle, NewsCategory, NewsComment
 
 class NewsListView(ListView):
@@ -25,23 +25,27 @@ class NewsDetailView(DetailView):
     model = NewsArticle
     template_name = 'news/news_detail.html'
     context_object_name = 'news'
-    
+
     def get_object(self, queryset=None):
         obj = super().get_object(queryset)
         obj.views += 1
         obj.save()
         return obj
-    
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = NewsCategory.objects.filter(is_active=True)
+        return context
+
     def post(self, request, *args, **kwargs):
-        """پردازش فرم ثبت نظر"""
         self.object = self.get_object()
-        comment_text = request.POST.get('comment')
+        comment_text = request.POST.get('comment', '').strip()
         if comment_text and request.user.is_authenticated:
             NewsComment.objects.create(
                 article=self.object,
                 user=request.user,
                 comment=comment_text,
-                is_approved=True
+                is_approved=True,
             )
         return redirect('news:detail', slug=self.object.slug)
 

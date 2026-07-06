@@ -1,32 +1,24 @@
 {% load static %}
 
 <head>
-  <!-- favicon -->
-   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
-
-  <!-- theme meta -->
-  <meta name="theme-name" content="Pinwheel" />
-  <meta name="msapplication-TileColor" content="#000000" />
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
 
-  <title>{% block title %}Pinwheel{% endblock %}</title>
+  <title>{% block title %}آفاق‌سازان | سامانه هوشمند تشخیص آلزایمر{% endblock %}</title>
+  <meta name="description" content="آفاق‌سازان - سامانه پیشرفته تشخیص آلزایمر با هوش مصنوعی از روی تصاویر MRI" />
 
-  <meta name="description" content="meta description" />
+  <link rel="icon" type="image/png" href="{% static 'images/logo-icon-blue.png' %}" />
+  <link rel="shortcut icon" href="{% static 'images/logo-icon-blue.png' %}" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
+  <meta property="og:title" content="آفاق‌سازان | تشخیص هوشمند آلزایمر" />
   <meta property="og:url" content="/" />
 
-  <!-- fonts (ساده‌سازی شده) -->
+  <!-- Font: Vazirmatn -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Swiper -->
   <link rel="stylesheet" href="{% static 'plugins/swiper/swiper-bundle.css' %}" />
@@ -36,6 +28,155 @@
   <link rel="stylesheet" href="{% static 'plugins/font-awesome/v6/solid.css' %}" />
   <link rel="stylesheet" href="{% static 'plugins/font-awesome/v6/brands.css' %}" />
 
-  <!-- Main CSS (اگر داری build شد) -->
+  <!-- Main CSS -->
   <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+
+  <!-- Tailwind CDN with Sky Blue config -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              DEFAULT: '#0EA5E9',
+              dark: '#0284C7',
+              light: '#BAE6FD',
+              50: '#F0F9FF',
+              100: '#E0F2FE',
+              200: '#BAE6FD',
+              300: '#7DD3FC',
+              400: '#38BDF8',
+              500: '#0EA5E9',
+              600: '#0284C7',
+              700: '#0369A1',
+              800: '#075985',
+              900: '#0C4A6E',
+            },
+            secondary: '#06B6D4',
+          },
+          fontFamily: {
+            sans: ['Vazirmatn', 'ui-sans-serif', 'system-ui'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { font-family: 'Vazirmatn', sans-serif; direction: rtl; font-size: 15px; line-height: 1.8; }
+    h1, h2, h3, h4, h5, h6,
+    .h1, .h2, .h3, .h4, .h5, .h6 {
+      font-family: 'Vazirmatn', sans-serif;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+    p { font-weight: 300; line-height: 1.9; }
+
+    /* Override orange → sky blue in compiled CSS */
+    .nav-link:hover { color: #0EA5E9 !important; }
+    .footer li > a:hover { color: #0EA5E9 !important; }
+    .tag { border-color: #0EA5E9 !important; background-color: #E0F2FE !important; color: #0284C7 !important; }
+    .tag:hover { background-color: #0EA5E9 !important; color: #fff !important; }
+    .video-play-btn { background-color: #0EA5E9 !important; }
+    .reviews-carousel .swiper-pagination-bullet-active { background-color: #0EA5E9 !important; }
+    .services .tab-nav-item.active { background-color: rgba(14,165,233,0.15) !important; }
+    .form-control:focus, .form-select:focus { border-color: #0EA5E9 !important; }
+    .changelogs-content::before { border-color: #0EA5E9 !important; }
+    .social-icons li a:hover { background-color: #0EA5E9 !important; }
+    .content :is(:where(code):not(:where([class~="not-prose"],[class~="not-prose"] *))) { color: #0EA5E9 !important; }
+    .content :is(:where(a):not(:where([class~="not-prose"],[class~="not-prose"] *))) { color: #0EA5E9 !important; }
+
+    @keyframes shadow-pulse {
+      0% { box-shadow: 0 0 0 0px rgba(14,165,233,0.7); }
+      70% { box-shadow: 0 0 0 35px rgba(14,165,233,0); }
+      100% { box-shadow: 0 0 0 0 rgba(14,165,233,0); }
+    }
+    @keyframes shadow-pulse-2 {
+      0% { box-shadow: 0 0 0 0px rgba(14,165,233,0.7); }
+      70% { box-shadow: 0 0 0 20px rgba(14,165,233,0); }
+      100% { box-shadow: 0 0 0 0 rgba(14,165,233,0); }
+    }
+
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, #0EA5E9 0%, #06B6D4 50%, #0369A1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Hero gradient */
+    .hero-gradient {
+      background: linear-gradient(135deg, #0C4A6E 0%, #0369A1 30%, #0284C7 60%, #0EA5E9 100%);
+    }
+
+    /* Glassmorphism card */
+    .glass-card {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    /* Pulse animation for stats */
+    @keyframes count-up {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .stat-item { animation: count-up 0.6s ease forwards; }
+
+    /* Feature card hover */
+    .feature-card {
+      transition: all 0.3s ease;
+      border: 1px solid #E0F2FE;
+    }
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(14,165,233,0.15);
+      border-color: #0EA5E9;
+    }
+
+    /* Step number */
+    .step-number {
+      background: linear-gradient(135deg, #0EA5E9, #06B6D4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Smooth scroll */
+    html { scroll-behavior: smooth; }
+
+    /* Header backdrop when scrolled */
+    .header-scrolled {
+      box-shadow: 0 4px 30px rgba(14,165,233,0.1);
+      border-bottom: 1px solid rgba(14,165,233,0.1);
+    }
+
+    /* News card */
+    .news-card {
+      transition: all 0.3s ease;
+    }
+    .news-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px rgba(14,165,233,0.12);
+    }
+    .news-card:hover .news-img {
+      transform: scale(1.05);
+    }
+    .news-img { transition: transform 0.4s ease; }
+
+    /* Floating brain animation */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+    .float-anim { animation: float 4s ease-in-out infinite; }
+
+    /* Dot pattern background */
+    .dot-pattern {
+      background-image: radial-gradient(circle, #BAE6FD 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+  </style>
 </head>

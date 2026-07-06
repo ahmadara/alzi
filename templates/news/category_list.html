@@ -1,22 +1,99 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block title %}{{ category.name }} | مقالات آفاق‌سازان{% endblock %}
+
 {% block content %}
 
-<section class="section">
-  <div class="container">
+<!-- Hero -->
+<section class="relative py-14 overflow-hidden" style="background:linear-gradient(135deg,#0C4A6E 0%,#0369A1 40%,#0EA5E9 100%);">
+  <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(circle,#fff 1px,transparent 1px);background-size:28px 28px;"></div>
+  <div class="container mx-auto px-4 relative z-10 text-center text-white">
+    <a href="{% url 'news:list' %}" class="inline-flex items-center gap-1 text-xs mb-4 opacity-70 hover:opacity-100 transition">
+      <i class="fas fa-arrow-right text-xs"></i> بازگشت به مقالات
+    </a>
+    <h1 class="text-3xl font-bold mb-2">{{ category.name }}</h1>
+    <p style="color:rgba(255,255,255,0.75);" class="text-sm">{{ paginator.count }} مقاله در این دسته‌بندی</p>
+  </div>
+</section>
 
-    <h1 class="h2 mb-8">{{ category.name }}</h1>
-
-    <div class="grid md:grid-cols-3 gap-6">
-
-      {% for item in news_list %}
-        <a href="{{ item.get_absolute_url }}" class="block bg-white p-4 rounded-xl">
-          <h3>{{ item.title }}</h3>
-        </a>
+<!-- Category Filter -->
+<div class="sticky top-16 z-40 bg-white border-b border-gray-100 shadow-sm">
+  <div class="container mx-auto px-4">
+    <div class="flex items-center gap-2 py-3 overflow-x-auto">
+      <a href="{% url 'news:list' %}"
+         class="shrink-0 px-4 py-1.5 rounded-full text-sm font-medium text-gray-500 hover:text-primary-600 bg-gray-100 hover:bg-blue-50 transition">
+        همه
+      </a>
+      {% for cat in categories %}
+      <a href="{{ cat.get_absolute_url }}"
+         class="shrink-0 px-4 py-1.5 rounded-full text-sm font-medium transition
+                {% if cat.pk == category.pk %}text-white{% else %}text-gray-500 hover:text-primary-600 bg-gray-100 hover:bg-blue-50{% endif %}"
+         {% if cat.pk == category.pk %}style="background:linear-gradient(135deg,#0EA5E9,#0284C7);"{% endif %}>
+        {{ cat.name }}
+      </a>
       {% endfor %}
-
     </div>
+  </div>
+</div>
+
+<section class="py-14 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for article in news_list %}
+      <a href="{{ article.get_absolute_url }}"
+         class="group bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-primary-200 hover:shadow-lg transition-all duration-300 block">
+        <div class="overflow-hidden h-48">
+          <img src="{{ article.get_image_url }}" alt="{{ article.title }}"
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-400">
+        </div>
+        <div class="p-5">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-semibold px-3 py-1 rounded-full" style="background:#E0F2FE;color:#0284C7;">
+              {{ article.category.name }}
+            </span>
+            <span class="text-xs text-gray-400">{{ article.jalali_publish_date }}</span>
+          </div>
+          <h3 class="font-bold text-gray-800 leading-snug mb-2 group-hover:text-primary-600 transition line-clamp-2">
+            {{ article.title }}
+          </h3>
+          <p class="text-sm text-gray-500 leading-6 line-clamp-2">{{ article.summary }}</p>
+          <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-50 text-xs text-gray-400">
+            <span><i class="fas fa-eye ml-1"></i>{{ article.views }}</span>
+            <span class="text-primary-500 font-medium flex items-center gap-1">
+              ادامه مطلب <i class="fas fa-arrow-left text-xs"></i>
+            </span>
+          </div>
+        </div>
+      </a>
+      {% empty %}
+      <div class="lg:col-span-3 text-center py-20 text-gray-400">
+        <i class="fas fa-folder-open text-4xl mb-4 block"></i>
+        <p>مقاله‌ای در این دسته‌بندی وجود ندارد.</p>
+      </div>
+      {% endfor %}
+    </div>
+
+    {% if is_paginated %}
+    <div class="flex justify-center gap-2 mt-12">
+      {% if page_obj.has_previous %}
+      <a href="?page={{ page_obj.previous_page_number }}"
+         class="px-4 py-2 rounded-xl text-sm font-medium text-gray-600 border border-gray-200 hover:bg-blue-50 transition">
+        <i class="fas fa-chevron-right"></i> قبلی
+      </a>
+      {% endif %}
+      <span class="px-4 py-2 rounded-xl text-sm font-semibold text-white"
+            style="background:linear-gradient(135deg,#0EA5E9,#0284C7);">
+        {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+      </span>
+      {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}"
+         class="px-4 py-2 rounded-xl text-sm font-medium text-gray-600 border border-gray-200 hover:bg-blue-50 transition">
+        بعدی <i class="fas fa-chevron-left"></i>
+      </a>
+      {% endif %}
+    </div>
+    {% endif %}
 
   </div>
 </section>

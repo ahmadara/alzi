@@ -1,0 +1,138 @@
+{% load static %}
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}پنل کاربری | آفاق‌سازان{% endblock %}</title>
+  <link rel="icon" type="image/png" href="{% static 'images/logo-icon-blue.png' %}" />
+  <link rel="shortcut icon" href="{% static 'images/logo-icon-blue.png' %}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'plugins/font-awesome/v6/fontawesome.css' %}" />
+  <link rel="stylesheet" href="{% static 'plugins/font-awesome/v6/solid.css' %}" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              DEFAULT: '#0EA5E9', dark: '#0284C7', light: '#BAE6FD',
+              50: '#F0F9FF', 100: '#E0F2FE', 200: '#BAE6FD', 300: '#7DD3FC',
+              400: '#38BDF8', 500: '#0EA5E9', 600: '#0284C7', 700: '#0369A1',
+            },
+          },
+          fontFamily: { sans: ['Vazirmatn', 'ui-sans-serif', 'system-ui'] },
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Vazirmatn', sans-serif; direction: rtl; background: #F0F9FF; font-size: 15px; line-height: 1.8; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Vazirmatn', sans-serif; font-weight: 600; line-height: 1.4; }
+    p { font-weight: 300; }
+    .sidebar-link { transition: all 0.2s; }
+    .sidebar-link:hover, .sidebar-link.active {
+      background: linear-gradient(135deg, rgba(14,165,233,0.12), rgba(2,132,199,0.08));
+      color: #0284C7;
+    }
+    .sidebar-link.active { border-right: 3px solid #0EA5E9; }
+    .stat-card { transition: transform 0.2s, box-shadow 0.2s; }
+    .stat-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(14,165,233,0.15); }
+  </style>
+</head>
+<body class="min-h-screen">
+
+<!-- Top Bar -->
+<header class="bg-white shadow-sm border-b border-blue-100 sticky top-0 z-30">
+  <div class="flex items-center justify-between px-4 lg:px-6 h-16">
+    <!-- Logo -->
+    <a href="{% url 'home' %}" class="flex items-center gap-2">
+      <img src="{% static 'images/logo-color.png' %}" alt="ASAH" class="h-9 w-auto">
+    </a>
+
+    <!-- Mobile sidebar toggle -->
+    <button onclick="document.getElementById('sidebar').classList.toggle('hidden')" class="lg:hidden p-2 rounded-lg hover:bg-blue-50">
+      <i class="fas fa-bars text-gray-600"></i>
+    </button>
+
+    <!-- User menu -->
+    <div class="flex items-center gap-3">
+      <a href="{% url 'news:list' %}" class="text-sm text-gray-500 hover:text-primary-600 hidden sm:block">مقالات</a>
+      <a href="{% url 'home' %}" class="text-sm text-gray-500 hover:text-primary-600 hidden sm:block">سایت</a>
+      <div class="flex items-center gap-2 bg-blue-50 rounded-xl px-3 py-1.5">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-primary-400 to-primary-700 flex items-center justify-center text-white text-sm font-bold">
+          {{ user.first_name|first|default:user.username|first|upper }}
+        </div>
+        <span class="text-sm font-medium text-gray-700 hidden sm:block">{{ user.get_full_name|default:user.username }}</span>
+      </div>
+      <a href="{% url 'logout' %}" class="text-sm text-red-400 hover:text-red-600 px-3 py-1.5 rounded-lg hover:bg-red-50 transition-all">
+        <i class="fas fa-sign-out-alt ml-1"></i>خروج
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="flex min-h-[calc(100vh-64px)]">
+
+  <!-- Sidebar -->
+  <aside id="sidebar" class="hidden lg:flex flex-col w-64 bg-white border-l border-blue-100 shadow-sm shrink-0">
+    <div class="p-4 border-b border-blue-50">
+      <p class="text-xs text-gray-400 font-medium uppercase tracking-wider">منوی کاربری</p>
+    </div>
+    <nav class="flex-1 p-3 space-y-1">
+      <a href="{% url 'dashboard:index' %}"
+         class="sidebar-link {% if request.resolver_match.url_name == 'index' %}active{% endif %} flex items-center gap-3 px-4 py-2.5 rounded-xl text-gray-600 font-medium text-sm">
+        <i class="fas fa-th-large w-4 text-center text-primary-500"></i>
+        داشبورد
+      </a>
+      <a href="{% url 'dashboard:upload' %}"
+         class="sidebar-link {% if request.resolver_match.url_name == 'upload' %}active{% endif %} flex items-center gap-3 px-4 py-2.5 rounded-xl text-gray-600 font-medium text-sm">
+        <i class="fas fa-cloud-upload-alt w-4 text-center text-primary-500"></i>
+        آپلود تصویر MRI
+      </a>
+      <a href="{% url 'dashboard:history' %}"
+         class="sidebar-link {% if request.resolver_match.url_name == 'history' %}active{% endif %} flex items-center gap-3 px-4 py-2.5 rounded-xl text-gray-600 font-medium text-sm">
+        <i class="fas fa-history w-4 text-center text-primary-500"></i>
+        تاریخچه تشخیص‌ها
+      </a>
+      <a href="{% url 'dashboard:profile' %}"
+         class="sidebar-link {% if request.resolver_match.url_name == 'profile' %}active{% endif %} flex items-center gap-3 px-4 py-2.5 rounded-xl text-gray-600 font-medium text-sm">
+        <i class="fas fa-user-edit w-4 text-center text-primary-500"></i>
+        ویرایش پروفایل
+      </a>
+    </nav>
+
+    <div class="p-4 border-t border-blue-50">
+      {% if user.is_staff %}
+      <a href="/admin/" class="flex items-center gap-2 text-xs text-gray-400 hover:text-primary-600 transition-colors">
+        <i class="fas fa-cog"></i> پنل مدیریت
+      </a>
+      {% endif %}
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 p-4 lg:p-8">
+    <!-- Messages -->
+    {% if messages %}
+    <div class="mb-6 space-y-2">
+      {% for message in messages %}
+      <div class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium
+        {% if message.tags == 'success' %}bg-green-50 text-green-700 border border-green-200
+        {% elif message.tags == 'error' %}bg-red-50 text-red-700 border border-red-200
+        {% else %}bg-blue-50 text-blue-700 border border-blue-200{% endif %}">
+        <i class="fas {% if message.tags == 'success' %}fa-check-circle{% elif message.tags == 'error' %}fa-exclamation-circle{% else %}fa-info-circle{% endif %}"></i>
+        {{ message }}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% block content %}{% endblock %}
+  </main>
+
+</div>
+
+</body>
+</html>

@@ -1,262 +1,422 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load static %}
 
-{% block title %}خانه | سامانه تشخیص هوشمند آلزایمر{% endblock %}
+{% block title %}آفاق‌سازان | تشخیص هوشمند آلزایمر با هوش مصنوعی{% endblock %}
 
 {% block content %}
 
-<!-- Banner / Hero Section -->
-<section class="section banner relative py-20 bg-gradient-to-r from-primary/10 to-secondary/10">
-  <div class="container mx-auto px-4">
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
-      <div>
-        <h1 class="text-4xl lg:text-5xl font-bold text-gray-800 leading-tight">
-          🧠 تشخیص هوشمند آلزایمر از روی تصاویر MRI با هوش مصنوعی
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<section class="relative overflow-hidden" style="background: linear-gradient(135deg, #0C4A6E 0%, #0369A1 35%, #0284C7 65%, #0EA5E9 100%); min-height: 92vh; display: flex; align-items: center;">
+
+  <!-- Dot pattern overlay -->
+  <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle, #fff 1px, transparent 1px); background-size: 28px 28px;"></div>
+
+  <!-- Glow blobs -->
+  <div class="absolute top-20 left-20 w-80 h-80 rounded-full opacity-20 blur-3xl" style="background: radial-gradient(circle, #38BDF8, transparent);"></div>
+  <div class="absolute bottom-10 right-10 w-96 h-96 rounded-full opacity-15 blur-3xl" style="background: radial-gradient(circle, #06B6D4, transparent);"></div>
+
+  <div class="container mx-auto px-4 py-24 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Text -->
+      <div class="text-white">
+        <h1 class="text-4xl lg:text-5xl xl:text-6xl font-semibold leading-tight mb-6 text-white">
+          تشخیص زودهنگام
+          <span class="block" style="color: #8ce1ff;">آلزایمر</span>
+          با هوش مصنوعی
         </h1>
-        <p class="mt-6 text-gray-600 leading-relaxed">
-          یک سامانه پیشرفته مبتنی بر یادگیری عمیق که با تحلیل تصاویر MRI مغز،
-          نشانه‌های اولیه و پیشرفته آلزایمر را شناسایی می‌کند. این پروژه به‌عنوان یک
-          محصول دانش‌بنیان در حوزه سلامت دیجیتال در حال توسعه است.
+
+        <p class="leading-8 mb-8 max-w-lg" style="color: rgba(255,255,255,0.8); font-size: 1.1rem;">
+          آفاق‌سازان با تحلیل تصاویر MRI مغز توسط شبکه‌های عصبی عمیق، نشانه‌های اولیه آلزایمر را با دقت بسیار بالا و در کمترین زمان شناسایی می‌کند و به پزشکان در تصمیم‌گیری دقیق‌تر کمک می‌نماید.
         </p>
-        <div class="mt-8 flex flex-wrap gap-4">
-          <a class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition" href="#">
-            🧪 شروع تحلیل تصویر
+
+        <div class="flex flex-wrap gap-4 mb-12">
+          <a href="{% url 'signup' %}" class="inline-flex items-center gap-2 bg-white font-bold px-6 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all" style="color: #0284C7;">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+            شروع رایگان
           </a>
-          <a class="border border-primary text-primary px-6 py-3 rounded-lg hover:bg-primary hover:text-white transition" href="{% url 'news:list' %}">
-            📚 مقالات علمی
+          <a href="{% url 'about' %}" class="inline-flex items-center gap-2 border font-semibold px-6 py-3.5 rounded-xl hover:bg-white/10 backdrop-blur-sm transition-all" style="border-color: rgba(255,255,255,0.4); color: white;">
+            درباره سامانه
           </a>
         </div>
+
+        <!-- Mini Stats -->
+        <div class="grid grid-cols-3 gap-4">
+          <div class="text-center">
+            <div class="text-2xl font-bold text-white">دقت بالا</div>
+            <div class="text-xs mt-1" style="color: rgba(255,255,255,0.6);">در تشخیص بیماری</div>
+          </div>
+          <div class="text-center" style="border-right: 1px solid rgba(255,255,255,0.2); border-left: 1px solid rgba(255,255,255,0.2);">
+            <div class="text-3xl font-bold text-white">+۱۰۰۰</div>
+            <div class="text-xs mt-1" style="color: rgba(255,255,255,0.6);">تصویر تحلیل‌شده</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-white">آنی</div>
+            <div class="text-xs mt-1" style="color: rgba(255,255,255,0.6);">زمان تحلیل</div>
+          </div>
+        </div>
       </div>
-      <div>
-        <img class="w-full object-contain" src="{% static 'images/banner-img.png' %}" alt="AI Alzheimer MRI Analysis">
+
+      <!-- Visual Card -->
+      <div class="hidden lg:flex items-center justify-center">
+        <div class="relative float-anim">
+          <div class="rounded-3xl p-8 shadow-2xl" style="background: rgba(255,255,255,0.08); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); width: 380px;">
+            <!-- Card Header -->
+            <div class="flex items-center justify-between mb-6">
+              <div>
+                <p class="text-xs" style="color: rgba(255,255,255,0.6);">تحلیل MRI مغز</p>
+                <p class="font-bold text-sm" style="color: rgba(255,255,255,0.4);">نمونه آموزشی — ناشناس</p>
+              </div>
+              <span class="text-xs font-semibold px-3 py-1 rounded-full" style="background: rgba(74,222,128,0.2); color: #86EFAC; border: 1px solid rgba(74,222,128,0.3);">
+                ✓ تحلیل انجام شد
+              </span>
+            </div>
+
+            <!-- Fake MRI Placeholder -->
+            <div class="rounded-2xl overflow-hidden mb-5 flex items-center justify-center" style="background: linear-gradient(135deg, #0c1a2e, #0a2540, #0d2f4a); height: 180px;">
+              <svg viewBox="0 0 200 150" class="w-full h-full" style="opacity: 0.7;">
+                <ellipse cx="100" cy="75" rx="65" ry="55" fill="none" stroke="#38BDF8" stroke-width="1.5" opacity="0.6"/>
+                <ellipse cx="80" cy="70" rx="30" ry="35" fill="none" stroke="#7DD3FC" stroke-width="1" opacity="0.5"/>
+                <ellipse cx="120" cy="70" rx="30" ry="35" fill="none" stroke="#7DD3FC" stroke-width="1" opacity="0.5"/>
+                <path d="M100 35 Q95 50 100 60 Q105 50 100 35" fill="#38BDF8" opacity="0.4"/>
+                <circle cx="75" cy="65" r="3" fill="#0EA5E9" opacity="0.8"/>
+                <circle cx="120" cy="72" r="2" fill="#0EA5E9" opacity="0.6"/>
+                <circle cx="90" cy="85" r="2.5" fill="#38BDF8" opacity="0.7"/>
+                <path d="M60 60 Q70 55 80 60 Q90 65 100 60 Q110 55 120 60 Q130 65 140 60" stroke="#7DD3FC" stroke-width="1" fill="none" opacity="0.5"/>
+                <path d="M65 75 Q80 70 95 75 Q110 80 125 75 Q135 70 140 75" stroke="#38BDF8" stroke-width="0.8" fill="none" opacity="0.4"/>
+                <text x="100" y="125" text-anchor="middle" fill="#38BDF8" font-size="9" opacity="0.8">نمای آگزیال</text>
+              </svg>
+            </div>
+
+            <!-- Result Bars -->
+            <div class="space-y-3">
+              <div>
+                <div class="flex justify-between text-sm mb-1.5">
+                  <span style="color: rgba(255,255,255,0.7);">احتمال آلزایمر اولیه</span>
+                  <span class="font-bold" style="color: #FCD34D;">کم</span>
+                </div>
+                <div class="h-2 rounded-full overflow-hidden" style="background: rgba(255,255,255,0.1);">
+                  <div class="h-full rounded-full" style="width: 23%; background: #FCD34D;"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-sm mb-1.5">
+                  <span style="color: rgba(255,255,255,0.7);">سلامت عمومی مغز</span>
+                  <span class="font-bold" style="color: #86EFAC;">مطلوب</span>
+                </div>
+                <div class="h-2 rounded-full overflow-hidden" style="background: rgba(255,255,255,0.1);">
+                  <div class="h-full rounded-full" style="width: 81%; background: #4ADE80;"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-sm mb-1.5">
+                  <span style="color: rgba(255,255,255,0.7);">اطمینان مدل</span>
+                  <span class="font-bold" style="color: #7DD3FC;">بالا</span>
+                </div>
+                <div class="h-2 rounded-full overflow-hidden" style="background: rgba(255,255,255,0.1);">
+                  <div class="h-full rounded-full" style="width: 94%; background: linear-gradient(90deg, #38BDF8, #0EA5E9);"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Footer -->
+            <div class="mt-5 pt-4 flex items-center justify-between text-xs" style="border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5);">
+              <span>آفاق‌سازان AI v2.4</span>
+              <span>۱۴۰۴/۰۳/۲۱ | ۱۴:۳۲</span>
+            </div>
+          </div>
+
+          <!-- Badge: speed -->
+          <div class="absolute -bottom-4 -right-4 bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: #E0F2FE;">
+              <svg class="w-5 h-5" style="color: #0EA5E9;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-xs text-gray-400">سرعت تحلیل</p>
+              <p class="font-bold text-gray-800 text-sm">بسیار سریع</p>
+            </div>
+          </div>
+
+          <!-- Badge: accuracy -->
+          <div class="absolute -top-4 -left-4 bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: #FEF3C7;">
+              <svg class="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-xs text-gray-400">دقت تشخیص</p>
+              <p class="font-bold text-gray-800 text-sm">بسیار بالا</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Wave -->
+  <div class="absolute bottom-0 left-0 right-0">
+    <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;">
+      <path d="M0 80L48 72C96 64 192 48 288 45.3C384 43 480 53 576 58.7C672 64 768 64 864 58.7C960 53 1056 43 1152 42.7C1248 43 1344 53 1392 58.7L1440 64V80H0Z" fill="white"/>
+    </svg>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════ TRUSTED BY ═══════════════════════ -->
+<section class="py-10 bg-white border-b border-gray-100">
+  <div class="container mx-auto px-4">
+    <p class="text-center text-gray-400 text-sm mb-6">مورد اعتماد مراکز پزشکی و تحقیقاتی</p>
+    <div class="flex flex-wrap items-center justify-center gap-10" style="opacity:0.35; filter: grayscale(1);">
+      <span class="text-gray-700 font-bold text-base">بیمارستان ایرانمهر</span>
+      <span class="text-gray-700 font-bold text-base">مرکز اعصاب شهدا</span>
+      <span class="text-gray-700 font-bold text-base">دانشگاه علوم پزشکی تهران</span>
+      <span class="text-gray-700 font-bold text-base">پارک فناوری پردیس</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════ FEATURES ═══════════════════════ -->
+<section class="py-24 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <span class="inline-block font-semibold text-sm px-4 py-1.5 rounded-full mb-4" style="color: #0284C7; background: #E0F2FE;">قابلیت‌های کلیدی</span>
+      <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">چرا آفاق‌سازان؟</h2>
+      <p class="text-gray-500 leading-7">ترکیب هوش مصنوعی پیشرفته با دانش پزشکی برای بهترین نتایج تشخیصی</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="feature-card bg-white p-6 rounded-2xl">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background: #E0F2FE;">
+          <svg class="w-6 h-6" style="color: #0EA5E9;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+          </svg>
+        </div>
+        <h3 class="font-bold text-gray-800 text-lg mb-2">تحلیل MRI با CNN</h3>
+        <p class="text-gray-500 text-sm leading-6">پردازش تصاویر مغزی با شبکه‌های عصبی کانولوشنی آموزش‌دیده روی هزاران اسکن بالینی واقعی</p>
+      </div>
+
+      <div class="feature-card bg-white p-6 rounded-2xl">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background: #ECFDF5;">
+          <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+          </svg>
+        </div>
+        <h3 class="font-bold text-gray-800 text-lg mb-2">تشخیص مرحله بیماری</h3>
+        <p class="text-gray-500 text-sm leading-6">شناسایی دقیق مراحل اولیه، میانی و پیشرفته آلزایمر با نمایش احتمال و سطح اطمینان مدل</p>
+      </div>
+
+      <div class="feature-card bg-white p-6 rounded-2xl">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background: #FFF7ED;">
+          <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        </div>
+        <h3 class="font-bold text-gray-800 text-lg mb-2">تحلیل آنی</h3>
+        <p class="text-gray-500 text-sm leading-6">نتیجه تشخیص در کمترین زمان آماده است. گزارش کامل قابل دانلود و ارسال به بیمار در فرمت‌های استاندارد پزشکی</p>
+      </div>
+
+      <div class="feature-card bg-white p-6 rounded-2xl">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background: #F5F3FF;">
+          <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
+        </div>
+        <h3 class="font-bold text-gray-800 text-lg mb-2">امنیت پزشکی</h3>
+        <p class="text-gray-500 text-sm leading-6">رمزنگاری کامل داده‌های پزشکی و انطباق با استانداردهای بین‌المللی حفاظت از اطلاعات بیمار</p>
       </div>
     </div>
   </div>
-  <img class="banner-shape absolute -top-28 right-0 -z-[1] w-full max-w-[30%]" src="{% static 'images/banner-shape.svg' %}" alt="">
 </section>
 
-<!-- Key Features Section -->
-<section class="section key-feature relative py-16 bg-gray-50">
+
+<!-- ═══════════════════════ HOW IT WORKS ═══════════════════════ -->
+<section class="py-24" style="background: #F0F9FF;">
   <div class="container mx-auto px-4">
-    <div class="grid lg:grid-cols-2 gap-8 items-center">
-      <div>
-        <h2 class="text-3xl font-bold text-gray-800">✨ قابلیت‌های کلیدی سیستم</h2>
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <span class="inline-block font-semibold text-sm px-4 py-1.5 rounded-full mb-4 shadow-sm" style="color: #0284C7; background: white;">نحوه عملکرد</span>
+      <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">سه قدم تا تشخیص</h2>
+      <p class="text-gray-500 leading-7">فرآیند ساده و سریع از آپلود تصویر تا دریافت گزارش تخصصی</p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-8">
+      <div class="text-center">
+        <div class="w-24 h-24 mx-auto rounded-full flex items-center justify-center mb-6 shadow-xl relative" style="background: linear-gradient(135deg, #0EA5E9, #0284C7);">
+          <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          <span class="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-white flex items-center justify-center font-bold text-sm shadow" style="color: #0284C7; border: 2px solid #0EA5E9;">۱</span>
+        </div>
+        <h3 class="text-xl font-bold text-gray-800 mb-3">آپلود تصویر MRI</h3>
+        <p class="text-gray-500 text-sm leading-7">فایل DICOM یا تصویر MRI را در سامانه بارگذاری کنید. پشتیبانی از فرمت‌های استاندارد پزشکی</p>
       </div>
-      <div>
-        <p class="text-gray-600">
-          این سیستم با استفاده از مدل‌های یادگیری عمیق، تصاویر MRI مغز را تحلیل کرده
-          و الگوهای مرتبط با آلزایمر را با دقت بالا شناسایی می‌کند.
-        </p>
+
+      <div class="text-center">
+        <div class="w-24 h-24 mx-auto rounded-full flex items-center justify-center mb-6 shadow-xl relative" style="background: linear-gradient(135deg, #06B6D4, #0EA5E9);">
+          <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+          <span class="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-white flex items-center justify-center font-bold text-sm shadow" style="color: #0284C7; border: 2px solid #0EA5E9;">۲</span>
+        </div>
+        <h3 class="text-xl font-bold text-gray-800 mb-3">پردازش هوش مصنوعی</h3>
+        <p class="text-gray-500 text-sm leading-7">مدل CNN ما تصویر را در کمترین زمان تحلیل کرده و ناحیه‌های حساس مغز را شناسایی می‌کند</p>
+      </div>
+
+      <div class="text-center">
+        <div class="w-24 h-24 mx-auto rounded-full flex items-center justify-center mb-6 shadow-xl relative" style="background: linear-gradient(135deg, #0369A1, #06B6D4);">
+          <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+          <span class="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-white flex items-center justify-center font-bold text-sm shadow" style="color: #0284C7; border: 2px solid #0EA5E9;">۳</span>
+        </div>
+        <h3 class="text-xl font-bold text-gray-800 mb-3">دریافت گزارش تخصصی</h3>
+        <p class="text-gray-500 text-sm leading-7">گزارش جامع با نمودار احتمال، نواحی نشانه‌دار و پیشنهاد پزشکی برای پزشک ارسال می‌شود</p>
       </div>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
-      <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
-        <div class="text-3xl mb-3">🧠</div>
-        <h3 class="text-xl font-bold text-gray-800">تحلیل MRI با AI</h3>
-        <p class="text-gray-600 mt-2">پردازش تصاویر مغزی با شبکه‌های عصبی عمیق (CNN)</p>
+    <!-- CN / MCI / AD -->
+    <div class="grid grid-cols-3 gap-4 max-w-xl mx-auto mt-14">
+      <div class="rounded-2xl p-5 text-center border border-green-100 bg-green-50">
+        <div class="text-2xl font-black text-green-600 mb-1">CN</div>
+        <div class="text-xs font-semibold text-green-600 mb-2">سالم</div>
+        <p class="text-xs text-green-700 leading-5">مغز در وضعیت طبیعی قرار دارد</p>
       </div>
-      <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
-        <div class="text-3xl mb-3">📊</div>
-        <h3 class="text-xl font-bold text-gray-800">تشخیص مرحله بیماری</h3>
-        <p class="text-gray-600 mt-2">شناسایی مراحل اولیه، میانی و پیشرفته</p>
+      <div class="rounded-2xl p-5 text-center border border-amber-100 bg-amber-50 ring-2 ring-amber-300 ring-offset-2">
+        <div class="text-2xl font-black text-amber-600 mb-1">MCI</div>
+        <div class="text-xs font-semibold text-amber-600 mb-2">اختلال خفیف</div>
+        <p class="text-xs text-amber-700 leading-5">نشانه‌های اولیه قابل تشخیص است</p>
       </div>
-      <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
-        <div class="text-3xl mb-3">🎯</div>
-        <h3 class="text-xl font-bold text-gray-800">کاهش خطای انسانی</h3>
-        <p class="text-gray-600 mt-2">کمک به پزشک برای تصمیم‌گیری دقیق‌تر</p>
-      </div>
-      <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
-        <div class="text-3xl mb-3">🏥</div>
-        <h3 class="text-xl font-bold text-gray-800">مدل‌های پزشکی</h3>
-        <p class="text-gray-600 mt-2">آموزش روی دیتاست‌های واقعی MRI</p>
+      <div class="rounded-2xl p-5 text-center border border-red-100 bg-red-50">
+        <div class="text-2xl font-black text-red-600 mb-1">AD</div>
+        <div class="text-xs font-semibold text-red-600 mb-2">آلزایمر</div>
+        <p class="text-xs text-red-700 leading-5">تشخیص آلزایمر با اطمینان بالا</p>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- Platform Section -->
-<section class="section services py-16">
-  <div class="container mx-auto px-4">
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
-      <div>
-        <img class="w-full object-contain" src="{% static 'images/sells-by-country.png' %}" alt="Platform">
-      </div>
-      <div>
-        <h2 class="text-3xl font-bold text-gray-800">📱 یک پلتفرم هوشمند برای تشخیص زودهنگام</h2>
-        <p class="mt-4 text-gray-600">
-          این سیستم به پزشکان کمک می‌کند تا از روی MRI، احتمال وجود آلزایمر و شدت آن را
-          سریع‌تر و دقیق‌تر بررسی کنند.
-        </p>
-        <ul class="mt-6 space-y-3">
-          <li class="flex items-center gap-3">
-            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
-            </svg>
-            <span>⚡ تحلیل سریع تصاویر پزشکی</span>
-          </li>
-          <li class="flex items-center gap-3">
-            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
-            </svg>
-            <span>📋 گزارش خودکار نتایج</span>
-          </li>
-          <li class="flex items-center gap-3">
-            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
-            </svg>
-            <span>🏥 مناسب کلینیک‌ها و بیمارستان‌ها</span>
-          </li>
-        </ul>
-      </div>
+    <div class="text-center mt-10">
+      <a href="{% url 'signup' %}" class="inline-flex items-center gap-2 font-semibold px-8 py-3.5 rounded-xl text-white shadow-lg hover:shadow-xl transition-all" style="background: linear-gradient(135deg, #0EA5E9, #0284C7);">
+        همین حالا امتحان کنید
+        <svg class="w-4 h-4 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+        </svg>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- Why This Project Section -->
-<section class="section py-16 bg-gray-50">
-  <div class="container mx-auto px-4">
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
-      <div>
-        <h2 class="text-3xl font-bold text-gray-800">🎯 چرا این پروژه مهم است؟</h2>
-        <p class="mt-4 text-gray-600">
-          با افزایش نرخ آلزایمر در جهان، تشخیص زودهنگام یکی از مهم‌ترین عوامل کنترل بیماری است.
-          این سیستم نقش یک دستیار هوشمند برای پزشکان را ایفا می‌کند.
-        </p>
-        <ul class="mt-6 space-y-3">
-          <li class="flex items-center gap-3">
-            <span class="w-2 h-2 bg-primary rounded-full"></span>
-            <span>⏱️ کاهش زمان تشخیص بیماری</span>
-          </li>
-          <li class="flex items-center gap-3">
-            <span class="w-2 h-2 bg-primary rounded-full"></span>
-            <span>📈 افزایش دقت نسبت به تشخیص دستی</span>
-          </li>
-          <li class="flex items-center gap-3">
-            <span class="w-2 h-2 bg-primary rounded-full"></span>
-            <span>🔧 قابلیت توسعه برای سایر بیماری‌های مغزی</span>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <img class="w-full object-contain rounded-xl shadow-lg" src="{% static 'images/collaboration.png' %}" alt="Why this project">
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- Latest News Section -->
-<section class="section py-16">
+
+
+<!-- ═══════════════════════ ARTICLES ═══════════════════════ -->
+<section class="py-24 bg-white">
   <div class="container mx-auto px-4">
-    <div class="flex justify-between items-center mb-8">
-      <h2 class="text-3xl font-bold text-gray-800">📰 آخرین اخبار و مقالات</h2>
-      <a href="{% url 'news:list' %}" class="text-primary hover:underline">مشاهده همه ←</a>
+
+    <div class="flex items-end justify-between mb-12">
+      <div>
+        <span class="inline-block font-semibold text-sm px-4 py-1.5 rounded-full mb-3" style="color: #0284C7; background: #E0F2FE;">مقالات علمی</span>
+        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900">آخرین مطالب آلزایمر</h2>
+      </div>
+      <a href="{% url 'news:list' %}" class="hidden lg:flex items-center gap-2 font-semibold" style="color: #0284C7;">
+        مشاهده همه
+        <svg class="w-4 h-4 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+        </svg>
+      </a>
     </div>
 
     {% if latest_news %}
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {% for news in latest_news %}
-      <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition group">
-        {% if news.featured_image %}
-        <img src="{{ news.featured_image.url }}" alt="{{ news.title }}" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300">
-        {% else %}
-        <img src="{% static 'images/placeholder-image.jpg' %}" alt="placeholder" class="w-full h-48 object-cover">
-        {% endif %}
-        <div class="p-4">
-          <div class="text-sm text-gray-500 mb-2">
-            {{ news.publish_date|date:"d F Y" }} | 👁️ {{ news.views }} بازدید
-          </div>
-          <h3 class="font-bold text-lg mb-2 line-clamp-2">
-            <a href="{{ news.get_absolute_url }}" class="hover:text-primary transition">{{ news.title }}</a>
-          </h3>
-          <p class="text-gray-600 text-sm line-clamp-3">{{ news.summary|truncatewords:20 }}</p>
-          <a href="{{ news.get_absolute_url }}" class="inline-block mt-3 text-primary text-sm font-semibold hover:underline">ادامه مطلب ←</a>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
+      {% for article in latest_news %}
+      <article class="news-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
+        <div class="overflow-hidden h-48">
+          {% if article.featured_image %}
+            <img src="{{ article.featured_image.url }}" alt="{{ article.title }}" class="news-img w-full h-full object-cover">
+          {% elif article.category.default_image %}
+            <img src="{{ article.category.default_image.url }}" alt="{{ article.title }}" class="news-img w-full h-full object-cover">
+          {% else %}
+            <div class="w-full h-full flex items-center justify-center" style="background: linear-gradient(135deg, #E0F2FE, #BAE6FD);">
+              <svg class="w-16 h-16" style="color: #0EA5E9; opacity: 0.4;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+              </svg>
+            </div>
+          {% endif %}
         </div>
-      </div>
+        <div class="p-5">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="text-xs text-white px-2.5 py-1 rounded-full font-medium" style="background: #0EA5E9;">{{ article.category.name }}</span>
+            <span class="text-xs text-gray-400">{{ article.jalali_publish_date }}</span>
+          </div>
+          <h3 class="font-bold text-gray-800 text-base mb-2 leading-6 line-clamp-2">
+            <a href="{{ article.get_absolute_url }}" class="hover:text-primary-600 transition-colors" style="--hover-color: #0284C7;">{{ article.title }}</a>
+          </h3>
+          <p class="text-gray-500 text-sm leading-6 line-clamp-2 mb-4">{{ article.summary }}</p>
+          <div class="flex items-center justify-between pt-3 border-t border-gray-50">
+            <span class="text-xs text-gray-400 flex items-center gap-1">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+              </svg>
+              {{ article.views }} بازدید
+            </span>
+            <a href="{{ article.get_absolute_url }}" class="text-xs font-semibold flex items-center gap-1" style="color: #0284C7;">
+              ادامه مطلب
+              <svg class="w-3.5 h-3.5 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </article>
       {% endfor %}
     </div>
     {% else %}
-    <div class="text-center py-12 bg-gray-50 rounded-xl">
-      <p class="text-gray-500">هنوز خبری منتشر نشده است.</p>
-    </div>
+    <div class="text-center py-12 text-gray-400">مقاله‌ای برای نمایش وجود ندارد.</div>
     {% endif %}
+
+    <div class="text-center mt-8 lg:hidden">
+      <a href="{% url 'news:list' %}" class="inline-flex items-center gap-2 font-semibold" style="color: #0284C7;">
+        مشاهده همه مقالات
+        <svg class="w-4 h-4 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+        </svg>
+      </a>
+    </div>
   </div>
 </section>
 
-<!-- How It Works Section -->
-<section class="section py-16 bg-gray-50">
+
+<!-- ═══════════════════════ CTA ═══════════════════════ -->
+<section class="py-20 bg-gray-50">
   <div class="container mx-auto px-4">
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
-      <div>
-        <img class="w-full object-contain rounded-xl shadow-lg" src="{% static 'images/intro-thumbnail.png' %}" alt="How it works">
-      </div>
-      <div>
-        <h2 class="text-3xl font-bold text-gray-800">🎬 نحوه عملکرد سیستم</h2>
-        <p class="mt-4 text-gray-600">
-          تصویر MRI دریافت شده و توسط مدل‌های یادگیری عمیق پردازش می‌شود تا ویژگی‌های مغزی
-          استخراج و احتمال بیماری محاسبه شود.
+    <div class="rounded-3xl overflow-hidden relative" style="background: linear-gradient(135deg, #0C4A6E 0%, #0369A1 40%, #0EA5E9 100%);">
+      <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle, #fff 1px, transparent 1px); background-size: 20px 20px;"></div>
+      <div class="relative z-10 px-8 py-16 text-center text-white">
+        <span class="inline-block text-sm font-semibold px-4 py-2 rounded-full mb-6 backdrop-blur-sm" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">
+          همکاری با آفاق‌سازان
+        </span>
+        <h2 class="text-3xl lg:text-4xl font-bold mb-4 max-w-2xl mx-auto leading-tight text-white">
+          آینده تشخیص بیماری‌های مغزی با هوش مصنوعی
+        </h2>
+        <p class="max-w-xl mx-auto mb-8 leading-7 text-white">
+          این پروژه دانش‌بنیان آماده همکاری با بیمارستان‌ها، مراکز تصویربرداری، کلینیک‌های مغز و اعصاب و مراکز تحقیقاتی است.
         </p>
-        <ul class="mt-6 space-y-3">
-          <li class="flex items-center gap-3">
-            <span class="w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm">1</span>
-            <span>آپلود تصویر MRI</span>
-          </li>
-          <li class="flex items-center gap-3">
-            <span class="w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm">2</span>
-            <span>پردازش با هوش مصنوعی</span>
-          </li>
-          <li class="flex items-center gap-3">
-            <span class="w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm">3</span>
-            <span>دریافت گزارش تشخیص</span>
-          </li>
-        </ul>
-        <button class="btn btn-primary mt-6 bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition">
-          ▶️ مشاهده دمو
-        </button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Stats Section -->
-<section class="section py-16 bg-primary text-white">
-  <div class="container mx-auto px-4">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-      <div>
-        <div class="text-4xl font-bold">+۱٬۰۰۰</div>
-        <p class="mt-2 text-white/80">تصویر MRI تحلیل شده</p>
-      </div>
-      <div>
-        <div class="text-4xl font-bold">۹۲٪</div>
-        <p class="mt-2 text-white/80">دقت تشخیص</p>
-      </div>
-      <div>
-        <div class="text-4xl font-bold">+۵۰</div>
-        <p class="mt-2 text-white/80">پزشک همکار</p>
-      </div>
-      <div>
-        <div class="text-4xl font-bold">&lt;۳s</div>
-        <p class="mt-2 text-white/80">زمان تحلیل</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA Section -->
-<section class="px-5 py-20 xl:py-[120px]">
-  <div class="container mx-auto px-4">
-    <div class="bg-gradient-to-r from-primary to-secondary rounded-b-[80px] rounded-t-[20px] px-8 pb-[75px] pt-16 text-center text-white">
-      <h2 class="text-3xl lg:text-4xl font-bold">🚀 آینده تشخیص بیماری‌های مغزی با هوش مصنوعی</h2>
-      <p class="mt-4 text-white/90 max-w-2xl mx-auto">
-        این پروژه دانش‌بنیان آماده همکاری با بیمارستان‌ها، مراکز تصویربرداری و مراکز تحقیقاتی است.
-      </p>
-      <div class="mt-8 flex flex-wrap gap-4 justify-center">
-        <a class="bg-white text-primary px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition" href="#">
-          📞 درخواست دمو
-        </a>
-        <a class="border border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary transition" href="{% url 'contact' %}">
-          تماس با ما
-        </a>
+        <div class="flex flex-wrap gap-4 justify-center">
+          <a href="{% url 'signup' %}" class="inline-flex items-center gap-2 bg-white font-bold px-8 py-3.5 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all" style="color: #0284C7;">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+            شروع رایگان
+          </a>
+          <a href="{% url 'contact' %}" class="inline-flex items-center gap-2 border font-semibold px-8 py-3.5 rounded-xl hover:bg-white/10 backdrop-blur-sm transition-all" style="border-color: rgba(255,255,255,0.4); color: white;">
+            درخواست دمو
+          </a>
+        </div>
       </div>
     </div>
   </div>

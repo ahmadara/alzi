@@ -1,0 +1,94 @@
+/* ============================================================
+   GSAH Admin — Unfold custom styles
+   فقط چیزی که Unfold خودش انجام نمی‌دهد را اضافه می‌کنیم.
+   Unfold از locale fa-ir به طور خودکار dir="rtl" می‌گذارد
+   و Material Symbols را هم خودش لود می‌کند.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap');
+
+/* ── فونت فارسی — فقط روی متن، نه آیکون ────────────────── */
+body,
+body *:not(.material-symbols-outlined):not(.material-symbols-rounded):not(.material-symbols-sharp) {
+    font-family: 'Vazirmatn', sans-serif !important;
+}
+
+/* ── Sidebar: انیمیشن نرم ───────────────────────────────── */
+#nav-sidebar,
+.min-w-sidebar,
+[class*="transition-width"] {
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                min-width 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Border sidebar در RTL: باید سمت چپ باشه (چون sidebar سمت راست است) */
+#nav-sidebar {
+    border-right: none !important;
+    border-left: 1px solid rgb(var(--color-base-200)) !important;
+}
+.dark #nav-sidebar {
+    border-left-color: rgb(var(--color-base-800)) !important;
+}
+
+/* Sidebar links hover */
+#nav-sidebar a {
+    transition: background 0.15s ease, color 0.15s ease !important;
+}
+
+/* ── جداول — راست‌چین ────────────────────────────────────── */
+table {
+    direction: rtl !important;
+}
+table th,
+table td {
+    text-align: right !important;
+}
+
+/* ── فیلدهای فرم — راست‌چین ──────────────────────────────── */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="url"],
+input[type="search"],
+textarea,
+select {
+    text-align: right !important;
+    direction: rtl !important;
+}
+
+/* فیلدهای عددی/تاریخ چپ‌به‌راست بمانند */
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"] {
+    direction: ltr !important;
+    text-align: left !important;
+}
+
+/* ── اسکرول‌بار ───────────────────────────────────────────── */
+::-webkit-scrollbar        { width: 5px; height: 5px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  {
+    background: rgb(var(--color-primary-300) / 0.4);
+    border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--color-primary-500) / 0.6);
+}
+
+/* ── لوگو sidebar ─────────────────────────────────────────── */
+aside img[alt],
+nav img[alt] {
+    max-height: 36px !important;
+    width: auto !important;
+}
+
+/* ── پیام‌ها ───────────────────────────────────────────────── */
+.messagelist li {
+    text-align: right !important;
+}
+
+/* ── سایه مینیمال ─────────────────────────────────────────── */
+.shadow, .shadow-md, .shadow-lg {
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.07), 0 1px 2px -1px rgb(0 0 0 / 0.04) !important;
+}

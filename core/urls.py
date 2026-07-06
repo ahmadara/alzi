@@ -7,14 +7,12 @@ from django.views.generic import RedirectView
 
 from . import views
 
+
 urlpatterns = [
-    path('admin/login/', RedirectView.as_view(url='/signin/', permanent=True, query_string=True)),
     path('admin/', admin.site.urls),
     
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
-    path('features/', views.features, name='features'),
-    path('pricing/', views.pricing, name='pricing'),
     path('career/', views.career, name='career'),
     path('contact/', views.contact, name='contact'),
  
@@ -29,8 +27,8 @@ urlpatterns = [
     path('verify-otp/', views.verify_otp, name='verify_otp'),  # حذف <str:phone>
 
     path('terms/', views.terms, name='terms'),
-    path('how-it-works/', views.how_it_works, name='how_it_works'),
     path('news/', include('apps.news.urls')),
+    path('dashboard/', include('apps.diagnosis.urls')),
 ]
 
 if settings.DEBUG:

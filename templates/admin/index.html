@@ -1,0 +1,203 @@
+{% extends 'admin/base.html' %}
+{% load i18n static %}
+
+{% block breadcrumbs %}{% endblock %}
+{% block title %}داشبورد | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block content %}
+<div style="direction:rtl; font-family:'Vazirmatn',sans-serif;">
+
+<!-- ══ کارت‌های آماری ══════════════════════════════════════ -->
+<div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:28px;">
+
+  <!-- کاربران -->
+  <a href="{% url 'admin:auth_user_changelist' %}"
+     style="display:flex; align-items:center; gap:14px; padding:18px 20px; background:#fff; border:1px solid #e5e7eb; border-radius:14px; text-decoration:none; transition:box-shadow .2s; color:inherit;"
+     onmouseover="this.style.boxShadow='0 4px 16px rgba(14,165,233,.12)'"
+     onmouseout="this.style.boxShadow='none'">
+    <div style="width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#0EA5E9,#0284C7);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+      <svg width="22" height="22" fill="none" stroke="#fff" stroke-width="1.8" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+      </svg>
+    </div>
+    <div>
+      <div style="font-size:26px;font-weight:800;color:#111827;line-height:1.1;">{{ stats.total_users }}</div>
+      <div style="font-size:12px;color:#6b7280;margin-top:2px;">کل کاربران</div>
+    </div>
+  </a>
+
+  <!-- تشخیص‌ها -->
+  <a href="{% url 'admin:diagnosis_diagnosisrecord_changelist' %}"
+     style="display:flex; align-items:center; gap:14px; padding:18px 20px; background:#fff; border:1px solid #e5e7eb; border-radius:14px; text-decoration:none; transition:box-shadow .2s; color:inherit;"
+     onmouseover="this.style.boxShadow='0 4px 16px rgba(139,92,246,.12)'"
+     onmouseout="this.style.boxShadow='none'">
+    <div style="width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#8B5CF6,#6D28D9);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+      <svg width="22" height="22" fill="none" stroke="#fff" stroke-width="1.8" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+      </svg>
+    </div>
+    <div>
+      <div style="font-size:26px;font-weight:800;color:#111827;line-height:1.1;">{{ stats.total_diagnoses }}</div>
+      <div style="font-size:12px;color:#6b7280;margin-top:2px;">تشخیص‌های ثبت‌شده</div>
+    </div>
+  </a>
+
+  <!-- مقالات -->
+  <a href="{% url 'admin:news_newsarticle_changelist' %}"
+     style="display:flex; align-items:center; gap:14px; padding:18px 20px; background:#fff; border:1px solid #e5e7eb; border-radius:14px; text-decoration:none; transition:box-shadow .2s; color:inherit;"
+     onmouseover="this.style.boxShadow='0 4px 16px rgba(16,185,129,.12)'"
+     onmouseout="this.style.boxShadow='none'">
+    <div style="width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#10B981,#059669);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+      <svg width="22" height="22" fill="none" stroke="#fff" stroke-width="1.8" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+      </svg>
+    </div>
+    <div>
+      <div style="font-size:26px;font-weight:800;color:#111827;line-height:1.1;">{{ stats.published_articles }}</div>
+      <div style="font-size:12px;color:#6b7280;margin-top:2px;">مقالات منتشرشده</div>
+    </div>
+  </a>
+
+  <!-- نظرات در انتظار -->
+  <a href="{% url 'admin:news_newscomment_changelist' %}?is_approved__exact=0"
+     style="display:flex; align-items:center; gap:14px; padding:18px 20px; background:#fff; border:1px solid #e5e7eb; border-radius:14px; text-decoration:none; transition:box-shadow .2s; color:inherit;"
+     onmouseover="this.style.boxShadow='0 4px 16px rgba(245,158,11,.12)'"
+     onmouseout="this.style.boxShadow='none'">
+    <div style="width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#F59E0B,#D97706);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+      <svg width="22" height="22" fill="none" stroke="#fff" stroke-width="1.8" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+      </svg>
+    </div>
+    <div>
+      <div style="font-size:26px;font-weight:800;color:#111827;line-height:1.1;">{{ stats.pending_comments }}</div>
+      <div style="font-size:12px;color:#6b7280;margin-top:2px;">نظر در انتظار تایید</div>
+    </div>
+  </a>
+
+</div>
+
+<!-- ══ ردیف میانی ══════════════════════════════════════════ -->
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:24px;">
+
+  <!-- توزیع نتایج تشخیص -->
+  <div style="background:#fff; border:1px solid #e5e7eb; border-radius:14px; padding:22px 24px;">
+    <div style="font-size:14px; font-weight:700; color:#111827; margin-bottom:18px;">توزیع نتایج تشخیص</div>
+
+    {% if stats.total_diagnoses > 0 %}
+    <div style="margin-bottom:14px;">
+      <div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:6px;">
+        <span style="color:#059669; font-weight:600;">سالم (CN)</span>
+        <span style="color:#374151; font-weight:700;">{{ stats.cn_count }}</span>
+      </div>
+      <div style="height:8px; border-radius:99px; background:#f3f4f6; overflow:hidden;">
+        <div style="height:100%; border-radius:99px; background:#34d399; width:{% widthratio stats.cn_count stats.total_diagnoses 100 %}%;"></div>
+      </div>
+    </div>
+    <div style="margin-bottom:14px;">
+      <div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:6px;">
+        <span style="color:#d97706; font-weight:600;">اختلال خفیف (MCI)</span>
+        <span style="color:#374151; font-weight:700;">{{ stats.mci_count }}</span>
+      </div>
+      <div style="height:8px; border-radius:99px; background:#f3f4f6; overflow:hidden;">
+        <div style="height:100%; border-radius:99px; background:#fbbf24; width:{% widthratio stats.mci_count stats.total_diagnoses 100 %}%;"></div>
+      </div>
+    </div>
+    <div style="margin-bottom:14px;">
+      <div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:6px;">
+        <span style="color:#dc2626; font-weight:600;">آلزایمر (AD)</span>
+        <span style="color:#374151; font-weight:700;">{{ stats.ad_count }}</span>
+      </div>
+      <div style="height:8px; border-radius:99px; background:#f3f4f6; overflow:hidden;">
+        <div style="height:100%; border-radius:99px; background:#f87171; width:{% widthratio stats.ad_count stats.total_diagnoses 100 %}%;"></div>
+      </div>
+    </div>
+    <div>
+      <div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:6px;">
+        <span style="color:#6b7280; font-weight:600;">در حال بررسی</span>
+        <span style="color:#374151; font-weight:700;">{{ stats.pending_diagnoses }}</span>
+      </div>
+      <div style="height:8px; border-radius:99px; background:#f3f4f6; overflow:hidden;">
+        <div style="height:100%; border-radius:99px; background:#9ca3af; width:{% widthratio stats.pending_diagnoses stats.total_diagnoses 100 %}%;"></div>
+      </div>
+    </div>
+    {% else %}
+    <p style="color:#9ca3af; font-size:13px; text-align:center; padding:20px 0;">هنوز تشخیصی ثبت نشده است.</p>
+    {% endif %}
+  </div>
+
+  <!-- آخرین کاربران -->
+  <div style="background:#fff; border:1px solid #e5e7eb; border-radius:14px; padding:22px 24px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
+      <span style="font-size:14px; font-weight:700; color:#111827;">آخرین کاربران</span>
+      <a href="{% url 'admin:auth_user_changelist' %}" style="font-size:12px; color:#0EA5E9; text-decoration:none;">مشاهده همه</a>
+    </div>
+    {% for u in stats.recent_users %}
+    <div style="display:flex; align-items:center; gap:10px; padding:8px 0; border-bottom:1px solid #f9fafb;">
+      <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#0EA5E9,#0284C7);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700;flex-shrink:0;">
+        {{ u.username|first|upper }}
+      </div>
+      <div style="flex:1; min-width:0;">
+        <div style="font-size:13px; font-weight:600; color:#111827; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ u.get_full_name|default:u.username }}</div>
+        <div style="font-size:11px; color:#9ca3af; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ u.email }}</div>
+      </div>
+      <a href="{% url 'admin:auth_user_change' u.pk %}" style="font-size:11px; color:#0EA5E9; text-decoration:none; white-space:nowrap; padding:3px 8px; border:1px solid #e0f2fe; border-radius:6px;">ویرایش</a>
+    </div>
+    {% empty %}
+    <p style="color:#9ca3af; font-size:13px; text-align:center; padding:20px 0;">کاربری یافت نشد.</p>
+    {% endfor %}
+  </div>
+
+</div>
+
+<!-- ══ آخرین تشخیص‌ها ══════════════════════════════════════ -->
+<div style="background:#fff; border:1px solid #e5e7eb; border-radius:14px; padding:22px 24px; margin-bottom:28px;">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
+    <span style="font-size:14px; font-weight:700; color:#111827;">آخرین تشخیص‌ها</span>
+    <a href="{% url 'admin:diagnosis_diagnosisrecord_changelist' %}" style="font-size:12px; color:#0EA5E9; text-decoration:none;">مشاهده همه</a>
+  </div>
+  <table style="width:100%; border-collapse:collapse; font-size:13px;">
+    <thead>
+      <tr style="border-bottom:2px solid #f3f4f6;">
+        <th style="padding:8px 0; text-align:right; color:#6b7280; font-weight:600;">بیمار</th>
+        <th style="padding:8px 0; text-align:right; color:#6b7280; font-weight:600;">نتیجه</th>
+        <th style="padding:8px 0; text-align:right; color:#6b7280; font-weight:600;">اطمینان</th>
+        <th style="padding:8px 0; text-align:right; color:#6b7280; font-weight:600;">تاریخ</th>
+        <th style="padding:8px 0;"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for d in stats.recent_diagnoses %}
+      <tr style="border-bottom:1px solid #f9fafb;">
+        <td style="padding:10px 0; color:#111827; font-weight:500;">{{ d.user.get_full_name|default:d.user.username }}</td>
+        <td style="padding:10px 0;">
+          <span style="display:inline-block; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:700;
+            {% if d.result == 'CN' %}background:#d1fae5; color:#065f46;
+            {% elif d.result == 'MCI' %}background:#fef3c7; color:#92400e;
+            {% elif d.result == 'AD' %}background:#fee2e2; color:#991b1b;
+            {% else %}background:#f3f4f6; color:#6b7280;{% endif %}">
+            {{ d.get_result_display }}
+          </span>
+        </td>
+        <td style="padding:10px 0; color:#6b7280;">{% if d.confidence %}{{ d.confidence|floatformat:1 }}٪{% else %}—{% endif %}</td>
+        <td style="padding:10px 0; color:#9ca3af; font-size:12px;">{{ d.jalali_created_at }}</td>
+        <td style="padding:10px 0; text-align:left;">
+          <a href="{% url 'admin:diagnosis_diagnosisrecord_change' d.pk %}" style="font-size:11px; color:#0EA5E9; text-decoration:none; padding:3px 8px; border:1px solid #e0f2fe; border-radius:6px;">ویرایش</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="5" style="padding:24px 0; text-align:center; color:#9ca3af;">هنوز تشخیصی ثبت نشده است.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<!-- ══ لیست اپلیکیشن‌ها (پیش‌فرض Unfold) ═══════════════════ -->
+<div class="flex flex-col lg:flex-row lg:gap-8">
+  <div class="flex-grow">
+    {% include "unfold/helpers/app_list_default.html" %}
+  </div>
+  {% include "unfold/helpers/history.html" %}
+</div>
+
+</div>
+{% endblock %}

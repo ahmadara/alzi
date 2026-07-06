@@ -1,0 +1,3 @@
+# نصب کنید فقط وقتی که DEMO_MODE = False است (مدل واقعی):
+#   pip install -r requirements-ml.txt
+tensorflow==2.16.1

@@ -12,13 +12,14 @@
       <!-- فرم ورود -->
       <div class="bg-white py-10 lg:py-[114px] flex items-center">
         <div class="mx-auto w-full max-w-[480px] px-4">
-          <img class="mb-8 w-12" src="{% static 'images/flower.svg' %}" alt="" />
-          <h1 class="text-3xl lg:text-4xl font-bold text-gray-800 mb-2">🧠 ورود به حساب کاربری</h1>
+          <img src="{% static 'images/logo-color.png' %}" alt="ASAH" class="h-14 w-auto mb-8">
+          <h1 class="text-3xl lg:text-4xl font-bold text-gray-800 mb-2">ورود به حساب کاربری</h1>
           <p class="text-gray-500">به سامانه تشخیص هوشمند آلزایمر خوش آمدید</p>
           
           <!-- فرم ورود با یوزرنیم و رمز عبور -->
           <form method="post" action="{% url 'signin' %}">
             {% csrf_token %}
+            {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
             
             {% if messages %}
               <div class="mb-4">
@@ -82,29 +83,59 @@
         </div>
       </div>
 
-      <!-- بنر سمت راست -->
-      <div class="auth-banner bg-gradient-to-r from-primary to-secondary hidden lg:flex flex-col items-center justify-center py-16 relative">
-        <div class="w-full text-center px-8 relative z-10">
-          <h2 class="text-3xl font-bold text-white mb-8">
-            به سامانه تشخیص<br />
-            هوشمند آلزایمر خوش آمدید
-          </h2>
-          <div class="swiper auth-banner-carousel">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <img width="400" height="400" class="mx-auto rounded-xl shadow-lg" src="{% static 'images/login-carousel-img-1.png' %}" alt="AI Diagnosis">
-                <p class="text-white/80 mt-4">تشخیص دقیق با هوش مصنوعی</p>
+      <!-- بنر سمت راست — بدون تصویر placeholder -->
+      <div class="hidden lg:flex flex-col items-center justify-center py-16 px-10 relative overflow-hidden"
+           style="background: linear-gradient(135deg, #0C4A6E 0%, #0369A1 40%, #0EA5E9 100%);">
+        <!-- Dot pattern -->
+        <div class="absolute inset-0 opacity-10"
+             style="background-image: radial-gradient(circle, #fff 1px, transparent 1px); background-size: 28px 28px;"></div>
+
+        <div class="relative z-10 text-center max-w-sm">
+          <!-- Logo -->
+          <img src="{% static 'images/logo-icon.png' %}" alt="ASAH"
+               class="h-28 w-auto mx-auto mb-8 drop-shadow-xl"
+               style="filter: brightness(0) invert(1);">
+
+          <h2 class="text-3xl font-bold text-white mb-3">به آفاق‌سازان خوش آمدید</h2>
+          <p class="text-blue-200 text-sm leading-7 mb-10">
+            سامانه هوشمند تشخیص آلزایمر از روی تصاویر MRI با هوش مصنوعی
+          </p>
+
+          <!-- Feature cards -->
+          <div class="space-y-3 text-right">
+            <div class="flex items-center gap-4 bg-white/10 backdrop-blur rounded-xl px-4 py-3">
+              <div class="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
               </div>
-              <div class="swiper-slide">
-                <img width="400" height="400" class="mx-auto rounded-xl shadow-lg" src="{% static 'images/login-carousel-img-1.png' %}" alt="MRI Analysis">
-                <p class="text-white/80 mt-4">تحلیل تصاویر MRI در چند ثانیه</p>
-              </div>
-              <div class="swiper-slide">
-                <img width="400" height="400" class="mx-auto rounded-xl shadow-lg" src="{% static 'images/login-carousel-img-1.png' %}" alt="Medical Report">
-                <p class="text-white/80 mt-4">دریافت گزارش تخصصی</p>
+              <div>
+                <p class="text-white font-semibold text-sm">تحلیل هوشمند تصویر</p>
+                <p class="text-blue-200 text-xs">مبتنی بر یادگیری عمیق</p>
               </div>
             </div>
-            <div class="swiper-pagination mt-4"></div>
+            <div class="flex items-center gap-4 bg-white/10 backdrop-blur rounded-xl px-4 py-3">
+              <div class="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-white font-semibold text-sm">تحلیل فوری</p>
+                <p class="text-blue-200 text-xs">نتیجه در کمتر از چند ثانیه</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 bg-white/10 backdrop-blur rounded-xl px-4 py-3">
+              <div class="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-white font-semibold text-sm">گزارش تخصصی</p>
+                <p class="text-blue-200 text-xs">نقشه حرارتی Grad-CAM</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -115,14 +146,3 @@
 
 {% endblock %}
 
-{% block extra_js %}
-<script>
-  if (typeof Swiper !== 'undefined') {
-    new Swiper('.auth-banner-carousel', {
-      loop: true,
-      autoplay: { delay: 4000 },
-      pagination: { el: '.swiper-pagination', clickable: true },
-    });
-  }
-</script>
-{% endblock %}

@@ -130,6 +130,10 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+DEMO_MODE = True
+
+LOGIN_URL = '/signin/'
+
 # CORS settings
 CORS_ALLOW_ALL_ORIGINS = True
 
@@ -140,66 +144,126 @@ REST_FRAMEWORK = {
     ),
 }
 UNFOLD = {
-"SITE_DROPDOWN": [
-      {
-            "icon": "dashboard",
-            "title": "داشبورد",
-            "link": "/admin/",
+    "SITE_TITLE": "پنل مدیریت | آفاق‌سازان",
+    "SITE_HEADER": "سامانه هوشمند تشخیص آلزایمر",
+    "SITE_URL": "/",
+    "SITE_LOGO": lambda request: "/static/images/logo-color.png",
+    "SITE_LOGO_DARK": lambda request: "/static/images/logo-color.png",
+    "SITE_ICON": lambda request: "/static/images/logo-icon-blue.png",
+    "SITE_FAVICON": lambda request: "/static/images/logo-icon-blue.png",
+    "SITE_SYMBOL": "psychology",
+
+    "SHOW_HISTORY": True,
+    "SHOW_VIEW_ON_SITE": True,
+    "SHOW_LANGUAGES": False,
+    "SHOW_BACK_BUTTON": False,
+    "DASHBOARD_CALLBACK": "core.callbacks.dashboard_callback",
+
+    "STYLES": ["/static/css/admin_custom.css"],
+    "SCRIPTS": [],
+
+    "COLORS": {
+        "font": {
+            "subtle-light": "107 114 128",
+            "subtle-dark": "156 163 175",
+            "default-light": "75 85 99",
+            "default-dark": "209 213 219",
+            "important-light": "17 24 39",
+            "important-dark": "243 244 246",
+        },
+        "primary": {
+            "50": "240 249 255",
+            "100": "224 242 254",
+            "200": "186 230 253",
+            "300": "125 211 252",
+            "400": "56 189 248",
+            "500": "14 165 233",
+            "600": "2 132 199",
+            "700": "3 105 161",
+            "800": "7 89 133",
+            "900": "12 74 110",
+            "950": "8 47 73",
+        },
+    },
+
+    "SIDEBAR": {
+        "show_search": True,
+        "show_all_applications": False,
+        "navigation": [
+            {
+                "title": "مدیریت کاربران",
+                "separator": False,
+                "collapsible": False,
+                "items": [
+                    {
+                        "title": "کاربران",
+                        "icon": "person",
+                        "link": "/admin/auth/user/",
+                        "permission": lambda request: request.user.is_superuser,
+                    },
+                ],
+            },
+            {
+                "title": "تشخیص‌ها",
+                "separator": True,
+                "collapsible": False,
+                "items": [
+                    {
+                        "title": "تاریخچه تشخیص‌ها",
+                        "icon": "biotech",
+                        "link": "/admin/diagnosis/diagnosisrecord/",
+                    },
+                ],
+            },
+            {
+                "title": "محتوای سایت",
+                "separator": True,
+                "collapsible": False,
+                "items": [
+                    {
+                        "title": "مقالات",
+                        "icon": "article",
+                        "link": "/admin/news/newsarticle/",
+                    },
+                    {
+                        "title": "دسته‌بندی‌ها",
+                        "icon": "category",
+                        "link": "/admin/news/newscategory/",
+                    },
+                    {
+                        "title": "نظرات",
+                        "icon": "comment",
+                        "link": "/admin/news/newscomment/",
+                    },
+                ],
+            },
+        ],
+    },
+
+    "SITE_DROPDOWN": [
+        {
+            "icon": "home",
+            "title": "صفحه اصلی سایت",
+            "link": "/",
+            "attrs": {"target": "_blank"},
         },
         {
-            "icon": "public",
-            "title": "مشاهده سایت",
-            "link": "/",
-            "attrs": {"target": "_self"},
+            "icon": "dashboard",
+            "title": "پنل کاربری",
+            "link": "/dashboard/",
         },
-      
     ],
-    "SITE_TITLE": "پنل مدیریت آلزایمر",
-
-    "SITE_HEADER": "مرکز تشخیص و اطلاع‌رسانی آلزایمر",
-
-    "SITE_URL": "/",
-
-    "SITE_ICON": None,
-
-    "SITE_FAVICON": None,
-
-    "STYLES": [
-           "/static/css/custom.css"
-        ],
-
-  
-
-    # تصویر پس‌زمینه صفحه ورود (اختیاری)
 
     "LOGIN": {
-
-        "image": None,  # میتونی یه عکس بذاری
-
+        "image": None,
     },
-
-    
-
-    # لوگوی سایت (اختیاری)
-
-    "SITE_LOGO": None,
-
-    
-
-    # فوتر (پایین صفحه)
 
     "FOOTER": {
-
-        "links": {
-
-            "website": "https://alzheimer.ir",
-
-            "support": "mailto:support@alzheimer.ir",
-
-        },
-
+        "links": [
+            {"link": "/", "label": "سایت اصلی"},
+            {"link": "mailto:support@afaqsazan.ir", "label": "پشتیبانی"},
+        ],
     },
-
 }
 from decouple import config
 
