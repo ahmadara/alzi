@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config, Csv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-qei#k9$kw=x_v=om2unz=)lahk)!_aj$7kmg8egti1zc_20fg%'
+SECRET_KEY = config('SECRET_KEY', default='django-insecure-qei#k9$kw=x_v=om2unz=)lahk)!_aj$7kmg8egti1zc_20fg%')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=Csv())
 
 
 # Application definition
@@ -115,7 +116,6 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-DEBUG = True
 
 
 STATICFILES_DIRS = [
@@ -130,12 +130,12 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-DEMO_MODE = True
+DEMO_MODE = config('DEMO_MODE', default=True, cast=bool)
 
 LOGIN_URL = '/signin/'
 
 # CORS settings
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = config('CORS_ALLOW_ALL_ORIGINS', default=True, cast=bool)
 
 # REST Framework settings
 REST_FRAMEWORK = {
